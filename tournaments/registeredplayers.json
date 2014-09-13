@@ -1,0 +1,33 @@
+{
+	"tournamentId": "jo14",
+	"tournamentName": "Jæren Open 2014",
+	"subtournaments": [
+		{
+			"subtournamentName": "Jæren Open 2014",
+			"players": [
+				{
+					"name": "Endre Vestbø",
+					"club": "Judasgeitene",
+					"nation": "NOR",
+					"points": 4932,
+					"best": 280
+				},
+				{
+					"name": "Thomas Calder",
+					"club": "Judasgeitene",
+					"nation": "GBR",
+					"points": 546,
+					"best": 100
+				},
+				{
+					"name": "Holmin",
+					"club": "Stigarevolusjonen",
+					"nation": "NOR",
+					"points": 8000,
+					"best": 955
+				}
+			]
+		}
+	]
+
+}

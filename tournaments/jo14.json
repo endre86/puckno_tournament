@@ -1,0 +1,44 @@
+{
+"id": "jo14",
+"name": "Jæren Open 2014",
+"language": "en",
+"date": "2014-10-11",
+"registrationDeadline": "2014-10-09",
+"fee": "200 NOK",
+"venue": "Frøydishallen",
+"banquet": "Ja!",
+"contact": "Endre Vestbø (endre.vestbo@gmail.com)",
+"logo": "http://puck.no/turnering/Style/img/no14.jpg",
+"registeredPlayersCount": 0,
+"misc": [
+	{
+		"item": "Fun factor?",
+		"value": "Over 9000!"
+	}
+],
+"program": 
+[
+	{
+		"day": "Saturday",
+		"events": [
+			{
+				"time": "09:00",
+				"event": "Registration"
+			},
+			{
+				"time": "10:00",
+				"event": "Tournament Start"
+			},
+			{
+				"time": "16:00",
+				"event": "Tournament finished"
+			},
+			{
+				"time": "18:00",
+				"event": "Banquet"
+			}
+		]
+	}
+],
+"details": "Lorem ipsum Ut ea Excepteur sed in incididunt adipisicing exercitation elit fugiat proident laborum laborum pariatur minim nisi dolore sint nisi commodo pariatur amet est aliqua cupidatat in non ex do ut in consectetur non est reprehenderit dolor do cupidatat aliquip cupidatat officia aliquip pariatur exercitation fugiat commodo enim dolore mollit adipisicing labore aute cillum sit mollit adipisicing sed aliqua aliquip labore eu ea eu enim officia quis magna qui velit in minim occaecat consectetur ad consequat culpa minim qui fugiat reprehenderit incididunt magna nisi deserunt irure sint dolor labore enim in minim et aliqua tempor laboris aliquip sit elit ad ea dolore commodo laboris et in sunt aute officia consequat adipisicing incididunt aliqua non Duis elit adipisicing sit velit mollit fugiat dolore aliqua dolore dolor enim deserunt ut qui laboris ea anim aute incididunt et dolor Excepteur cupidatat Ut ut non Ut dolore sunt officia adipisicing aliquip nulla veniam dolor eu officia labore exercitation culpa ex nostrud in est enim ex dolor cupidatat est mollit cillum."
+}

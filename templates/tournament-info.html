@@ -1,0 +1,84 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<b class="panel-title">{{tournament.name}}</b>
+		<div class="pull-right">
+	  		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#paameldingModal">Meld på</button>
+	    </div>
+	</div>
+	
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#tournament/{{tournament.id}}" data-toggle="tab">Informasjon</a></li>
+		<li><a href="#tournament/{{tournament.id}}/players" data-toggle="tab">Påmeldte</a></li>
+		<li><a href="#tournament/{{tournament.id}}/live-results" data-toggle="tab">Live resultater</a></li>
+	</ul>
+
+	<div class="panel panel-body">
+		<div class="row">
+			<div class="col-xs-6 col-md-6">
+				<table class="table">
+					<tr>
+						<td>Dato:</td>
+						<td>{{tournament.date | prettyPrintDatestamp}}</td>
+					</tr>
+					<tr>
+						<td>Dager igjen:</td>
+						<td><div id="dagerIgjen"></div></td>
+					</tr>
+					<tr>
+						<td>Påmeldingsfrist:</td>
+						<td>{{tournament.registrationDeadline | prettyPrintDatestamp}}</td>
+					</tr>
+					<tr>
+						<td>Antall påmeldte:</td>
+						<td>{{tournament.registeredPlayersCount}}</td>
+					</tr>
+					<tr>
+						<td>Sted:</td>
+						<td>{{tournament.venue}}</td>
+					</tr>
+					<tr>
+						<td>Deltakeravgift:</td>
+						<td>{{tournament.fee}}</td>
+					</tr>
+					<tr>
+						<td>Bankett:</td>
+						<td>{{tournament.banquet}}</td>
+					</tr>
+					<tr ng-repeat="misc in tournament.misc">
+						<td>{{misc.item}}</td>
+						<td>{{misc.value}}</td>
+					</tr>
+					<tr>
+						<td>Kontaktperson:</td>
+						<td>{{tournament.contact}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-10">
+				<h3>Informasjon</h3>
+				{{tournament.details}}
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-10">
+				<h3>Program</h3>
+				<table class="table">
+					<tbody ng-repeat="day in tournament.program">
+						<tr ng-hide="tournament.program.length < 2">
+							<td colspan="2"><b>{{day.day}}:</b></td>
+						</tr>
+						<tr ng-repeat="event in day.events">
+							<td>{{event.time}}</td>
+							<td>{{event.event}}</td>
+						</tr>
+					</tbody>
+
+			</div>
+		</div>
+		
+	</div>
+</div>
