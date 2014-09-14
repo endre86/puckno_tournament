@@ -8,13 +8,18 @@
 			$scope.tournaments = Tournament.query();
 		}]);
 
-	controllers.controller('TournamentInfoCtrl', ['$scope', '$routeParams', 'Tournament', 
-		function($scope, $routeParams, Tournament) {
-			$scope.tournament = Tournament.get({tournamentId: $routeParams.tournamentId});
+	controllers.controller('TournamentCtrl', ['$scope', '$state', 'Tournament',
+		function($scope, $state, Tournament) {
+			$scope.tournament = Tournament.get({tournamentId: $state.params.tournamentId});
 		}]);
 
-	controllers.controller('RegisteredPlayersCtrl', ['$scope', '$routeParams', 'TournamentPlayers',
-		function($scope, $routeParams, TournamentPlayers) {
+	controllers.controller('TournamentInfoCtrl', ['$scope', 
+		function($scope) {
+			
+		}]);
+
+	controllers.controller('RegisteredPlayersCtrl', ['$scope', '$state', 'TournamentPlayers',
+		function($scope, $state, TournamentPlayers) {
 			$scope.tournamentPlayers = TournamentPlayers.get(function() {
 				$scope.viewTournament = $scope.tournamentPlayers.subtournaments[0];
 			});
