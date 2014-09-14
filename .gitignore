@@ -6,3 +6,6 @@ server.js
 
 # credentials
 *credentials*
+
+js/localization.js
+i18n/*

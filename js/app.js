@@ -4,13 +4,15 @@
 	var app = ng.module('PucknoTournament', [
 		'ui.router',
 
+		// 'localization',
+
 		'tournamentControllers',
 		'tournamentServices',
 		'tournamentFilters'
 	]);
 
 
-	app.config(['$stateProvider', '$urlRouterProvider', 
+	app.config(['$stateProvider', '$urlRouterProvider',
 		function($stateProvider, $urlRouterProvider) {
 			$stateProvider
 				.state('all-tournaments', {
