@@ -2,7 +2,6 @@
 
 (function(ng) {
 	var app = ng.module('PucknoTournament', [
-		'ngRoute',
 		'ui.router',
 
 		'tournamentControllers',
