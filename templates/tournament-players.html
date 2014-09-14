@@ -1,4 +1,5 @@
-<select class="form-control"
+<select ng-hide="tournamentPlayers.subtournaments.length <= 1"
+		class="form-control"
 		ng-model="viewTournament"
 		ng-options="subtour.name for subtour in tournamentPlayers.subtournaments"></select>
 
