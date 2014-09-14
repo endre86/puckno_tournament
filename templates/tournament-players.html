@@ -1,0 +1,24 @@
+<select class="form-control"
+		ng-model="viewTournament"
+		ng-options="subtour.name for subtour in tournamentPlayers.subtournaments"></select>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th ng-click="setOrder('wr')" style="cursor:pointer">WR</th>
+			<th ng-click="setOrder('name')" style="cursor:pointer">Name</th>
+			<th ng-click="setOrder('club')" style="cursor:pointer">Club</th>
+			<th ng-click="setOrder('nation')" style="cursor:pointer">Nation</th>
+			<th ng-click="setOrder('points')" style="cursor:pointer">Points</th>
+			<th ng-click="setOrder('best')" style="cursor:pointer">Best score</th>
+		</tr>
+
+		<tr ng-repeat="player in viewTournament.players | orderBy:order">
+			<td>{{player.wr}}</td>
+			<td>{{player.name}}</td>
+			<td>{{player.club}}</td>
+			<td>{{player.nation}}</td>
+			<td>{{player.points}}</td>
+			<td>{{player.best}}</td>
+		</tr>
+</table>

@@ -9,4 +9,9 @@
 				query: {method: 'GET', params:{tournamentId:'all'}, isArray:true}
 			});
 		}]);
+
+	services.factory('TournamentPlayers', ['$resource', 
+		function($resource) {
+			return $resource('tournaments/registeredplayers.json', {}, {});
+		}]);
 })(angular);

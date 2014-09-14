@@ -3,12 +3,14 @@
 	"tournamentName": "Jæren Open 2014",
 	"subtournaments": [
 		{
-			"subtournamentName": "Jæren Open 2014",
+			"id": 0,
+			"name": "Jæren Open 2014",
 			"players": [
 				{
 					"name": "Endre Vestbø",
 					"club": "Judasgeitene",
 					"nation": "NOR",
+					"wr": "2",
 					"points": 4932,
 					"best": 280
 				},
@@ -16,6 +18,7 @@
 					"name": "Thomas Calder",
 					"club": "Judasgeitene",
 					"nation": "GBR",
+					"wr": "3",
 					"points": 546,
 					"best": 100
 				},
@@ -23,6 +26,37 @@
 					"name": "Holmin",
 					"club": "Stigarevolusjonen",
 					"nation": "NOR",
+					"wr": "1",
+					"points": 8000,
+					"best": 955
+				}
+			]
+		},
+		{
+			"id": 0,
+			"name": "Jæren Open 2014",
+			"players": [
+				{
+					"name": "Vegard Klippen",
+					"club": "Judasgeitene",
+					"nation": "NOR",
+					"wr": "1",
+					"points": 4932,
+					"best": 280
+				},
+				{
+					"name": "Torbjørn Something",
+					"club": "Judasgeitene",
+					"nation": "GBR",
+					"wr": "12",
+					"points": 546,
+					"best": 100
+				},
+				{
+					"name": "Mini Me",
+					"club": "Stigarevolusjonen",
+					"nation": "NOR",
+					"wr": "14",
 					"points": 8000,
 					"best": 955
 				}

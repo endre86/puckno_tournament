@@ -15,6 +15,21 @@
 
 	controllers.controller('RegisteredPlayersCtrl', ['$scope', '$routeParams', 'TournamentPlayers',
 		function($scope, $routeParams, TournamentPlayers) {
-			$scope.registeredPlayers = TournamentPlayers.get();
+			$scope.tournamentPlayers = TournamentPlayers.get(function() {
+				console.log($scope.tournamentPlayers.subtournaments[0]);
+				$scope.viewTournament = $scope.tournamentPlayers.subtournaments[0];
+			});
+
+			$scope.viewTournament;
+			$scope.order = 'wr';
+
+			$scope.setOrder = function(order) {
+				if(order === $scope.order) {
+				   $scope.order = '-' + order;
+				}
+				else {
+					$scope.order = order;
+				}
+			};
 		}]);
 })(angular);

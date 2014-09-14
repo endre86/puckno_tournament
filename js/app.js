@@ -20,7 +20,7 @@
 				controller: 'TournamentInfoCtrl'
 			})
 			.when('/tournament/:tournamentId/players', {
-				templateUrl: 'templates/registered-players.html',
+				templateUrl: 'templates/tournament-players.html',
 				controller: 'RegisteredPlayersCtrl'
 			})
 			.otherwise({
