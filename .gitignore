@@ -4,6 +4,6 @@ server.js
 # sublime text project files
 *.sublime-*
 
-# DB credentials
+# credentials
 
-php/credentials.php
+*credentials*
