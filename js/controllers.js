@@ -3,7 +3,7 @@
 (function(ng) {
 	var controllers = ng.module('tournamentControllers', []);
 
-	controllers.controller('ListAllCtrl', ['$scope', 'Tournament',
+	controllers.controller('AllTournamentsCtrl', ['$scope', 'Tournament',
 		function($scope, Tournament) {
 			$scope.tournaments = Tournament.query();
 		}]);
@@ -16,7 +16,6 @@
 	controllers.controller('RegisteredPlayersCtrl', ['$scope', '$routeParams', 'TournamentPlayers',
 		function($scope, $routeParams, TournamentPlayers) {
 			$scope.tournamentPlayers = TournamentPlayers.get(function() {
-				console.log($scope.tournamentPlayers.subtournaments[0]);
 				$scope.viewTournament = $scope.tournamentPlayers.subtournaments[0];
 			});
 

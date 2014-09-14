@@ -12,8 +12,8 @@
 		function($routeProvider) {
 			$routeProvider
 			.when('/', {
-				templateUrl: 'templates/list-all.html',
-				controller: 'ListAllCtrl'
+				templateUrl: 'templates/all-tournaments.html',
+				controller: 'AllTournamentsCtrl'
 			})
 			.when('/tournament/:tournamentId', {
 				templateUrl: 'templates/tournament-info.html',
