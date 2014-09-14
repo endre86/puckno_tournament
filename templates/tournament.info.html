@@ -1,41 +1,42 @@
-<table class="table">
-	<tr>
-		<td>Dato:</td>
-		<td>{{tournament.date | prettyprintDatestamp}}</td>
-	</tr>
-	<tr>
-		<td>Dager igjen:</td>
-		<td><div id="dagerIgjen"></div></td>
-	</tr>
-	<tr>
-		<td>Påmeldingsfrist:</td>
-		<td>{{tournament.registrationDeadline | prettyprintDatestamp}}</td>
-	</tr>
-	<tr>
-		<td>Antall påmeldte:</td>
-		<td>{{tournament.registeredPlayersCount}}</td>
-	</tr>
-	<tr>
-		<td>Sted:</td>
-		<td>{{tournament.venue}}</td>
-	</tr>
-	<tr>
-		<td>Deltakeravgift:</td>
-		<td>{{tournament.fee}}</td>
-	</tr>
-	<tr>
-		<td>Bankett:</td>
-		<td>{{tournament.banquet}}</td>
-	</tr>
-	<tr ng-repeat="misc in tournament.misc">
-		<td>{{misc.item}}</td>
-		<td>{{misc.value}}</td>
-	</tr>
-	<tr>
-		<td>Kontaktperson:</td>
-		<td>{{tournament.contact}}</td>
-	</tr>
-</table>
+<div class="col-xs-6 col-md-6">
+	<table class="table">
+		<tr>
+			<td>Dato:</td>
+			<td>{{tournament.date | prettyprintDatestamp}}</td>
+		</tr>
+		<tr>
+			<td>Dager igjen:</td>
+			<td><div id="dagerIgjen"></div></td>
+		</tr>
+		<tr>
+			<td>Påmeldingsfrist:</td>
+			<td>{{tournament.registrationDeadline | prettyprintDatestamp}}</td>
+		</tr>
+		<tr>
+			<td>Antall påmeldte:</td>
+			<td>{{tournament.registeredPlayersCount}}</td>
+		</tr>
+		<tr>
+			<td>Sted:</td>
+			<td>{{tournament.venue}}</td>
+		</tr>
+		<tr>
+			<td>Deltakeravgift:</td>
+			<td>{{tournament.fee}}</td>
+		</tr>
+		<tr>
+			<td>Bankett:</td>
+			<td>{{tournament.banquet}}</td>
+		</tr>
+		<tr ng-repeat="misc in tournament.misc">
+			<td>{{misc.item}}</td>
+			<td>{{misc.value}}</td>
+		</tr>
+		<tr>
+			<td>Kontaktperson:</td>
+			<td>{{tournament.contact}}</td>
+		</tr>
+	</table>
 </div>
 
 <div class="col-xs-4 col-md-4">
