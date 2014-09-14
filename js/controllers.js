@@ -11,15 +11,18 @@
 	controllers.controller('TournamentCtrl', ['$scope', '$stateParams', 'Tournament',
 		function($scope, $stateParams, Tournament) {
 			$scope.tournament = Tournament.get({tournamentId: $stateParams.tournamentId});
+			$scope.selectedTab = '';
 		}]);
 
 	controllers.controller('TournamentInfoCtrl', ['$scope', '$stateParams', 'Tournament',
 		function($scope, $stateParams, Tournament) {
-
+			$scope.$parent.selectedTab = 'info';
 		}]);
 
 	controllers.controller('RegisteredPlayersCtrl', ['$scope', '$state', 'TournamentPlayers',
 		function($scope, $state, TournamentPlayers) {
+			$scope.$parent.selectedTab = 'players';
+
 			$scope.tournamentPlayers = TournamentPlayers.get(function() {
 				$scope.viewTournament = $scope.tournamentPlayers.subtournaments[0];
 			});

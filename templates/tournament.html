@@ -7,9 +7,15 @@
 	</div>
 	
 	<ul class="nav nav-tabs">
-		<li><a href="#tournament/{{tournament.id}}/info" data-toggle="tab">Informasjon</a></li>
-		<li><a href="#tournament/{{tournament.id}}/players" data-toggle="tab">Påmeldte</a></li>
-		<li><a href="#tournament/{{tournament.id}}/live-results" data-toggle="tab">Live resultater</a></li>
+		<li ng-class="{true: 'active'}[selectedTab === 'info']">
+			<a href="#tournament/{{tournament.id}}/info" data-toggle="tab">Informasjon</a>
+		</li>
+		<li ng-class="{true: 'active'}[selectedTab === 'players']">
+			<a href="#tournament/{{tournament.id}}/players" data-toggle="tab">Påmeldte</a>
+		</li>
+		<li ng-class="{true: 'active'}[selectedTab === 'live']">
+			<a href="#tournament/{{tournament.id}}/live-results" data-toggle="tab">Live resultater</a>
+		</li>
 	</ul>
 
 	<div class="panel panel-body" ui-view></div>
