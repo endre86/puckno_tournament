@@ -5,5 +5,4 @@ server.js
 *.sublime-*
 
 # credentials
-
 *credentials*
