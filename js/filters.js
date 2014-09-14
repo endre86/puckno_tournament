@@ -3,13 +3,15 @@
 (function(ng) {
 	var tournamentFilters = ng.module('tournamentFilters', []);
 
-	tournamentFilters.filter('prettyPrintDatestamp', function() {
+	tournamentFilters.filter('prettyprintDatestamp', function() {
 		return function(datestamp) {
 			if(datestamp) {
-				var date = datestamp.split('-');
-				return App.Utils.removeLeadingZero(date[2]) + ". " + 
-					   App.Utils.getNoMonthName(date[1] - 1) + " " + 
-					   date[0];
+				var dateArr = datestamp.split('-');
+				var date = new Date(dateArr[0], dateArr[1], dateArr[2]);
+				return App.Utils.getNoDayName(date.getDay()) + ' ' +
+					   date.getDate() + '. ' + 
+					   App.Utils.getNoMonthName(date.getMonth()) + ' ' + 
+					   dateArr[0];
 			}
 
 			return datestamp;
