@@ -20,6 +20,7 @@
 					controller: 'AllTournamentsCtrl'
 				})
 				.state('tournament', {
+					abstract: true,
 					url: '/tournament/{tournamentId}',
 					templateUrl: 'templates/tournament.html',
 					controller: 'TournamentCtrl'
