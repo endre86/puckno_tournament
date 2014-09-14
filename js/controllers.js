@@ -21,6 +21,7 @@
 
 			$scope.viewTournament;
 			$scope.order = 'wr';
+			$scope.orderedOn = 'wr';
 
 			$scope.setOrder = function(order) {
 				if(order === $scope.order) {
@@ -29,6 +30,8 @@
 				else {
 					$scope.order = order;
 				}
+
+				$scope.orderedOn = order;
 			};
 		}]);
 })(angular);
