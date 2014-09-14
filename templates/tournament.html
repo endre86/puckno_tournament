@@ -1,20 +1,16 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<b class="panel-title">{{tournament.name}}</b>
+		<b class="panel-title">{{tournament.name}} {{viewss + '...'}}</b>
 		<div class="pull-right">
 	  		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#paameldingModal">Meld på</button>
 	    </div>
 	</div>
 	
 	<ul class="nav nav-tabs">
-		<li class="active"><a href="#tournament/{{tournament.id}}/info" data-toggle="tab">Informasjon</a></li>
+		<li {{view === 'info' ? 'class="active"' : ''}}><a href="#tournament/{{tournament.id}}/info" data-toggle="tab">Informasjon</a></li>
 		<li><a href="#tournament/{{tournament.id}}/players" data-toggle="tab">Påmeldte</a></li>
 		<li><a href="#tournament/{{tournament.id}}/live-results" data-toggle="tab">Live resultater</a></li>
 	</ul>
 
-	<div class="panel panel-body">
-		<div class="row" ui-view>
-			
-		</div>
-	</div>
+	<div class="panel panel-body" ui-view></div>
 </div>
