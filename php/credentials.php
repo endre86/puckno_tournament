@@ -1,5 +1,6 @@
 <?php
-	$db_database = '':
+	$db_host = '';
+	$db_database = '';
 	$db_user = '';
 	$db_user_password = '';
 	$db_admin = '';
