@@ -1,11 +1,5 @@
-# front-end testing
-server.js
-
 # sublime text project files
 *.sublime-*
 
 # credentials
 *credentials*
-
-js/localization.js
-i18n/*
