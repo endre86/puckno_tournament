@@ -7,8 +7,7 @@
 "fee": "200 NOK",
 "venue": "Frøydishallen",
 "contact": "Endre Vestbø (endre.vestbo@gmail.com)",
-"logo": "http://puck.no/turnering/Style/img/no14.jpg",
-"registeredPlayersCount": 0,
+"image": "http://puck.no/turnering/Style/img/no14.jpg",
 "subtournaments": [
 	{
 		"id": 0,
