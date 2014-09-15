@@ -6,7 +6,6 @@
 "registrationDeadline": "2014-10-09",
 "fee": "200 NOK",
 "venue": "Frøydishallen",
-"banquet": "Ja!",
 "contact": "Endre Vestbø (endre.vestbo@gmail.com)",
 "logo": "http://puck.no/turnering/Style/img/no14.jpg",
 "registeredPlayersCount": 0,
@@ -24,6 +23,10 @@
 	{
 		"item": "Fun factor?",
 		"value": "Over 9000!"
+	},
+	{
+		"item": "Banquet",
+		"value": "Ja!"
 	}
 ],
 "program": 
