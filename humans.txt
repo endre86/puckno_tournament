@@ -3,6 +3,8 @@ Endre Vestbø
 Developer
 Bergen, Norway
 endre.vestbo@gmail.com
+http://hellosalmon.com
 
 /* THANKS */
 Thomas Calder
+http://codemonkeycalder.com
