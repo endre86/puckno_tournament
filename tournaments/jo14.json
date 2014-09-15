@@ -10,6 +10,16 @@
 "contact": "Endre Vestbø (endre.vestbo@gmail.com)",
 "logo": "http://puck.no/turnering/Style/img/no14.jpg",
 "registeredPlayersCount": 0,
+"subtournaments": [
+	{
+		"id": 0,
+		"name": "Jæren Open 2014"
+	},
+	{
+		"id": 0,
+		"name": "Jæren Open Junior 2014"
+	}
+],
 "misc": [
 	{
 		"item": "Fun factor?",

@@ -11,6 +11,7 @@
 	controllers.controller('TournamentCtrl', ['$scope', '$stateParams', 'Tournament',
 		function($scope, $stateParams, Tournament) {
 			$scope.tournament = Tournament.get({tournamentId: $stateParams.tournamentId});
+			$scope.subTournaments = $scope.tournament.subtournaments;
 			$scope.selectedTab = '';
 		}]);
 
@@ -28,18 +29,35 @@
 			});
 
 			$scope.viewTournament;
-			$scope.order = 'wr';
 			$scope.orderedOn = 'wr';
 
 			$scope.setOrder = function(order) {
-				if(order === $scope.order) {
-				   $scope.order = '-' + order;
+				if(order === $scope.orderedOn) {
+				   $scope.orderedOn = '-' + order;
 				}
 				else {
-					$scope.order = order;
+					$scope.orderedOn = order;
 				}
 
 				$scope.orderedOn = order;
 			};
+		}]);
+
+	controllers.controller('LiveCtrl', ['$scope', '$state',
+		function($scope, $state) {
+		}]);
+
+	controllers.controller('RegisterCtrl', ['$scope', '$state',
+		function($scope, $state) {
+			$scope.$parent.selectedTab = 'register';
+			$scope.ithfSelectBox = [{name: "Player1", value: 0}, {name: "Player2", value: 1}, {name: "Player3", value: 2}];
+		}]);
+
+	controllers.controller('RegisterExistingPlayerCtrl', ['$scope', '$state',
+		function($scope, $state) {
+		}]);
+
+	controllers.controller('RegisterNewPlayerCtrl', ['$scope', '$state',
+		function($scope, $state) {
 		}]);
 })(angular);

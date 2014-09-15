@@ -1,0 +1,38 @@
+<form class="form-horizontal" role="form">
+	<div class="form-group" ng-hide="tournament.subtournaments.length <= 1">
+		<label class="col-sm-2 control-label">Velg turnering:</label>
+		<div class="col-sm-10">
+			<select 
+				class="form-control"
+				ng-model="selectedTournament"
+				ng-options="subtour.name for subtour in tournament.subtournaments"
+				ng-value="selectedTournament = tournament.subtournaments[0]">
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Søk på navn:</label>
+		<div class="col-sm-10">
+			<input type="text" class="form-control" id="namesearch" placeholder="Spillernavn" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Velg ITHF spiller:</label>
+		<div class="col-sm-10">
+			<select 
+				id="selectbox" 
+				class="form-control" 
+				size="5" 
+				style="width:100%;" 
+				ng-model="ithfSelectboxSelected"
+				ng-options="opt.name for opt in ithfSelectBox"
+				ng-value="ithfSelectboxSelected=ithfSelectBox[0]"></select>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-10"></div>
+		<div class="col-sm-2">
+			<button class="btn btn-success btn-lg">Registrer</button>
+		</div>
+	</div>
+</form>

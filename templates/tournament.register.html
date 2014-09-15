@@ -1,0 +1,24 @@
+<div class="row">
+	<div class="col-md-12">		
+		<div class="panel panel-default">
+			<ul class="nav nav-tabs">
+				<li ng-class="{true: 'active'}[activeTab === 'existing-player' || !activeTab]">
+					<a ng-click="activeTab = 'existing-player'" ui-sref="tournament.register.existing-player">Eksisterende spiller</a>
+				</li>
+				<li ng-class="{true: 'active'}[activeTab === 'new-player']">
+					<a ng-click="activeTab = 'new-player'" ui-sref="tournament.register.new-player">Ny spiller</a>
+				</li>
+			</ul>
+			<div class="panel panel-body">
+				<div class="tab-content">
+					<div class="tab-pane" 
+						 id="existing_player"
+						 ng-class="{true: 'active'}[activeTab === 'existing_player' || !activeTab]">
+					</div>
+					
+					<div class="panel panel-body" ui-view></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

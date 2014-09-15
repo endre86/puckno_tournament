@@ -35,7 +35,28 @@
 					url: '/players',
 					templateUrl: 'templates/tournament.players.html',
 					controller: 'RegisteredPlayersCtrl'
-				});
+				})
+				.state('tournament.live', {
+					url: '/live',
+					templateUrl: 'templates/tournament.live.html',
+					controller: 'LiveCtrl'
+				})
+				.state('tournament.register', {
+					abstract: true,
+					url: '/register',
+					templateUrl: 'templates/tournament.register.html',
+					controller: 'RegisterCtrl'
+				})
+				.state('tournament.register.existing-player', {
+					url: '/existing-player',
+					templateUrl: 'templates/tournament.register.existing-player.html',
+					controller: 'RegisterExistingPlayerCtrl'
+				})
+				.state('tournament.register.new-player', {
+					url: '/new-player',
+					templateUrl: 'templates/tournament.register.new-player.html',
+					controller: 'RegisterNewPlayerCtrl'
+				})
 
 			$urlRouterProvider.otherwise('/');
 		}]);

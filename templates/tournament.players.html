@@ -32,7 +32,7 @@
 			</th>
 		</tr>
 
-		<tr ng-repeat="player in viewTournament.players | orderBy:order">
+		<tr ng-repeat="player in viewTournament.players | orderBy:orderedOn">
 			<td>{{player.wr}}</td>
 			<td>{{player.name}}</td>
 			<td>{{player.club}}</td>
