@@ -5,6 +5,7 @@
 <html ng-app="PucknoTournament">
 	<head>
 		<meta charset="utf-8">
+		<link rel="author" href="humans.txt" />
 		<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 		<!-- <link href="css/stylesheet.css" rel="stylesheet"> -->
 
