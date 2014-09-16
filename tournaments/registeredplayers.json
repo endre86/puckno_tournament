@@ -7,7 +7,7 @@
 			"name": "Jæren Open 2014",
 			"players": [
 				{
-					"name": "Endre Vestbø",
+					"player": "Endre Vestbø",
 					"club": "Judasgeitene",
 					"nation": "NOR",
 					"wr": "2",
@@ -15,7 +15,7 @@
 					"best": 280
 				},
 				{
-					"name": "Thomas Calder",
+					"player": "Thomas Calder",
 					"club": "Judasgeitene",
 					"nation": "GBR",
 					"wr": "3",
@@ -23,7 +23,7 @@
 					"best": 100
 				},
 				{
-					"name": "Holmin",
+					"player": "Holmin",
 					"club": "Stigarevolusjonen",
 					"nation": "NOR",
 					"wr": "1",
@@ -37,7 +37,7 @@
 			"name": "Jæren Open Junior 2014",
 			"players": [
 				{
-					"name": "Vegard Klippen",
+					"player": "Vegard Klippen",
 					"club": "Judasgeitene",
 					"nation": "NOR",
 					"wr": "1",
@@ -45,7 +45,7 @@
 					"best": 280
 				},
 				{
-					"name": "Torbjørn Something",
+					"player": "Torbjørn Something",
 					"club": "Judasgeitene",
 					"nation": "GBR",
 					"wr": "12",
@@ -53,7 +53,7 @@
 					"best": 100
 				},
 				{
-					"name": "Mini Me",
+					"player": "Mini Me",
 					"club": "Stigarevolusjonen",
 					"nation": "NOR",
 					"wr": "14",
