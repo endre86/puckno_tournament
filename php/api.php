@@ -30,7 +30,7 @@ class API {
 		$controller = new $controller;
 
 		if(!method_exists($controller, $function)) {
-			header('HTTP/1.1 403 Not Found');
+			header('HTTP/1.1 404 Not Found');
 			exit();
 		}
 
