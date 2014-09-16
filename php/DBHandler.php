@@ -44,8 +44,4 @@
 		}
 
 	}
-
-	$db = new DBHandler();
-	$res = $db->getTournamentInformation("jo14");
-	echo $res;
 ?>
