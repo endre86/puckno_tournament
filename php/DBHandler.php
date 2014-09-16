@@ -1,6 +1,4 @@
 <?php
-	require('credentials.php');
-
 	class DBHandler {
 		private $mysqli;
 
@@ -36,12 +34,17 @@
 				implode(',', array_map(function($value, $key) {
 					if(substr($value, 0, 1) == '[' ||
 					   substr($value, 0, 1 == '{')) {
-						return '"' . $key . '"=' . $value;
+						return '"' . $key . '":' . $value;
 					}
 
-					return '"' . $key . '"="' . $value . '"';
+					return '"' . $key . '":"' . $value . '"';
 				}, $array, array_keys($array))) . '}';
 		}
 
 	}
-?>
+
+	require('credentials.php');
+	$cr = new DBCredentials();
+	$db = new DBHandler($cr->db_host, $cr->db_user, $cr->db_user_password, $cr->db_database);
+
+	echo $db->getTournamentInformation('jo14');
