@@ -34,10 +34,22 @@ class API {
 			exit();
 		}
 
-		$result = call_user_func_array(
-			array($controller, $function), array_slice($request, 2));
+		switch($_SERVER['REQUEST_METHOD']) {
+			case 'GET':
+				$this->get($controller, $function, $request);
+				break;
+			case 'POST':
+				$this->post($controller, $function);
+		}
+	}
 
-		echo $result;
+	private function get($controller, $function, $request) {
+		echo call_user_func_array(
+			array($controller, $function), array_slice($request, 2));
+	}
+
+	private function post($controller, $function) {
+		// TODO
 	}
 }
 
