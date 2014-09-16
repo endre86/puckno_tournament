@@ -33,13 +33,13 @@
 		 */
 		private function arrayToJsonHelper($array) {
 			return '{' .
-				implode(',<br />', array_map(function($value, $key) {
+				implode(',', array_map(function($value, $key) {
 					if(substr($value, 0, 1) == '[' ||
 					   substr($value, 0, 1 == '{')) {
-						return '"' . $key . '" = ' . $value;
+						return '"' . $key . '"=' . $value;
 					}
 
-					return '"' . $key . '" = "' . $value . '"';
+					return '"' . $key . '"="' . $value . '"';
 				}, $array, array_keys($array))) . '}';
 		}
 
