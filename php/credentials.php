@@ -1,8 +1,10 @@
 <?php
-	$db_host = '';
-	$db_database = '';
-	$db_user = '';
-	$db_user_password = '';
-	$db_admin = '';
-	$db_admin_password = '';
+class DBCredentials {
+	public $db_host = '';
+	public $db_database = '';
+	public $db_user = '';
+	public $db_user_password = '';
+	public $db_admin = '';
+	public $db_admin_password = '';
+}
 ?>
