@@ -25,8 +25,6 @@
 
 				var now = new Date();
 				var then = new Date(dateArr[0], dateArr[1] - 1, dateArr[2]);
-				console.log(now);
-				console.log(then);
 
 				var oneDay = 24 * 60 * 60 * 1000;
 
