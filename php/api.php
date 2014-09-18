@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-$_SESSION['user'] = true;
 
 /**
  * Simple API for handling requests.
@@ -10,46 +9,52 @@ class API {
 	private $controller; 
 
 	public function processApi() {
-		if(!isset($_SESSION['user']) && 
-		   !isset($_SESSION['admin'])) {
-
-			header('HTTP/1.1 403 Forbidden');
-			exit();
-		}
-
 		$request = split('/', array_keys($_REQUEST)[0]);
 		$controller = ucfirst(strtolower($request[0])) . 'Controller';
 		$function = strtolower($request[1]);
 
 		if(!file_exists($controller . '.php')) {
-			header('HTTP/1.1 404 Not Found');
-			exit();
+			$this->send404AndExit();
 		}
 
 		require_once($controller . '.php');
-		$controller = new $controller;
+		$controller = new $controller($this);
 
 		if(!method_exists($controller, $function)) {
-			header('HTTP/1.1 404 Not Found');
-			exit();
+			$this->send404AndExit();
 		}
 
 		switch($_SERVER['REQUEST_METHOD']) {
 			case 'GET':
-				$this->get($controller, $function, $request);
+				$data = array_slice($request, 2);
+				$this->get($controller, $function, $this->sanitize($data));
 				break;
 			case 'POST':
-				$this->post($controller, $function);
+				$this->post($controller, $function, $this->sanitize($_POST));
 		}
 	}
 
-	private function get($controller, $function, $request) {
-		echo call_user_func_array(
-			array($controller, $function), array_slice($request, 2));
+	public function send403AndExit() {
+		header('HTTP/1.1 403 Forbidden');
+		exit();
 	}
 
-	private function post($controller, $function) {
+	public function send404AndExit() {
+		header('HTTP/1.1 404 Not Found');
+		exit();
+	}
+
+	private function get($controller, $function, $data) {
+		echo call_user_func_array(
+			array($controller, $function), $data);
+	}
+
+	private function post($controller, $function, $data) {
 		// TODO
+	}
+
+	private function sanitize($data) {
+		return $data; // TODO
 	}
 }
 

@@ -1,20 +1,14 @@
 <?php
-require_once('credentials.php');
-require_once('DBHandler.php');
+require('AbstractController.php');
 
-class TournamentController {
+class TournamentController extends AbstractController {
 
-	private $dbHandler;
-
-	public function __construct() {
-		$this->dbHandler = new DBHandler(
-			DBCredentials::HOST, 
-			DBCredentials::USER, 
-			DBCredentials::PASSWORD, 
-			DBCredentials::DATABASE);
+	public function __construct($api) {
+		parent::__construct($api);
 	}
 
 	public function get($tournamentId) {
-		return $this->dbHandler->getTournament($tournamentId);
+		parent::verifyIsUserOrExit();
+		return parent::getDBHandler()->getTournament($tournamentId);
 	}
 }
