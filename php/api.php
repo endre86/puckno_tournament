@@ -27,10 +27,10 @@ class API {
 		switch($_SERVER['REQUEST_METHOD']) {
 			case 'GET':
 				$data = array_slice($request, 2);
-				$this->get($controller, $function, $this->sanitize($data));
+				$this->execute($controller, $function, $data);
 				break;
 			case 'POST':
-				$this->post($controller, $function, $this->sanitize($_POST));
+				$this->execute($controller, $function, $_POST);
 		}
 	}
 
@@ -44,17 +44,9 @@ class API {
 		exit();
 	}
 
-	private function get($controller, $function, $data) {
+	private function execute($controller, $function, $data) {
 		echo call_user_func_array(
 			array($controller, $function), $data);
-	}
-
-	private function post($controller, $function, $data) {
-		// TODO
-	}
-
-	private function sanitize($data) {
-		return $data; // TODO
 	}
 }
 
