@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	$_SESSION['user'] = true;
 ?>
 
 <html ng-app="PucknoTournament">
@@ -7,7 +8,7 @@
 		<meta charset="utf-8">
 		<link rel="author" href="humans.txt" />
 		<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-		<!-- <link href="css/stylesheet.css" rel="stylesheet"> -->
+		<link href="css/stylesheet.css" rel="stylesheet">
 
 		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0rc3/angular.min.js"></script>
