@@ -1,7 +1,7 @@
 <select ng-hide="tournamentPlayers.subtournaments.length <= 1"
 		class="form-control"
 		ng-model="viewTournament"
-		ng-options="subtour.name for subtour in tournamentPlayers.subtournaments"></select>
+		ng-options="subtour.name for subtour in tournament.subtournaments"></select>
 
 <table class="table table-hover">
 	<thead>
@@ -32,9 +32,9 @@
 			</th>
 		</tr>
 
-		<tr ng-repeat="player in viewTournament.players | orderBy:orderedOn">
-			<td>{{player.wr}}</td>
-			<td>{{player.name}}</td>
+		<tr ng-repeat="player in tournamentPlayers | orderBy:orderedOn">
+			<td>{{player.rank}}</td>
+			<td>{{player.player}}</td>
 			<td>{{player.club}}</td>
 			<td>{{player.nation}}</td>
 			<td>{{player.points}}</td>
