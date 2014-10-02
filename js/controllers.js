@@ -11,7 +11,6 @@
 	controllers.controller('TournamentCtrl', ['$scope', '$stateParams', 'Tournament',
 		function($scope, $stateParams, Tournament) {
 			$scope.tournament = Tournament.get({tournamentId: $stateParams.tournamentId});
-			$scope.subTournaments = $scope.tournament.subtournaments;
 			$scope.selectedTab = '';
 		}]);
 
@@ -24,9 +23,18 @@
 		function($scope, $state, TournamentPlayers) {
 			$scope.$parent.selectedTab = 'players';
 
-			$scope.tournamentPlayers = TournamentPlayers.get(function() {
-				$scope.viewTournament = $scope.tournamentPlayers.subtournaments[0];
+			$scope.$watch('viewTournament', function() {
+				showPlayersFor($scope.viewTournament);
 			});
+			$scope.viewTournament = $scope.tournament.subtournaments[0];
+
+			function showPlayersFor(subtournamentId) {
+				TournamentPlayers.get({subtournamentId: $scope.viewTournament.id}, function(data) {
+						$scope.tournamentPlayers = data;
+						console.log(data);
+					}
+				);
+			}
 
 			$scope.viewTournament;
 			$scope.orderedOn = 'wr';
