@@ -31,7 +31,6 @@
 			function showPlayersFor(subtournamentId) {
 				TournamentPlayers.get({subtournamentId: $scope.viewTournament.id}, function(data) {
 						$scope.tournamentPlayers = data;
-						console.log(data);
 					}
 				);
 			}
@@ -58,11 +57,25 @@
 	controllers.controller('RegisterCtrl', ['$scope', '$state',
 		function($scope, $state) {
 			$scope.$parent.selectedTab = 'register';
-			$scope.ithfSelectBox = [{name: "Player1", value: 0}, {name: "Player2", value: 1}, {name: "Player3", value: 2}];
+			$scope.ithfSelectBox = [];
 		}]);
 
-	controllers.controller('RegisterExistingPlayerCtrl', ['$scope', '$state',
-		function($scope, $state) {
+	controllers.controller('RegisterExistingPlayerCtrl', ['$scope', '$state', 'IthfPlayers',
+		function($scope, $state, IthfPlayers) {
+			$scope.$watch('ithfquery', function() {
+				updateIthfSearch($scope.ithfquery);
+			});
+
+			function updateIthfSearch(query) {
+				if(query && query.trim().length >= 3) {
+					var ithfquery = '%' + query.trim().replace(/ /g, '%') + '%';
+					
+					IthfPlayers.get({query: ithfquery}, function(data) {
+						$scope.ithfSelectBox = data;
+						console.log(data);
+					});
+				}
+			}
 		}]);
 
 	controllers.controller('RegisterNewPlayerCtrl', ['$scope', '$state',

@@ -16,10 +16,12 @@ class PlayersController extends AbstractController {
 	}
 
 	public function getPlayersFor($subtournamentId) {
+		parent::verifyIsUserOrExit();
 		return parent::getDBHandler()->getPlayersFor($subtournamentId);
 	}
 
 	public function registerPlayer($subtournamentId, $data) {
+		parent::verifyIsUserOrExit();
 		if($data['type'] == 'ithf') {
 			// return parent::getDBHandler()->registerITHFPlayer($data['subtournamentId'], $data['playerId']);
 		}

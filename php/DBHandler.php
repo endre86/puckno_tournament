@@ -131,6 +131,35 @@ class DBHandler {
 		return json_encode($jsonArr, JSON_UNESCAPED_UNICODE);
 	}
 
+	public function searchITHFPlayers($name) {
+		$stmt = $this->mysqli->prepare('SELECT * FROM ithf_players WHERE player LIKE ?');
+		$stmt->bind_param('s', $name);
+		$stmt->execute();
+
+		$results = $stmt->get_result();
+
+		$jsonArr = array();
+		while($r = $results->fetch_assoc()) {
+			array_push($jsonArr, $this->utf8Encode($r));
+		}
+
+		return json_encode($jsonArr, JSON_UNESCAPED_UNICODE);
+	}
+
+	public function getAllITHFPlayers() {
+		$stmt = $this->mysqli->prepare('SELECT * FROM ithf_players');
+		$stmt->execute();
+
+		$results = $stmt->get_result();
+
+		$jsonArr = array();
+		while($r = $results->fetch_assoc()) {
+			array_push($jsonArr, $this->utf8Encode($r));
+		}
+
+		return json_encode($jsonArr, JSON_UNESCAPED_UNICODE);
+	}
+
 	private function executeAndReturnSuccessObj($stmt) {
 		if($stmt->execute()) {
 			return '{"success" : "true"}';
