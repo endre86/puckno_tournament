@@ -2,35 +2,37 @@
 
 session_start();
 
+$_SESSION['user'] = true;
 /**
  * Simple API for handling requests.
  */
 class API {
-	private $controller; 
+	private $controller;
 
 	public function processApi() {
 		$request = split('/', array_keys($_REQUEST)[0]);
 		$controller = ucfirst(strtolower($request[0])) . 'Controller';
-		$function = strtolower($request[1]);
 
 		if(!file_exists($controller . '.php')) {
+			echo 'c: ' . $controller;
 			$this->send404AndExit();
 		}
 
 		require_once($controller . '.php');
 		$controller = new $controller($this);
 
-		if(!method_exists($controller, $function)) {
+		$requestMethod = $_SERVER['REQUEST_METHOD'];
+		if(!method_exists($controller, strtolower($requestMethod))) {
 			$this->send404AndExit();
 		}
 
-		switch($_SERVER['REQUEST_METHOD']) {
+		switch($requestMethod) {
 			case 'GET':
-				$data = array_slice($request, 2);
-				$this->execute($controller, $function, $data);
+				$data = array_slice($request, 1);
+				$this->execute($controller, strtolower($requestMethod), $data);
 				break;
 			case 'POST':
-				$this->execute($controller, $function, $_POST);
+				$this->execute($controller, strtolower($requestMethod), $_POST);
 		}
 	}
 
@@ -45,8 +47,10 @@ class API {
 	}
 
 	private function execute($controller, $function, $data) {
-		echo call_user_func_array(
+		// header('Content-Type: application/json: charset=utf-8');
+		$res = call_user_func_array(
 			array($controller, $function), $data);
+		echo $res;
 	}
 }
 
