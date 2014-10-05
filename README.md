@@ -1,6 +1,6 @@
 # Puck.no tournaments
 
-A simple web application for managing and registrating to tablehockey tournament.
+A simple web application for managing tablehockey tournament.
 
 ###### Under developement
 
