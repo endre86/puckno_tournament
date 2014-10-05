@@ -2,7 +2,7 @@
 
 session_start();
 
-$_SESSION['user'] = true;
+$_SESSION['user'] = true; // TODO: DEBUG => REMOVE
 /**
  * Simple API for handling requests.
  */
