@@ -164,7 +164,20 @@ class DBHandler {
 		$stmt = $this->mysqli->prepare('INSERT INTO subtournament_players (subtournament_id, player_id, local_player_flag, ithf_player_flag) VALUES (?,?,0,1)');
 
 		$stmt->bind_param('ii', $subtournamentId, $playerId);
-		$this->executeAndReturnSuccessObj($stmt);
+		return $this->executeAndReturnSuccessObj($stmt);
+	}
+
+	public function registerLocalPlayer($subtournamentId, $player, $club, $nation) {
+		$stmt = $this->mysqli->prepare('INSERT INTO local_players (player, club, nation) VALUES (?,?,?)');
+		$stmt->bind_param('sss', $player, $club, $nation);
+		$stmt->execute();
+
+		$playerId = $this->mysqli->insert_id;
+
+		$stmt = $this->mysqli->prepare('INSERT INTO subtournament_players (subtournament_id, player_id, local_player_flag, ithf_player_flag) VALUES (?,?,1,0)');
+		$stmt->bind_param('ii', $subtournamentId, $playerId);
+
+		return $this->executeAndReturnSuccessObj($stmt);
 	}
 
 	private function executeAndReturnSuccessObj($stmt) {
@@ -217,4 +230,4 @@ class DBHandler {
 // 			DBCredentials::USER, 
 // 			DBCredentials::PASSWORD, 
 // 			DBCredentials::DATABASE);
-// echo $db->getPlayersFor(1);
+// echo $db->registerLocalPlayer('2', 'test', 'local', 'RON');

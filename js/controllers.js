@@ -58,26 +58,29 @@
 		function($scope, $state) {
 			$scope.$parent.selectedTab = 'register';
 			$scope.ithfSelectBox = [];
+			$scope.regform = {};
+
+			if($scope.tournament.subtournaments) {
+				$scope.regform.tournament = $scope.tournament.subtournaments[0];
+			}
 		}]);
 
 	controllers.controller('RegisterExistingPlayerCtrl', ['$scope', '$state', 'TournamentPlayers', 'IthfPlayers',
 		function($scope, $state, TournamentPlayers, IthfPlayers) {
-			$scope.$watch('ithfquery', function() {
-				updateIthfSearch($scope.ithfquery);
+			$scope.$watch('regform.namequery', function(data) {
+				// console.log(data + "!");
+				updateIthfSearch(data);
+				// console.log($scope.ithfplayer);
 			});
 
-			if($scope.tournament.subtournaments) {
-				$scope.selectedTournament = $scope.tournament.subtournaments[0];
-			}
-
-			$scope.registerIthfPlayer = function() {
-				if($scope.ithfSelectboxSelected) {
+			$scope.registerIthfPlayer = function(data) {
+				if(data && data.tournament && data.player) {
 					TournamentPlayers.put({
-							subtournamentId: $scope.selectedTournament.id,
+							subtournamentId: data.tournament.id,
 							type: 'ithf',
-							playerId: $scope.ithfSelectboxSelected.id}, 
+							playerId: data.player.id}, 
 							function(data) {
-								console.log(data);
+								console.log('TODO: Redirect / something: REG OK!'); // TODO
 							});
 				}
 			}
@@ -87,14 +90,32 @@
 					var ithfquery = '%' + query.trim().replace(/ /g, '%') + '%';
 					
 					IthfPlayers.get({query: ithfquery}, function(data) {
-						$scope.ithfSelectBox = data;
-						$scope.ithfSelectboxSelected = data[0];
+						$scope.regform.players = data;
+						$scope.regform.player = data[0];
 					});
 				}
 			}
 		}]);
 
-	controllers.controller('RegisterNewPlayerCtrl', ['$scope', '$state',
-		function($scope, $state) {
+	controllers.controller('RegisterNewPlayerCtrl', ['$scope', '$state', 'TournamentPlayers',
+		function($scope, $state, TournamentPlayers) {
+
+			$scope.registerLocalPlayer = function(data) {
+				if(data &&
+				   data.tournament && 
+				   data.player && 
+				   data.player.length >= 5) {
+
+					var club = data.club || '???';
+					var nation = (data.nation.toLowerCase() === 'norway' ? 'NOR' : data.nation);
+					TournamentPlayers.put({
+						subtournamentId: data.tournament.id,
+						type: 'local',
+						player: data.player,
+						club: club,
+						nation: nation
+					});
+				}
+			}
 		}]);
 })(angular);
