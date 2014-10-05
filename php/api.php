@@ -14,7 +14,6 @@ class API {
 		$controller = ucfirst(strtolower($request[0])) . 'Controller';
 
 		if(!file_exists($controller . '.php')) {
-			echo 'c: ' . $controller;
 			$this->send404AndExit();
 		}
 
