@@ -15,7 +15,8 @@
 		function($resource) {
 			// return $resource('tournaments/registeredplayers.json', {}, {});
 			return $resource('php/api.php?players/:subtournamentId', {}, {
-				get: {method: 'GET', params: {subtournamentId:true}, isArray: true}
+				get: {method: 'GET', params: {subtournamentId:true}, isArray: true},
+				put: {method: 'POST', params: {subtournamentId:true}, isArray: false}
 			});
 		}]);
 

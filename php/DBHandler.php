@@ -160,12 +160,19 @@ class DBHandler {
 		return json_encode($jsonArr, JSON_UNESCAPED_UNICODE);
 	}
 
+	public function registerITHFPlayer($subtournamentId, $playerId) {
+		$stmt = $this->mysqli->prepare('INSERT INTO subtournament_players (subtournament_id, player_id, local_player_flag, ithf_player_flag) VALUES (?,?,0,1)');
+
+		$stmt->bind_param('ii', $subtournamentId, $playerId);
+		$this->executeAndReturnSuccessObj($stmt);
+	}
+
 	private function executeAndReturnSuccessObj($stmt) {
 		if($stmt->execute()) {
 			return '{"success" : "true"}';
 		}
 
-		return '{"success" : "false"}';
+		return '{"success" : "false", error: ' . $stmt->error . '}';
 	}
 
 	private function utf8Encode($data) {

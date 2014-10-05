@@ -11,8 +11,14 @@ class PlayersController extends AbstractController {
 		return $this->getPlayersFor($subtournamentId);
 	}
 
-	public function post($subtournamentId, $data) {
-		return $this->registerPlayer($subtournamentId, $data);
+	public function post() {
+		$data = file_get_contents("php://input");
+		$data = json_decode($data, true);
+		if($data['type'] == 'ithf') {
+			return $this->registerIthfPlayer($data);
+		}
+
+		return $this->registerLocalPlayer($data);
 	}
 
 	public function getPlayersFor($subtournamentId) {
@@ -20,14 +26,8 @@ class PlayersController extends AbstractController {
 		return parent::getDBHandler()->getPlayersFor($subtournamentId);
 	}
 
-	public function registerPlayer($subtournamentId, $data) {
+	public function registerIthfPlayer($data) {
 		parent::verifyIsUserOrExit();
-		if($data['type'] == 'ithf') {
-			// return parent::getDBHandler()->registerITHFPlayer($data['subtournamentId'], $data['playerId']);
-		}
-
-		if($data['type'] == 'local') {
-			// return parent::getDBHandler()->registerLocalPlayer(...); // create new local player
-		}
+		parent::getDBHandler()->registerITHFPlayer($data['subtournamentId'], $data['playerId']);
 	}
 }

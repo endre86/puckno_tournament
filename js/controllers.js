@@ -60,11 +60,27 @@
 			$scope.ithfSelectBox = [];
 		}]);
 
-	controllers.controller('RegisterExistingPlayerCtrl', ['$scope', '$state', 'IthfPlayers',
-		function($scope, $state, IthfPlayers) {
+	controllers.controller('RegisterExistingPlayerCtrl', ['$scope', '$state', 'TournamentPlayers', 'IthfPlayers',
+		function($scope, $state, TournamentPlayers, IthfPlayers) {
 			$scope.$watch('ithfquery', function() {
 				updateIthfSearch($scope.ithfquery);
 			});
+
+			if($scope.tournament.subtournaments) {
+				$scope.selectedTournament = $scope.tournament.subtournaments[0];
+			}
+
+			$scope.registerIthfPlayer = function() {
+				if($scope.ithfSelectboxSelected) {
+					TournamentPlayers.put({
+							subtournamentId: $scope.selectedTournament.id,
+							type: 'ithf',
+							playerId: $scope.ithfSelectboxSelected.id}, 
+							function(data) {
+								console.log(data);
+							});
+				}
+			}
 
 			function updateIthfSearch(query) {
 				if(query && query.trim().length >= 3) {
@@ -72,7 +88,7 @@
 					
 					IthfPlayers.get({query: ithfquery}, function(data) {
 						$scope.ithfSelectBox = data;
-						console.log(data);
+						$scope.ithfSelectboxSelected = data[0];
 					});
 				}
 			}
