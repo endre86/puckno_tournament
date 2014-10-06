@@ -67,6 +67,8 @@
 
 	controllers.controller('RegisterExistingPlayerCtrl', ['$scope', '$state', 'TournamentPlayers', 'IthfPlayers',
 		function($scope, $state, TournamentPlayers, IthfPlayers) {
+			$scope.regform = {};
+
 			$scope.$watch('regform.namequery', function(data) {
 				// console.log(data + "!");
 				updateIthfSearch(data);
@@ -76,11 +78,17 @@
 			$scope.registerIthfPlayer = function(data) {
 				if(data && data.tournament && data.player) {
 					TournamentPlayers.put({
-							subtournamentId: data.tournament.id,
-							type: 'ithf',
-							playerId: data.player.id}, 
-							function(data) {
-								console.log('TODO: Redirect / something: REG OK!'); // TODO
+						subtournamentId: data.tournament.id,
+						type: 'ithf',
+						playerId: data.player.id})
+						.$promise.then(
+							function(response) {
+								$scope.regform.success = (response.status === 'success');
+								$scope.regform.error = response.error;
+							},
+							function(error) {
+								$scope.regform.success = false;
+								$scope.regform.error = error;
 							});
 				}
 			}
@@ -99,22 +107,30 @@
 
 	controllers.controller('RegisterNewPlayerCtrl', ['$scope', '$state', 'TournamentPlayers',
 		function($scope, $state, TournamentPlayers) {
+			$scope.regform = {};
 
 			$scope.registerLocalPlayer = function(data) {
 				if(data &&
 				   data.tournament && 
-				   data.player && 
-				   data.player.length >= 5) {
+				   data.name && 
+				   data.name.length >= 5) {
 
 					var club = data.club || '???';
 					var nation = (data.nation.toLowerCase() === 'norway' ? 'NOR' : data.nation);
 					TournamentPlayers.put({
 						subtournamentId: data.tournament.id,
 						type: 'local',
-						player: data.player,
+						player: data.name,
 						club: club,
-						nation: nation
-					});
+						nation: nation})
+					.$promise.then(
+						function(response) {
+							$scope.regform.success = (response.status === 'success');
+							$scope.regform.error = response.error;
+						},
+						function(error) {
+							$scope.regform.error = error;
+						});;
 				}
 			}
 		}]);

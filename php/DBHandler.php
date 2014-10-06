@@ -182,10 +182,10 @@ class DBHandler {
 
 	private function executeAndReturnSuccessObj($stmt) {
 		if($stmt->execute()) {
-			return '{"success" : "true"}';
+			return '{"status" : "success"}';
 		}
 
-		return '{"success" : "false", error: ' . $stmt->error . '}';
+		return '{"status" : "error", "error": "' . $stmt->error . '"}';
 	}
 
 	private function utf8Encode($data) {

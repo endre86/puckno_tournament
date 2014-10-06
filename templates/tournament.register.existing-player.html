@@ -1,3 +1,6 @@
+<div class="bg-success" ng-show="regform.success == true"><p>{{regform.player.player}} er nå registrert til {{regform.tournament.name}}!</p></div>
+	<div class="bg-danger" ng-show="regform.success == false"><p>Noe gikk galt! Er spilleren allerede registrert? Det kan ta noen minutter før spillerlistene blir oppdatert. Vedvarer problemet kan turneringsansvarlig kontaktes.</p>
+	<p>(Error: {{regform.error}})</p></div>
 <form class="form-horizontal" role="form" ng-submit="registerIthfPlayer(regform)">
 	<div class="form-group" ng-hide="tournament.subtournaments.length <= 1">
 		<label class="col-sm-2 control-label">Velg turnering:</label>
