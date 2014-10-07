@@ -6,3 +6,7 @@
 body {
 	background: gray;
 }
+
+a {
+	cursor: pointer;
+}

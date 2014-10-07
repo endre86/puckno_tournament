@@ -19,13 +19,20 @@
 		<script style="text/javascript" src="js/app.js"></script>
 		<script style="text/javascript" src="js/utils.js"></script>
 		<script style="text/javascript" src="js/controllers.js"></script>
-		<script style="text/javascript" src="js/services.js"></script>
+		<script style="text/javascript" src="js/services/tournament.js"></script>
+		<script style="text/javascript" src="js/services/players.js"></script>
+		<script style="text/javascript" src="js/services/ithfplayers.js"></script>
 		<script style="text/javascript" src="js/filters.js"></script>
 	</head>
 
 	<body ng-app="PucknoTournament"><br/>		
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3" ui-view></div>
+			<div class="col-md-6 col-md-offset-3" ui-view>
+			<p class="pull-right"><a ui-sref="/admin.login">Administrer</a>
+			</div>
+			<div class="col-md-6 col-md-offset-3">
+			<p class="pull-right"><a ui-sref="/admin.login" class="pointer">Administrer</a>
+			</div>
 		</div>
 	</body>
 </html>

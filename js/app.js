@@ -1,6 +1,9 @@
 'use strict';
 
 (function(ng) {
+	ng.module('tournamentServices', ['ngResource'])
+	ng.module('tournamentControllers', []);
+
 	var app = ng.module('PucknoTournament', [
 		'ui.router',
 
@@ -59,12 +62,12 @@
 				})
 				.state('admin', {
 					abstract: true,
-					url: '/admin',
+					url: 'admin',
 					templateUrl: 'templates/admin/admin.html',
 					controller: 'AdminController'
 				})
 				.state('admin/login', {
-					url: '/admin/login',
+					url: 'admin.login',
 					templateUrl: 'templates/admin.login.html',
 					controller: 'LoginController'
 				})

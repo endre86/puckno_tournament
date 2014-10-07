@@ -178,7 +178,7 @@ class DBHandler {
 		$stmt = $this->mysqli->prepare('INSERT INTO subtournament_players (subtournament_id, player_id, local_player_flag, ithf_player_flag) VALUES (?,?,1,0)');
 		$stmt->bind_param('ii', $subtournamentId, $playerId);
 
-		return $this->executeAndReturnSuccessObj($stmt);
+		return $this->executeAndReturnTrueOrError($stmt);
 	}
 
 	private function executeAndReturnTrueOrError($stmt) {

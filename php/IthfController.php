@@ -7,7 +7,7 @@ class IthfController extends AbstractController {
 		parent::__construct($api);
 	}
 
-	public function get($name) {
+	public function get($name = null) {
 		if(!isset($name)) {
 			return $this->getAll();
 		}
