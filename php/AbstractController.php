@@ -37,4 +37,21 @@ abstract class AbstractController {
 			$this->api->send403AndExit();
 		}
 	}
+
+	protected function createResponseJSONObject($response) {
+		if(is_bool($response) && $response == true) {
+			return $this->createSuccessJSONObject();
+		}
+
+		return $this->createErrorJSONObject($response);
+
+	}
+
+	protected function createSuccessJSONObject() {
+		return '{"status":"success"}';
+	}
+
+	protected function createErrorJSONObject($message) {
+		return '{"status":"error", "message":"'.$message.'"}';
+	}
 }

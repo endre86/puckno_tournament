@@ -68,7 +68,7 @@ class DBHandler {
 			$id, $name, $language, $date, $deadline, $fee, $venue,
 			$contact, $image, $misc, $program, $details);
 
-		return $this->executeAndReturnSuccessObj();
+		return $this->executeAndReturnTrueOrError($stmt);
 	}
 
 	public function updateTurnament($id, $name, $language, $date, $deadline, 
@@ -93,13 +93,13 @@ class DBHandler {
 			$name, $language, $date, $deadline, $fee, $venue,
 			$contact, $image, $misc, $program, $details, $id);
 
-		return $this->executeAndReturnSuccessObj();
+		return $this->executeAndReturnTrueOrError($stmt);
 	}
 
 	public function deleteTournament($tournamentId) {
 		$stmt = $this->mysqli->prepare('DELETE FROM tournaments WHERE id=?');
 		$stmt->bind_param('s', $tournamentId);
-		return $this->executeAndReturnSuccessObj();
+		return $this->executeAndReturnTrueOrError($stmt);
 	}
 
 	public function getPlayersFor($subtournamentId) {
@@ -164,7 +164,8 @@ class DBHandler {
 		$stmt = $this->mysqli->prepare('INSERT INTO subtournament_players (subtournament_id, player_id, local_player_flag, ithf_player_flag) VALUES (?,?,0,1)');
 
 		$stmt->bind_param('ii', $subtournamentId, $playerId);
-		return $this->executeAndReturnSuccessObj($stmt);
+		
+		return $this->executeAndReturnTrueOrError($stmt);
 	}
 
 	public function registerLocalPlayer($subtournamentId, $player, $club, $nation) {
@@ -180,12 +181,12 @@ class DBHandler {
 		return $this->executeAndReturnSuccessObj($stmt);
 	}
 
-	private function executeAndReturnSuccessObj($stmt) {
+	private function executeAndReturnTrueOrError($stmt) {
 		if($stmt->execute()) {
-			return '{"status" : "success"}';
+			return true;
 		}
 
-		return '{"status" : "error", "error": "' . $stmt->error . '"}';
+		return $stmt->error;
 	}
 
 	private function utf8Encode($data) {

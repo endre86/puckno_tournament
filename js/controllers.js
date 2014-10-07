@@ -83,10 +83,12 @@
 						playerId: data.player.id})
 						.$promise.then(
 							function(response) {
+								console.log(response);
 								$scope.regform.success = (response.status === 'success');
-								$scope.regform.error = response.error;
+								$scope.regform.error = response.message;
 							},
 							function(error) {
+								console.log(error);
 								$scope.regform.success = false;
 								$scope.regform.error = error;
 							});
@@ -126,7 +128,7 @@
 					.$promise.then(
 						function(response) {
 							$scope.regform.success = (response.status === 'success');
-							$scope.regform.error = response.error;
+							$scope.regform.error = response.message;
 						},
 						function(error) {
 							$scope.regform.success = false;

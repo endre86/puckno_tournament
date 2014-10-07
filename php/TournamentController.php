@@ -20,7 +20,9 @@ class TournamentController extends AbstractController {
 			return $this->create($data);
 		}
 
-		return $this->update($id, $data);
+		$res = $this->update($id, $data);
+
+		return parent::createResponseJSONObject($res);
 	}
 
 	public function getTournament($id) {
@@ -49,9 +51,11 @@ class TournamentController extends AbstractController {
 		$program = $dataAssocArray['program'];
 		$details = $dataAssocArray['details'];
 
-		return parent::getDBHandler()->createTournament(
+		$res = parent::getDBHandler()->createTournament(
 			$id, $name, $language, $date, $deadline, $fee,
-			$venue, $contact, $image, $misc, $program, $details);		
+			$venue, $contact, $image, $misc, $program, $details);
+
+		return $parent::createResponseJSONObject($res);	
 	}
 
 	public function update($id, $dataAssocArray) {
@@ -69,12 +73,15 @@ class TournamentController extends AbstractController {
 		$program = $dataAssocArray['program'];
 		$details = $dataAssocArray['details'];
 
-		return parent::getDBHandler()->updateTournament(
+		$res = parent::getDBHandler()->updateTournament(
 			$id, $name, $language, $date, $deadline, $fee,
 			$venue, $contact, $image, $misc, $program, $details);
+
+		return $parent::createResponseJSONObject($res);
 	}
 
 	public function delete($id) {
-		return parent::getDBHandler()->deleteTournament($id);
+		$res = parent::getDBHandler()->deleteTournament($id);
+		return parent::createResponseJSONObject($res);
 	}
 }
