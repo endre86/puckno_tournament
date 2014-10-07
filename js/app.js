@@ -57,6 +57,17 @@
 					templateUrl: 'templates/tournament.register.new-player.html',
 					controller: 'RegisterNewPlayerCtrl'
 				})
+				.state('admin', {
+					abstract: true,
+					url: '/admin',
+					templateUrl: 'templates/admin/admin.html',
+					controller: 'AdminController'
+				})
+				.state('admin/login', {
+					url: '/admin/login',
+					templateUrl: 'templates/admin.login.html',
+					controller: 'LoginController'
+				})
 
 			$urlRouterProvider.otherwise('/');
 		}]);
