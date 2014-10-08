@@ -1,4 +1,4 @@
-<div class="bg-success" ng-show="regform.success == true"><p>{{regform.name}} er nå registrert til {{regform.tournament.name}}!</p><p>Vær oppmerksom på at det kan ta noen minutter før nettsiden blir oppdatert.</p></div>
+<div class="bg-success" ng-show="regform.success == true"><p>{{regform.name}} er nå registrert til {{regform.subtournament.name}}!</p><p>Vær oppmerksom på at det kan ta noen minutter før nettsiden blir oppdatert.</p></div>
 	<div class="bg-danger" ng-show="regform.success == false"><p>Noe gikk galt! Vedvarer problemet kan turneringsansvarlig kontaktes.</p>
 	<p>(Error: {{regform.error}})</p></div>
 <form class="form-horizontal" role="form" ng-submit="registerLocalPlayer(regform)">
