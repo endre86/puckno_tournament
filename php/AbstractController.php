@@ -15,10 +15,24 @@ abstract class AbstractController {
 	protected function __construct($api) {
 		$this->api = $api;
 
+		$username;
+		$password;
+		if(isset($_SESSION[$this::ADMIN])) {
+			$username = DBCredentials::ADMIN_USERNAME; 
+			$password = DBCredentials::ADMIN_PASSWORD;	
+		}
+		else if(isset($_SESSION[$this::USER])) {
+			$username = DBCredentials::USER_USERNAME;
+			$password = DBCredentials::USER_PASSWORD;
+		}
+		else {
+			$this->api->send403AndExit();
+		}
+
 		$this->dbHandler = new DBHandler(
 			DBCredentials::HOST, 
-			DBCredentials::USER, 
-			DBCredentials::PASSWORD, 
+			$username,
+			$password, 
 			DBCredentials::DATABASE);
 	}
 
