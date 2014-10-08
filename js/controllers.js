@@ -37,7 +37,7 @@
 			$scope.viewTournament = $scope.tournament.subtournaments[0];
 
 			function showPlayersFor(subtournamentId) {
-				Players.get(subtournamentId)
+				Players.getRegisteredPlayers(subtournamentId)
 				.then(function() {
 					 $scope.tournamentPlayers = Players.data;
 				});
@@ -59,37 +59,36 @@
 		function($scope, $state) {
 		}]);
 
-	controllers.controller('RegisterCtrl', ['$scope', '$state',
-		function($scope, $state) {
+	controllers.controller('RegisterCtrl', ['$scope', '$state', 'Tournament',
+		function($scope, $state, Tournament) {
 			$scope.$parent.selectedTab = 'register';
-			$scope.ithfSelectBox = [];
 			$scope.regform = {};
 
-			if($scope.tournament.subtournaments) {
-				$scope.regform.tournament = $scope.tournament.subtournaments[0];
+			if(Tournament.data.subtournaments) {
+				console.log('ere');
+				$scope.regform.subtournament = Tournament.data.subtournaments[0];
 			}
 		}]);
 
 	controllers.controller('RegisterExistingPlayerCtrl', ['$scope', '$state', 'IthfPlayers', 'Players',
 		function($scope, $state, IthfPlayers, Players) {
-			$scope.regform = {};
-
 			$scope.$watch('regform.namequery', function(data) {
 				updateIthfSearch(data);
 			});
 
-			IthfPlayers.loadPlayers()
-			.then(
-				function(response) {
-					$scope.regform.players = IthfPlayers.data;
-				});
-
 			$scope.registerIthfPlayer = function(data) {
-				if(!data || !data.tournament || !data.player) {
+				if(!data || !data.subtournament || !data.player) {
+					$scope.regform.success = false;
+					$scope.regform.error = 'Make sure you\'ve selected both a valid tournament and player.';
 					return;
 				}
 
-				Players.registerIthfPlayer(data.tournament.id, data.player.id)
+				var postdata = {
+					playerId: data.player.id,
+					subtournamentId: data.subtournament.id
+				};
+
+				Players.registerIthfPlayer(postdata)
 				.then(
 					function(response) {
 						$scope.regform.success = (response.data.status === 'success');
@@ -103,8 +102,23 @@
 
 			function updateIthfSearch(query) {
 				if(query && query.trim().length >= 3) {
+					if(!IthfPlayers.data) {
+						IthfPlayers.loadPlayers()
+						.then(
+							function(response) {
+								updateUI(query);
+							});
+
+						return;
+					}
+
+					updateUI(query);
+				}
+
+				function updateUI(query) {
 					IthfPlayers.filterOn(query);
 					$scope.regform.players = IthfPlayers.data;
+					$scope.regform.player = IthfPlayers.data[0];
 				}
 			}
 		}]);
@@ -114,24 +128,33 @@
 			$scope.regform = {};
 
 			$scope.registerLocalPlayer = function(data) {
-				if(data &&
-				   data.tournament && 
-				   data.name && 
-				   data.name.length >= 5) {
-
-					var club = data.club || '???';
-					var nation = (data.nation.toLowerCase() === 'norway' ? 'NOR' : data.nation);
-					
-					Players.registerLocalPlayer(data.tournament.id, data.name, club, nation).then(
-						function(response) {
-							$scope.regform.success = (response.data.status === 'success');
-							$scope.regform.error = response.data.message;
-						},
-						function(error) {
-							$scope.regform.success = false;
-							$scope.regform.error = error.data;
-						});
+				if(!data ||
+				   !data.subtournament || 
+				   !data.name || 
+				   !data.name.length >= 5) {
+					$scope.regform.success = false;
+					$scope.regform.error = 'Make sure that you have selected a tournament and supplied a name with at least 5 characters.';
+					return;
 				}
+
+				var postdata = {
+					subtournamentId: data.subtournament.id,
+					player: data.name,
+					club: data.club || '???',
+					nation: (data.nation.toLowerCase() === 'norway' ? 'NOR' : data.nation)
+				}
+
+				console.log(postdata);
+				
+				Players.registerLocalPlayer(postdata).then(
+					function(response) {
+						$scope.regform.success = (response.data.status === 'success');
+						$scope.regform.error = response.data.message;
+					},
+					function(error) {
+						$scope.regform.success = false;
+						$scope.regform.error = error;
+					});
 			}
 		}]);
 

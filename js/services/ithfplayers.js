@@ -8,7 +8,7 @@
 			var resource = 'php/api.php?ithf';
 
 			var service = {};
-			service.data = {};
+			service.data = undefined;
 
 			var allData = {};
 

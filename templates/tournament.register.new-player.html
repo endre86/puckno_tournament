@@ -1,5 +1,5 @@
-<div class="bg-success" ng-show="regform.success == true"><p>{{regform.name}} er nå registrert til {{regform.tournament.name}}!</p></div>
-	<div class="bg-danger" ng-show="regform.success == false"><p>Noe gikk galt! Er spilleren allerede registrert? Det kan ta noen minutter før spillerlistene blir oppdatert. Vedvarer problemet kan turneringsansvarlig kontaktes.</p>
+<div class="bg-success" ng-show="regform.success == true"><p>{{regform.name}} er nå registrert til {{regform.tournament.name}}!</p><p>Vær oppmerksom på at det kan ta noen minutter før nettsiden blir oppdatert.</p></div>
+	<div class="bg-danger" ng-show="regform.success == false"><p>Noe gikk galt! Vedvarer problemet kan turneringsansvarlig kontaktes.</p>
 	<p>(Error: {{regform.error}})</p></div>
 <form class="form-horizontal" role="form" ng-submit="registerLocalPlayer(regform)">
 	<div class="form-group">
@@ -7,7 +7,7 @@
 		<div class="col-sm-10">
 			<select 
 				class="form-control"
-				ng-model="regform.tournament"
+				ng-model="regform.subtournament"
 				ng-options="subtour.name for subtour in tournament.subtournaments">
 			</select>
 		</div>

@@ -10,7 +10,7 @@
 			var service = {};
 			service.data = {};
 
-			service.get = function(subtournamentId) {
+			service.getRegisteredPlayers = function(subtournamentId) {
 				return $http({
 					method: 'GET',
 					url: (resource + subtournamentId),
@@ -22,30 +22,21 @@
 				});
 			}
 
-			service.registerIthfPlayer = function(subtournamentId, playerId) {
-				return $http({
-					method: 'POST',
-					url: resource,
-					data: {
-						subtournamentId: subtournamentId,
-						playerId: playerId,
-						type: 'ithf'
-					},
-					cache: false
-				});
+			service.registerIthfPlayer = function(data) {
+				data.type = 'ithf';
+				return registerPlayer(data);
 			}
 
-			service.registerLocalPlayer = function(subtournamentId, name, club, nation) {
+			service.registerLocalPlayer = function(data) {
+				data.type = 'local';
+				return registerPlayer(data);
+			}
+
+			function registerPlayer(data) {
 				return $http({
 					method: 'POST',
 					url: resource,
-					data: {
-						subtournamentId: subtournamentId,
-						player: name,
-						club: club,
-						nation: nation,
-						type: 'local'
-					},
+					data: data,
 					cache: false
 				});
 			}
