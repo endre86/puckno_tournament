@@ -52,17 +52,6 @@
 				Players.sortPlayers(property);
 				$scope.orderedOn = property;
 			}
-
-			$scope.setOrder = function(order) {
-				if(order === $scope.orderedOn) {
-				   $scope.orderedOn = '-' + order;
-				}
-				else {
-					$scope.orderedOn = order;
-				}
-
-				$scope.orderedOn = order;
-			};
 		}]);
 
 	controllers.controller('LiveCtrl', ['$scope', '$state',
