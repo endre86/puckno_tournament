@@ -43,9 +43,15 @@
 			function showPlayersFor(subtournamentId) {
 				Players.getRegisteredPlayers(subtournamentId)
 				.then(function() {
-					 $scope.tournamentPlayers = Players.data;
+						Players.sortPlayers('rank');
+						$scope.tournamentPlayers = Players.data;
 				});
-			};
+			}
+
+			$scope.sortPlayersBy = function(property) {
+				Players.sortPlayers(property);
+				$scope.orderedOn = property;
+			}
 
 			$scope.setOrder = function(order) {
 				if(order === $scope.orderedOn) {
