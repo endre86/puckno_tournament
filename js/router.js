@@ -1,8 +1,8 @@
-'use strict'
+'use strict';
 
 (function(ng) {
-	var app = ng.module('PucknoTournament');
-	app.config(['$stateProvider', '$urlRouterProvider',
+	var routes = ng.module('TournamentRoutes');
+	routes.config(['$stateProvider', '$urlRouterProvider',
 			function($stateProvider, $urlRouterProvider) {
 				$stateProvider
 					.state('all-tournaments', {

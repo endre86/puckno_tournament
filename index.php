@@ -17,7 +17,9 @@
 		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
 		
 		<script style="text/javascript" src="js/app.js"></script>
+		<script style="text/javascript" src="js/router.js"></script>
 		<script style="text/javascript" src="js/utils.js"></script>
+		<script style="text/javascript" src="js/constants.js"></script>
 		<script style="text/javascript" src="js/controllers.js"></script>
 		<script style="text/javascript" src="js/admincontrollers.js"></script>
 		<script style="text/javascript" src="js/services/tournament.js"></script>
