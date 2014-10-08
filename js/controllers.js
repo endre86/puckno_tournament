@@ -39,18 +39,17 @@
 				showPlayersFor($scope.viewTournament.id);
 			});
 			
+			$scope.sortPlayersBy = function(property) {
+				Players.sortPlayers(property);
+				$scope.orderedOn = property;
+			}
 
 			function showPlayersFor(subtournamentId) {
 				Players.getRegisteredPlayers(subtournamentId)
 				.then(function() {
-						Players.sortPlayers('rank');
-						$scope.tournamentPlayers = Players.data;
+					Players.sortPlayers('rank');
+					$scope.tournamentPlayers = Players.data;
 				});
-			}
-
-			$scope.sortPlayersBy = function(property) {
-				Players.sortPlayers(property);
-				$scope.orderedOn = property;
 			}
 		}]);
 
@@ -102,10 +101,9 @@
 				if(query && query.trim().length >= 3) {
 					if(!IthfPlayers.data) {
 						IthfPlayers.loadPlayers()
-						.then(
-							function(response) {
-								updateUI(query);
-							});
+						.then(function(response) {
+							updateUI(query);
+						});
 
 						return;
 					}
@@ -141,8 +139,6 @@
 					club: data.club || '???',
 					nation: (data.nation.toLowerCase() === 'norway' ? 'NOR' : data.nation)
 				}
-
-				console.log(postdata);
 				
 				Players.registerLocalPlayer(postdata).then(
 					function(response) {
