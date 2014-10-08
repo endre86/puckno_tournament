@@ -26,15 +26,19 @@
 			$scope.$parent.selectedTab = 'info';
 		}]);
 
-	controllers.controller('RegisteredPlayersCtrl', ['$scope', '$state', 'Players',
-		function($scope, $state, Players) {
+	controllers.controller('RegisteredPlayersCtrl', ['$scope', '$state', 'Tournament', 'Players',
+		function($scope, $state, Tournament, Players) {
 			$scope.$parent.selectedTab = 'players';
 			$scope.orderedOn = 'wr';
+
+			if(Tournament.data.subtournaments) {
+				$scope.viewTournament = Tournament.data.subtournaments[0];
+			}
 
 			$scope.$watch('viewTournament', function() {
 				showPlayersFor($scope.viewTournament.id);
 			});
-			$scope.viewTournament = $scope.tournament.subtournaments[0];
+			
 
 			function showPlayersFor(subtournamentId) {
 				Players.getRegisteredPlayers(subtournamentId)
@@ -65,13 +69,12 @@
 			$scope.regform = {};
 
 			if(Tournament.data.subtournaments) {
-				console.log('ere');
 				$scope.regform.subtournament = Tournament.data.subtournaments[0];
 			}
 		}]);
 
-	controllers.controller('RegisterExistingPlayerCtrl', ['$scope', '$state', 'IthfPlayers', 'Players',
-		function($scope, $state, IthfPlayers, Players) {
+	controllers.controller('RegisterExistingPlayerCtrl', ['$scope', '$state', 'SERVICE_RESPONSES', 'IthfPlayers', 'Players',
+		function($scope, $state, SERVICE_RESPONSES, IthfPlayers, Players) {
 			$scope.$watch('regform.namequery', function(data) {
 				updateIthfSearch(data);
 			});
@@ -91,7 +94,7 @@
 				Players.registerIthfPlayer(postdata)
 				.then(
 					function(response) {
-						$scope.regform.success = (response.data.status === 'success');
+						$scope.regform.success = (response.data.status === SERVICE_RESPONSES.status_success);
 						$scope.regform.error = response.data.message;
 					},
 					function(error) {
@@ -123,8 +126,8 @@
 			}
 		}]);
 
-	controllers.controller('RegisterNewPlayerCtrl', ['$scope', '$state', 'Players',
-		function($scope, $state, Players) {
+	controllers.controller('RegisterNewPlayerCtrl', ['$scope', '$state', 'SERVICE_RESPONSES', 'Players',
+		function($scope, $state, SERVICE_RESPONSES, Players) {
 			$scope.regform = {};
 
 			$scope.registerLocalPlayer = function(data) {
@@ -148,7 +151,7 @@
 				
 				Players.registerLocalPlayer(postdata).then(
 					function(response) {
-						$scope.regform.success = (response.data.status === 'success');
+						$scope.regform.success = (response.data.status === SERVICE_RESPONSES.status_success);
 						$scope.regform.error = response.data.message;
 					},
 					function(error) {
