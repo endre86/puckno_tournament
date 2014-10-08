@@ -1,7 +1,7 @@
 'use strict';
 
 (function(ng) {
-	ng.module('tournamentServices')
+	ng.module('TournamentServices')
 	.factory('IthfPlayers', ['$http', 
 
 		function($http) {

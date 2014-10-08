@@ -1,7 +1,7 @@
 'use strict';
 
 (function(ng) {
-	var controllers = ng.module('tournamentControllers');
+	var controllers = ng.module('AdminControllers');
 
 	controllers.controller('AdminCtrl', ['$scope', '$state', 
 		function($scope, $state) {

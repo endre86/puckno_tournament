@@ -1,7 +1,7 @@
 'use strict';
 
 (function(ng) {
-	var tournamentFilters = ng.module('tournamentFilters', []);
+	var tournamentFilters = ng.module('TournamentFilters', []);
 
 	tournamentFilters.filter('prettyprintDatestamp', function() {
 		return function(datestamp) {
