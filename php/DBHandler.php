@@ -171,7 +171,11 @@ class DBHandler {
 	public function registerLocalPlayer($subtournamentId, $player, $club, $nation) {
 		$stmt = $this->mysqli->prepare('INSERT INTO local_players (player, club, nation) VALUES (?,?,?)');
 		$stmt->bind_param('sss', $player, $club, $nation);
-		$stmt->execute();
+		
+		$res = $this->executeAndReturnTrueOrError($stmt);
+		if(!$res == true) {
+			return $res;
+		}
 
 		$playerId = $this->mysqli->insert_id;
 
@@ -179,6 +183,25 @@ class DBHandler {
 		$stmt->bind_param('ii', $subtournamentId, $playerId);
 
 		return $this->executeAndReturnTrueOrError($stmt);
+	}
+
+	public function createUser($username, $hashedPassword) {
+		$stmt = $this->mysqli->prepare('INSERT INTO admins (username, password) VALUES (?,?)');
+		$stmt->bind_param('ss', $username, $hashedPassword);
+		return $this->executeAndReturnTrueOrError($stmt);
+	}
+
+	public function getHashedPasswordFor($username) {
+		$stmt = $this->mysqli->prepare('SELECT password FROM admins WHERE username=?');
+		$stmt->bind_param('s', $username);
+		
+		if(!$stmt->execute()) {
+			return $stmt->error;
+		}
+
+		$result = $stmt->get_result();
+		$result = $result->fetch_assoc();
+		return $result['password'];
 	}
 
 	private function executeAndReturnTrueOrError($stmt) {

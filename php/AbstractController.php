@@ -10,8 +10,6 @@ abstract class AbstractController {
 	private $api;
 	private $dbHandler;
 
-
-
 	protected function __construct($api) {
 		$this->api = $api;
 
