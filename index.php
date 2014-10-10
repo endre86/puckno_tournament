@@ -33,7 +33,7 @@
 	<div class="row">
 			<div class="col-md-6 col-md-offset-3" ui-view></div>
 			<div class="col-md-6 col-md-offset-3">
-			<p class="pull-right"><a href="#/admin">Administrer</a>
+			<p class="pull-right"><a href="#/admin/login">Administrer</a>
 			</div>
 		</div>
 	</body>
