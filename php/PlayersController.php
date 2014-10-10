@@ -12,8 +12,7 @@ class PlayersController extends AbstractController {
 	}
 
 	public function post() {
-		$data = file_get_contents("php://input");
-		$data = json_decode($data, true);
+		$data = parent::getPostData();
 		if($data['type'] == 'ithf') {
 			return $this->registerIthfPlayer($data);
 		}

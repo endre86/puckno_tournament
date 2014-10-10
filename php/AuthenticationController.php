@@ -7,7 +7,9 @@ class AuthenticationController extends AbstractController {
 		parent::__construct($api);
 	}
 
-	public function post($credentials = null) {
+	public function post() {
+		$credentials = parent::getPostData();
+		
 		if(isset($credentials)) {
 			return $this->login($credentials);
 		}

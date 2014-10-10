@@ -6,6 +6,7 @@
 	ng.module('TournamentServices', []);
 	ng.module('TournamentControllers', []);
 	ng.module('AdminControllers', []);
+	ng.module('AdminServices', []);
 
 	var app = ng.module('PucknoTournament', [
 		// 'ui.router',
@@ -14,9 +15,11 @@
 		'TournamentRoutes',
 		'Constants',
 		'TournamentControllers',
-		'AdminControllers',
 		'TournamentServices',
-		'TournamentFilters'
+		'TournamentFilters',
+
+		'AdminControllers',
+		'AdminServices'
 	]);
 
 })(angular);

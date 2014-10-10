@@ -49,14 +49,14 @@
 					})
 					.state('admin', {
 						abstract: true,
-						url: 'admin',
+						url: '/admin',
 						templateUrl: 'templates/admin/admin.html',
-						controller: 'AdminController'
+						controller: 'AdminCtrl'
 					})
-					.state('admin/login', {
-						url: 'admin.login',
-						templateUrl: 'templates/admin.login.html',
-						controller: 'LoginController'
+					.state('admin.login', {
+						url: '/login',
+						templateUrl: 'templates/admin/admin.login.html',
+						controller: 'AdminLoginCtrl'
 					})
 
 				$urlRouterProvider.otherwise('/');
