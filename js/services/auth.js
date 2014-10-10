@@ -9,7 +9,7 @@
 			var service = {};
 			service.data = {
 				isAuthenticated: false
-			}
+			};
 
 			service.login = function(credentials) {
 				return $http({
@@ -20,7 +20,6 @@
 					cached: false
 				})
 				.then(function(response) {
-					console.log(response);
 					if(response.data.status === SERVICE_RESPONSES.status_success) {
 						service.data.isAuthenticated = true;
 					}
