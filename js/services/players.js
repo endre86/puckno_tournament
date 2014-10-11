@@ -50,7 +50,7 @@
 					return;
 				}
 
-				if(property == 'rank') {
+				if(property === PLAYER.rank.value) {
 					service.data.sort(function(a, b) {
 						var aRank = (a.rank === 'N/A' ? Number.MAX_VALUE : a.rank);
 						var bRank = (b.rank === 'N/A' ? Number.MAX_VALUE : b.rank);

@@ -9,11 +9,23 @@
 	});
 
 	constants.constant('PLAYER', {
-		rank: {isNumeric: true},
-		player: {isNumeric: false},
-		club: {isNumeric: false},
-		nation: {isNumeric: false},
-		points: {isNumeric: true},
-		best: {isNumeric: true}
+		rank: {
+			value: 'rank',
+			isNumeric: true},
+		player: {
+			value: 'player',
+			isNumeric: false},
+		club: {
+			value: 'club',
+			isNumeric: false},
+		nation: {
+			value: 'nation',
+			isNumeric: false},
+		points: {
+			value: 'points',
+			isNumeric: true},
+		best: {
+			value: 'best',
+			isNumeric: true}
 	});
 })(angular);
