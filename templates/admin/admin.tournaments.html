@@ -1,0 +1,7 @@
+<button class="btn btn-success" ui-sref="admin.create">Create new tournament</button><hr>
+<b>Edit tournament:</b>
+<ul>
+	<li ng-repeat="tournament in tournaments">
+		<a ui-sref="admin.edit({tournamentId: tournament.id})">{{tournament.name}}</a>
+	</li>
+</ul>

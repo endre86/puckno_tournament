@@ -58,6 +58,16 @@
 						templateUrl: 'templates/admin/admin.login.html',
 						controller: 'AdminLoginCtrl'
 					})
+					.state('admin.tournaments', {
+						url: '/tournaments',
+						templateUrl: 'templates/admin/admin.tournaments.html',
+						controller: 'AdminTournamentsCtrl'
+					})
+					.state('admin.edit', {
+						url: 'edit/{tournamentId}',
+						templateUrl: 'templates/admin/admin.edit.html',
+						controller: 'AdminTournamentCtrl'
+					})
 
 				$urlRouterProvider.otherwise('/');
 			}]);
