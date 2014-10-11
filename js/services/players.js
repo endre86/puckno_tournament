@@ -2,9 +2,9 @@
 
 (function(context, ng) {
 	ng.module('TournamentServices')
-	.factory('Players', ['$http', 
+	.factory('Players', ['$http', 'PLAYER',
 
-		function($http){
+		function($http, PLAYER) {
 			var resource = 'php/api.php?players/'
 
 			var service = {};
@@ -57,16 +57,16 @@
 						return aRank - bRank;
 					});
 				}
-				else if(!parseInt(service.data[0][property])) {
+				else if(PLAYER[property].isNumeric) {
 					service.data.sort(function(a, b) {
-						if(a[property] < b[property]) return -1;
-						if(a[property] > b[property]) return 1;
-						return 0;
+						return b[property] - a[property];
 					});
 				}
 				else {
 					service.data.sort(function(a, b) {
-						return b[property] - a[property];
+						if(a[property] < b[property]) return -1;
+						if(a[property] > b[property]) return 1;
+						return 0;
 					});
 				}
 			}
