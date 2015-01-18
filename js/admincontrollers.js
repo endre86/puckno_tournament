@@ -38,9 +38,30 @@
 			});
 		}]);
 
-	controllers.controller('AdminTournamentCtrl', ['$scope', '$state', 
-		function($scope, $state) {
-			
+	controllers.controller('AdminTournamentCtrl', ['$scope', '$state', '$stateParams', 'Tournament', 
+		function($scope, $state, $stateParams, Tournament) {
+			$scope.activePage = $scope.activePage || 'details';
+
+			if($stateParams.tournamentId) {
+				Tournament.get($stateParams.tournamentId)
+				.then(function(data) {
+					$scope.tourform = Tournament.data;
+				});
+			}
+			else {
+				$scope.tourform = Tournament.data;
+			}
+
+			$scope.tourform = Tournament.data;
+
+			$scope.addMiscItem = function() {
+				Tournament.addNewMiscItem();
+			}
+
+			$scope.deleteMiscItem = function(item) {
+				var index = $scope.tourform.misc.indexOf(item);
+				$scope.tourform.misc.splice(index, 1);
+			}
 		}]);
 
 	controllers.controller('AdminPlayersCtrl', ['$scope', '$state', 

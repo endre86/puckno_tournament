@@ -7,5 +7,8 @@
 # credentials
 *credentials*
 
+# bower packages
+bower_components/*
+
 # untracked files:
 	# php/credentials.php

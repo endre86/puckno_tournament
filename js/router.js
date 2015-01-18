@@ -63,9 +63,9 @@
 						templateUrl: 'templates/admin/admin.tournaments.html',
 						controller: 'AdminTournamentsCtrl'
 					})
-					.state('admin.edit', {
-						url: 'edit/{tournamentId}',
-						templateUrl: 'templates/admin/admin.edit.html',
+					.state('admin.tournament', {
+						url: 'tournament/{tournamentId}',
+						templateUrl: 'templates/admin/admin.tournament.html',
 						controller: 'AdminTournamentCtrl'
 					})
 

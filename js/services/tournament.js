@@ -32,6 +32,14 @@
 				});
 			}
 
+			service.addNewMiscItem = function() {
+				if(!service.data.misc) {
+					 service.data.misc = [];
+				}
+
+				service.data.misc.push({item: '', value: ''});
+			}
+
 			return service;
 		}]);
 })(angular);
