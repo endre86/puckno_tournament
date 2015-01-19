@@ -26,7 +26,7 @@
 
 			logger.error = function(param, obj) {
 				if(error) {
-					obj ? console.error(param, obj) : console.error(param);
+					obj ? console.error('Err:', param, obj) : console.error('Err:', param);
 				}
 			};
 
