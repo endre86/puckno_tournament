@@ -37,9 +37,13 @@ class API {
 				$this->execute($controller, $method);
 				break;
 			case 'POST':
-				$this->execute($controller, $method, $_POST);
+				$data = file_get_contents("php://input");
+  				$data = json_decode($data, TRUE);
+				$this->execute($controller, $method, $data);
+				break;
 			default:
 				$this->send404AndExit();
+				break;
 		}
 	}
 
@@ -54,7 +58,7 @@ class API {
 	}
 
 	private function execute($controller, $function, $data = null) {
-		// header('Content-Type: application/json: charset=utf-8');
+		//header('Content-Type: application/json: charset=utf-8');
 		if(is_array($data)) {
 			echo call_user_func_array(
 			array($controller, $function), $data);

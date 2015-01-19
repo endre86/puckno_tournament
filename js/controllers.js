@@ -3,26 +3,31 @@
 (function(ng) {
 	var controllers = ng.module('TournamentControllers');
 
-	controllers.controller('AllTournamentsCtrl', ['$scope', 'Tournament',
-		function($scope, Tournament) {
+	controllers.controller('AllTournamentsCtrl', ['$scope', 'Tournament', 'logger',
+		function($scope, Tournament, logger) {
+			logger.debug('AllTournamentsCtrl: Getting all tournaments.');
 			Tournament.query()
 			.then(function() {
 				$scope.tournaments = Tournament.data;
 			});
 		}]);
 
-	controllers.controller('TournamentCtrl', ['$scope', '$stateParams', 'Tournament',
-		function($scope, $stateParams, Tournament) {
+	controllers.controller('TournamentCtrl', ['$scope', '$stateParams', 'Tournament', 'logger',
+		function($scope, $stateParams, Tournament, logger) {
 			$scope.selectedTab = '';
 
-			Tournament.get($stateParams.tournamentId)
+			var tournamentId = $stateParams.tournamentId;
+
+			logger.debug('TournamentCtrl: Getting tournament ' + tournamentId);
+			Tournament.get(tournamentId)
 				.then(function() {
 					$scope.tournament = Tournament.data;
 				});
 		}]);
 
-	controllers.controller('TournamentInfoCtrl', ['$scope', '$stateParams', 'Tournament',
-		function($scope, $stateParams, Tournament) {
+	controllers.controller('TournamentInfoCtrl', ['$scope', '$stateParams', 'Tournament', 'logger',
+		function($scope, $stateParams, Tournament, logger) {
+			logger.debug('TournamentInfoCtrl: setting selected tab to "info"');
 			$scope.$parent.selectedTab = 'info';
 		}]);
 
