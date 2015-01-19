@@ -2,6 +2,7 @@
 
 (function(ng) {
 	ng.module('TournamentRoutes', ['ui.router']);
+	ng.module('Utilities', []);
 	ng.module('Constants', []);
 	ng.module('TournamentServices', []);
 	ng.module('TournamentControllers', []);
@@ -13,7 +14,9 @@
 
 		// 'localization',
 		'TournamentRoutes',
+		'Utilities',
 		'Constants',
+
 		'TournamentControllers',
 		'TournamentServices',
 		'TournamentFilters',

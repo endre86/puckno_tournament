@@ -25,6 +25,7 @@
 		<script style="text/javascript" src="js/constants.js"></script>
 		<script style="text/javascript" src="js/controllers.js"></script>
 		<script style="text/javascript" src="js/admincontrollers.js"></script>
+		<script style="text/javascript" src="js/services/logger.js"></script>
 		<script style="text/javascript" src="js/services/tournament.js"></script>
 		<script style="text/javascript" src="js/services/players.js"></script>
 		<script style="text/javascript" src="js/services/ithfplayers.js"></script>
