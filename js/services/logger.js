@@ -12,27 +12,27 @@
 			var error = true;
 			var log = true;
 
-			logger.debug = function(param) {
+			logger.debug = function(param, obj) {
 				if(debug) {
-					console.debug(param);
+					obj ? console.debug(param, obj) : console.debug(param);
 				}
 			};
 
-			logger.info = function(param) {
+			logger.info = function(param, obj) {
 				if(info) {
-					console.info(param);
+					obj ? console.info(param, obj) : console.info(param);
 				}
 			};
 
-			logger.error = function(param) {
+			logger.error = function(param, obj) {
 				if(error) {
-					console.error(param);
+					obj ? console.error(param, obj) : console.error(param);
 				}
 			};
 
-			logger.log = function(param) {
+			logger.log = function(param, obj) {
 				if(log) {
-					console.log(param);
+					obj ? console.log(param, obj) : console.log(param);
 				}
 			};
 
