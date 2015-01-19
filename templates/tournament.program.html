@@ -2,12 +2,10 @@
 	<div ng-hide="tournament.program.length < 2">
 		<h3>{{day.day}}:</h2>
 	</div>
-	<table class="table" >
-		<tbody>
+	<table class="table" width="80%">
 			<tr ng-repeat="event in day.events">
-				<td>{{event.time}}</td>
+				<td width="60px">{{event.time}}</td>
 				<td>{{event.event}}</td>
 			</tr>
-		</tbody>
 	</table>
 </div>
