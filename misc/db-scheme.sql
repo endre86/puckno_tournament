@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 16, 2014 at 02:47 AM
--- Server version: 5.5.38-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.4
+-- Generation Time: Jan 18, 2015 at 08:39 PM
+-- Server version: 5.5.40-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,19 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `puckno_tournament`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `images`
---
-
-CREATE TABLE IF NOT EXISTS `images` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `src` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+CREATE DATABASE IF NOT EXISTS `puckno_tournament` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+USE `puckno_tournament`;
 
 -- --------------------------------------------------------
 
@@ -42,15 +31,15 @@ CREATE TABLE IF NOT EXISTS `images` (
 CREATE TABLE IF NOT EXISTS `ithf_players` (
   `id` int(11) NOT NULL,
   `rank` int(11) NOT NULL,
-  `player` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `club` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `nation` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
+  `player` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `club` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `nation` varchar(4) CHARACTER SET utf8 NOT NULL,
   `points` int(11) NOT NULL,
   `best` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`),
   KEY `player` (`player`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -60,11 +49,11 @@ CREATE TABLE IF NOT EXISTS `ithf_players` (
 
 CREATE TABLE IF NOT EXISTS `local_players` (
   `id` int(11) NOT NULL,
-  `player` varchar(255) NOT NULL,
-  `club` varchar(255) NOT NULL,
-  `nation` varchar(3) NOT NULL,
+  `player` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `club` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `nation` varchar(3) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -74,10 +63,10 @@ CREATE TABLE IF NOT EXISTS `local_players` (
 
 CREATE TABLE IF NOT EXISTS `subtournaments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `tournament_id` varchar(12) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `tournament_id` varchar(12) CHARACTER SET utf8 NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=13 ;
 
 -- --------------------------------------------------------
 
@@ -91,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `subtournament_players` (
   `local_player_flag` tinyint(1) NOT NULL DEFAULT '0',
   `ithf_player_flag` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`subtournament_id`,`player_id`,`local_player_flag`,`ithf_player_flag`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
@@ -100,21 +89,34 @@ CREATE TABLE IF NOT EXISTS `subtournament_players` (
 --
 
 CREATE TABLE IF NOT EXISTS `tournaments` (
-  `id` varchar(12) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `language` varchar(8) NOT NULL,
+  `id` varchar(12) CHARACTER SET utf8 NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `language` varchar(8) CHARACTER SET utf8 NOT NULL,
   `date` date NOT NULL,
   `deadline` date NOT NULL,
-  `fee` varchar(255) NOT NULL,
-  `venue` varchar(255) NOT NULL,
-  `contact` varchar(255) NOT NULL,
-  `image` varchar(255) DEFAULT NULL,
-  `misc` text NOT NULL,
-  `program` text NOT NULL,
-  `details` text NOT NULL,
+  `fee` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `venue` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `contact` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8 NULL,
+  `misc` text CHARACTER SET utf8 NOT NULL,
+  `program` text CHARACTER SET utf8 NOT NULL,
+  `details` text CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`),
   KEY `date` (`date`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tournament_logos`
+--
+
+CREATE TABLE IF NOT EXISTS `tournament_logos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `src` varchar(255) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
