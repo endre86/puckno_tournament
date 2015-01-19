@@ -31,6 +31,12 @@
 			$scope.$parent.selectedTab = 'info';
 		}]);
 
+	controllers.controller('TournamentProgramCtrl', ['$scope', '$stateParams', 'Tournament', 'logger',
+		function($scope, $stateParams, Tournament, logger) {
+			logger.debug('TournamentProgramCtrl: setting selected tab to "program"');
+			$scope.$parent.selectedTab = 'program';
+		}]);
+
 	controllers.controller('RegisteredPlayersCtrl', ['$scope', '$state', 'Tournament', 'Players',
 		function($scope, $state, Tournament, Players) {
 			$scope.$parent.selectedTab = 'players';

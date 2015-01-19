@@ -41,26 +41,14 @@
 </div>
 
 <div class="row">
-<div class="col-md-10">
-<h3>Informasjon</h3>
-{{tournament.details}}
+<div class="col-md-10" ng-repeat="section in tournament.details">
+<h3>{{section.title}}</h3>
+{{section.content}}
 </div>
 </div>
 
 <div class="row" ng-show="tournament.program.length > 0">
 <div class="col-md-10">
-<h3>Program</h3>
-<table class="table">
-	<tbody ng-repeat="day in tournament.program">
-		<tr ng-hide="tournament.program.length < 2">
-			<td colspan="2"><b>{{day.day}}:</b></td>
-		</tr>
-		<tr ng-repeat="event in day.events">
-			<td>{{event.time}}</td>
-			<td>{{event.event}}</td>
-		</tr>
-	</tbody>
-
 </div>
 </div>
 		

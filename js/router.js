@@ -21,6 +21,11 @@
 						templateUrl: 'templates/tournament.info.html',
 						controller: 'TournamentInfoCtrl'
 					})
+					.state('tournament.program', {
+						url: '/program',
+						templateUrl: 'templates/tournament.program.html',
+						controller: 'TournamentProgramCtrl'
+					})
 					.state('tournament.players', {
 						url: '/players',
 						templateUrl: 'templates/tournament.players.html',

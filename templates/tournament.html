@@ -6,6 +6,9 @@
 		<li ng-class="{true: 'active'}[selectedTab === 'info' || !selectedTab]">
 			<a ui-sref="tournament.info({tournamentId: tournament.id})" data-toggle="tab">Informasjon</a>
 		</li>
+		<li ng-class="{true: 'active'}[selectedTab === 'program' || !selectedTab]">
+			<a ui-sref="tournament.program({tournamentId: tournament.id})" data-toggle="tab">Program</a>
+		</li>
 		<li ng-class="{true: 'active'}[selectedTab === 'players']">
 			<a ui-sref="tournament.players" data-toggle="tab">Spillere</a>
 		</li>
