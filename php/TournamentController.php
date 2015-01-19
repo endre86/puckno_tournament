@@ -7,32 +7,21 @@ class TournamentController extends AbstractController {
 		parent::__construct($api);
 	}
 
-	public function get($id = null) {
-		if(empty($id)) {
-			return $this->getList();
-		}
-
-		return $this->getTournament($id);
-	}
-
-	public function post($id = null, $data) {
-		if(empty($id)) {
-			return $this->create($data);
-		}
-
-		$res = $this->update($id, $data);
-
-		return parent::createResponseJSONObject($res);
-	}
-
-	public function getTournament($id) {
+	public function get($id) {
 		parent::verifyIsUserOrExit();
-		return parent::getDBHandler()->getTournament($id);
+		$res = parent::getDBHandler()->getTournament($id);
+
+		$res['program'] = json_decode($res['program']);
+		$res['details'] = json_decode($res['details']);
+		$res['misc'] = json_decode($res['misc']);
+
+		return parent::toJson($res);
 	}
 
 	public function getList() {
 		parent::verifyIsUserOrExit();
-		return parent::getDBHandler()->getTournamentsList();
+		$res = parent::getDBHandler()->getTournamentsList();
+		return parent::toJson($res);
 	}
 
 	public function create($dataAssocArray) {

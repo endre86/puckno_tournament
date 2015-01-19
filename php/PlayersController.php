@@ -7,22 +7,10 @@ class PlayersController extends AbstractController {
 		parent::__construct($api);
 	}
 
-	public function get($subtournamentId) {
-		return $this->getPlayersFor($subtournamentId);
-	}
-
-	public function post() {
-		$data = parent::getPostData();
-		if($data['type'] == 'ithf') {
-			return $this->registerIthfPlayer($data);
-		}
-
-		return $this->registerLocalPlayer($data);
-	}
-
 	public function getPlayersFor($subtournamentId) {
 		parent::verifyIsUserOrExit();
-		return parent::getDBHandler()->getPlayersFor($subtournamentId);
+		$res = parent::getDBHandler()->getPlayersFor($subtournamentId);
+		return parent::toJson($res);
 	}
 
 	public function registerIthfPlayer($data) {
@@ -33,6 +21,10 @@ class PlayersController extends AbstractController {
 
 	public function registerLocalPlayer($data) {
 		parent::verifyIsUserOrExit();
+
+		$data['player'] = mysqli_escape_string($data['player']);
+		$data['club'] = mysqli_escape_string($data['club']);
+		$data['nation'] = mysqli_escape_string($data['nation']);
 		$res = parent::getDBHandler()->registerLocalPlayer(
 			$data['subtournamentId'], $data['player'], $data['club'], $data['nation']);
 		return parent::createResponseJSONObject($res);

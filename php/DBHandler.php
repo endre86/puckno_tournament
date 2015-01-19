@@ -5,6 +5,7 @@ class DBHandler {
 
 	public function __construct($host, $user, $password, $database) {
 		$this->mysqli = new mysqli($host, $user, $password, $database);
+		$this->mysqli->set_charset("utf8");
 	}
 
 	public function __destruct() {
@@ -21,7 +22,6 @@ class DBHandler {
 		$resArray = array();
 		
 		$resArr = $result->fetch_array(MYSQLI_ASSOC);
-		$resArr = $this->utf8Encode($resArr);
 
 		$stmt2 = $this->mysqli->prepare('SELECT * FROM subtournaments WHERE tournament_id=?');
 
@@ -31,29 +31,27 @@ class DBHandler {
 		$result2 = $stmt2->get_result();
 
 		$resArr2 = array();
-		$resArr['subtournaments'] = array();
+		$resArr2['subtournaments'] = array();
 		while($r = $result2->fetch_assoc()) {
 			array_push($resArr2, $r);
 		}
 
-		$resArr2 = $this->utf8Encode($resArr2);
-		$resArr['subtournaments'] = json_encode($resArr2);
-
-		return $this->arrayToJsonHelper($resArr);
+		return $resArr;
 	}
 
+
 	public function getTournamentsList() {
-		$stmt = $this->mysqli->prepare('SELECT id, name, date FROM tournaments');
+		$stmt = $this->mysqli->prepare('SELECT id, name, date FROM tournaments ORDER BY date DESC');
 		$stmt->execute();
 
 		$results = $stmt->get_result();
 
-		$jsonArr = array();
+		$resArr = array();
 		while($r = $results->fetch_assoc()) {
-			array_push($jsonArr, $this->utf8Encode($r));
+			array_push($resArr, $r);
 		}
 
-		return json_encode($jsonArr, JSON_UNESCAPED_UNICODE);
+		return $resArr;
 	}
 
 	public function createTurnament($id, $name, $language, $date, $deadline, 
@@ -118,17 +116,18 @@ class DBHandler {
 		';
 
 		$stmt = $this->mysqli->prepare($sql);
+
 		$stmt->bind_param('ii', $subtournamentId, $subtournamentId);
 		$stmt->execute();
 
 		$results = $stmt->get_result();
 
-		$jsonArr = array();
+		$resArr = array();
 		while($r = $results->fetch_assoc()) {
-			array_push($jsonArr, $this->utf8Encode($r));
+			array_push($resArr, $r);
 		}
 
-		return json_encode($jsonArr, JSON_UNESCAPED_UNICODE);
+		return $resArr;
 	}
 
 	public function searchITHFPlayers($name) {
@@ -140,7 +139,7 @@ class DBHandler {
 
 		$jsonArr = array();
 		while($r = $results->fetch_assoc()) {
-			array_push($jsonArr, $this->utf8Encode($r));
+			array_push($jsonArr, $r);
 		}
 
 		return json_encode($jsonArr, JSON_UNESCAPED_UNICODE);
@@ -154,7 +153,7 @@ class DBHandler {
 
 		$jsonArr = array();
 		while($r = $results->fetch_assoc()) {
-			array_push($jsonArr, $this->utf8Encode($r));
+			array_push($jsonArr, $r);
 		}
 
 		return json_encode($jsonArr, JSON_UNESCAPED_UNICODE);
@@ -212,18 +211,6 @@ class DBHandler {
 		return $stmt->error;
 	}
 
-	private function utf8Encode($data) {
-		if(!is_array($data)) {
-			return utf8_encode($data);
-		}
-
-		foreach($data as $key => $value) {
-			$data[$key] = $this->utf8Encode($value);
-		}
-
-		return $data;
-	}
-
 	/**
 	 * Used when a string in the array is
 	 * a json array or object.
@@ -248,10 +235,11 @@ class DBHandler {
 
 }
 
-// require('Credentials.php');
-// $db = new DBHandler(
-// 			DBCredentials::HOST, 
-// 			DBCredentials::USER, 
-// 			DBCredentials::PASSWORD, 
-// 			DBCredentials::DATABASE);
-// echo $db->registerLocalPlayer('2', 'test', 'local', 'RON');
+ //require('Credentials.php');
+ //$db = new DBHandler(
+ //			DBCredentials::HOST, 
+ //			DBCredentials::USER_USERNAME, 
+ //			DBCredentials::USER_PASSWORD, 
+ //			DBCredentials::DATABASE);
+ //$db->getTournament('nm15');
+ //echo $db->registerLocalPlayer('2', 'test', 'local', 'RON');

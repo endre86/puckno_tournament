@@ -1,8 +1,12 @@
 <?php
 
 session_start();
+error_reporting(-1);
 
 $_SESSION['user'] = true; // TODO: DEBUG => REMOVE
+
+
+
 /**
  * Simple API for handling requests.
  */
@@ -10,10 +14,12 @@ class API {
 	private $controller;
 
 	public function processApi() {
-		$request = split('/', array_keys($_REQUEST)[0]);
+		$request = explode('/', array_keys($_REQUEST)[0]);
 		$controller = ucfirst(strtolower($request[0])) . 'Controller';
+		$method = $request[1];
 
 		if(!file_exists($controller . '.php')) {
+			echo 'No such controller: ' . $controller;
 			$this->send404AndExit();
 		}
 
@@ -21,17 +27,19 @@ class API {
 		$controller = new $controller($this);
 
 		$requestMethod = $_SERVER['REQUEST_METHOD'];
-		if(!method_exists($controller, strtolower($requestMethod))) {
+		if(!method_exists($controller, $method)) {
+			echo 'No such method: ' . get_class($controller) . '->' . $method;
 			$this->send404AndExit();
 		}
 
 		switch($requestMethod) {
 			case 'GET':
-				$data = array_slice($request, 1);
-				$this->execute($controller, strtolower($requestMethod), $data);
+				$this->execute($controller, $method);
 				break;
 			case 'POST':
-				$this->execute($controller, strtolower($requestMethod), $_POST);
+				$this->execute($controller, $method, $_POST);
+			default:
+				$this->send404AndExit();
 		}
 	}
 
@@ -45,11 +53,15 @@ class API {
 		exit();
 	}
 
-	private function execute($controller, $function, $data) {
+	private function execute($controller, $function, $data = null) {
 		// header('Content-Type: application/json: charset=utf-8');
-		$res = call_user_func_array(
+		if(is_array($data)) {
+			echo call_user_func_array(
 			array($controller, $function), $data);
-		echo $res;
+		}
+		else {
+			echo call_user_func(array($controller, $function));
+		}
 	}
 }
 

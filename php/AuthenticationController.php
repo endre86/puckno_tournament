@@ -7,17 +7,7 @@ class AuthenticationController extends AbstractController {
 		parent::__construct($api);
 	}
 
-	public function post() {
-		$credentials = parent::getPostData();
-		
-		if(isset($credentials)) {
-			return $this->login($credentials);
-		}
-
-		return $this->logout();
-	}
-
-	private function login($credentials) {
+	public function login($credentials) {
 		parent::verifyIsUserOrExit();
 
 		$pw = parent::getDBHandler()->getHashedPasswordFor($credentials['username']);
@@ -30,7 +20,7 @@ class AuthenticationController extends AbstractController {
 		return parent::createErrorJSONObject('Bad username / password combination');
 	}
 
-	private function logout() {
+	public function logout() {
 		parent::verifyIsAdminOrExit();
 
 		unset($_SESSION[parent::ADMIN]);

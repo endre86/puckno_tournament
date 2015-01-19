@@ -72,4 +72,8 @@ abstract class AbstractController {
 	protected function createErrorJSONObject($message) {
 		return '{"status":"error", "message":"'.$message.'"}';
 	}
+
+	protected function toJson($arg) {
+		return json_encode($arg, JSON_UNESCAPED_UNICODE);
+	}
 }
