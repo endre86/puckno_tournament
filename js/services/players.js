@@ -12,8 +12,9 @@
 
 			service.getRegisteredPlayers = function(subtournamentId) {
 				return $http({
-					method: 'GET',
-					url: (resource + subtournamentId),
+					method: 'POST',
+					url: (resource + 'getPlayersFor'),
+					data: {subtournamentId: subtournamentId},
 					cache: false,
 					isArray: true
 				})
@@ -24,18 +25,19 @@
 
 			service.registerIthfPlayer = function(data) {
 				data.type = 'ithf';
-				return registerPlayer(data);
+				return $http({
+					method: 'POST',
+					url: resource + 'registerIthfPlayer',
+					data: data,
+					cache: false
+				});
 			}
 
 			service.registerLocalPlayer = function(data) {
 				data.type = 'local';
-				return registerPlayer(data);
-			}
-
-			function registerPlayer(data) {
 				return $http({
 					method: 'POST',
-					url: resource,
+					url: resource + 'registerLocalPlayer',
 					data: data,
 					cache: false
 				});

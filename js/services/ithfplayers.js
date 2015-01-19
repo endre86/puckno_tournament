@@ -15,7 +15,7 @@
 			service.loadPlayers = function() {
 				return $http({
 					method: 'GET',
-					url: resource,
+					url: resource + 'getAll',
 					cache: true
 				})
 				.success(function(response) {

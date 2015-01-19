@@ -14,7 +14,7 @@
 			service.login = function(credentials) {
 				return $http({
 					method: 'POST',
-					url: resource,
+					url: resource + 'login',
 					data: credentials,
 					isArray: false,
 					cached: false
@@ -29,7 +29,7 @@
 			service.logout = function() {
 				return $http({
 					method: 'POST',
-					url: resource,
+					url: resource + 'logout',
 					isArray: false,
 					cached: false
 				})
