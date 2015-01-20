@@ -11,25 +11,27 @@
 			service.data = {};
 
 			service.query = function() {
-				logger.debug('TournamentService: Ajax call for all tournaments.');
+				var url = resource + 'getList';
+
+				logger.debug('TournamentService->query AJAX: ' + url);
 				return $http({
 					method: 'GET',
-					url: resource + 'getList',
+					url: url,
 					cache: true
 				})
 				.success(function(response) {
 					service.data = response;
-					logger.info('TournamentService: Got tournaments list: ', response);
+					logger.info('TournamentService->query returned: ', response);
 				})
 				.error(function(error) {
-					logger.error(error);
+					logger.error('TournamentService->query failed: 'error);
 				});
 			}
 
 			service.get = function(tournamentId) {
 				var url = resource + 'get';
 				var data = {id: tournamentId};
-				logger.debug('TournamentService: Ajax call: ' + url + '; data:', data);
+				logger.debug('TournamentService->get AJAX: ' + url, data);
 
 				return $http({
 					method: 'POST',
@@ -40,10 +42,10 @@
 				})
 				.success(function(response) {
 					service.data = response;
-					logger.info('TournamentService: Got tournament ', response);
+					logger.info('TournamentService->get returned: ', response);
 				})
 				.error(function(error) {
-					logger.error(error);
+					logger.error('TournamentService->get failed: ', error);
 				});
 			}
 

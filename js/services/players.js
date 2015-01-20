@@ -2,48 +2,75 @@
 
 (function(context, ng) {
 	ng.module('TournamentServices')
-	.factory('Players', ['$http', 'PLAYER',
+	.factory('Players', ['$http', 'PLAYER', 'logger',
 
-		function($http, PLAYER) {
+		function($http, PLAYER, logger) {
 			var resource = 'php/api.php?players/'
 
 			var service = {};
 			service.data = {};
 
 			service.getRegisteredPlayers = function(subtournamentId) {
+				var url = resource + 'getPlayersFor';
+				var data = {subtournamentId: subtournamentId};
+				logger.debug('PlayersService->getRegisteredPlayers AJAX: ' + url, data);
 				return $http({
 					method: 'POST',
-					url: (resource + 'getPlayersFor'),
-					data: {subtournamentId: subtournamentId},
+					url: url,
+					data: data,
 					cache: false,
 					isArray: true
 				})
 				.success(function(response) {
+					logger.info('PlayersService->getRegisteredPlayers returned: ', response);
 					service.data = response;
+				})
+				.error(function(error) {
+					logger.error('PlayersService->getRegisteredPlayers failed: ', error);
 				});
 			}
 
 			service.registerIthfPlayer = function(data) {
+				var url = resource + 'registerIthfPlayer';
 				data.type = 'ithf';
+
+				logger.debug('PlayersService->registerIthfPlayer AJAX: ' + url, data);
 				return $http({
 					method: 'POST',
-					url: resource + 'registerIthfPlayer',
+					url: url,
 					data: data,
 					cache: false
+				})
+				.success(function(response) {
+					logger.info('PlayersService->registerIthfPlayer returned: ', response);
+					service.data = response;
+				})
+				.error(function(error) {
+					logger.error('PlayersService->registerIthfPlayer failed: ', error);
 				});
 			}
 
 			service.registerLocalPlayer = function(data) {
+				var url = resource + 'registerLocalPlayer';
 				data.type = 'local';
+
+				logger.debug('PlayersService->registerLocalPlayer AJAX: ' + url, data);
 				return $http({
 					method: 'POST',
 					url: resource + 'registerLocalPlayer',
 					data: data,
 					cache: false
+				})
+				.success(function(response) {
+					logger.info('PlayersService->registerLocalPlayer returned: ', response);
+				})
+				.error(function(error) {
+					logger.error('PlayersService->registerLocalPlayer failed: ', error);
 				});
 			}
 
 			service.sortPlayers = function(property) {
+				logger.debug('PlayersService: Sorting players by: ', property);
 				if(service.data.length <= 0) {
 					return;
 				}
