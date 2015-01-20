@@ -24,7 +24,7 @@
 					logger.info('TournamentService->query returned: ', response);
 				})
 				.error(function(error) {
-					logger.error('TournamentService->query failed: 'error);
+					logger.error('TournamentService->query failed: ', error);
 				});
 			}
 
