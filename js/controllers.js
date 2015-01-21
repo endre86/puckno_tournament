@@ -37,25 +37,34 @@
 			$scope.$parent.selectedTab = 'program';
 		}]);
 
-	controllers.controller('RegisteredPlayersCtrl', ['$scope', '$state', 'Tournament', 'Players',
-		function($scope, $state, Tournament, Players) {
+	controllers.controller('RegisteredPlayersCtrl', ['$scope', '$state', 'Tournament', 'Players', 'logger',
+		function($scope, $state, Tournament, Players, logger) {
+			logger.debug('RegisteredPlayersCtrl: setting selected tab to "players"');
 			$scope.$parent.selectedTab = 'players';
+			logger.debug('RegisteredPlayersCtrl: setting orderOn to "wr"');
 			$scope.orderedOn = 'wr';
 
 			if(Tournament.data.subtournaments) {
+				logger.debug('RegisteredPlayersCtrl: subtournaments loaded, setting to scope.');
 				$scope.viewTournament = Tournament.data.subtournaments[0];
+			}
+			else {
+				logger.error('RegisteredPlayersCtrl: subtournaments not loaded!');
 			}
 
 			$scope.$watch('viewTournament', function() {
+				logger.debug('RegisteredPlayersCtrl: setting viewTournament to ', $scope.viewTournament);
 				showPlayersFor($scope.viewTournament.id);
 			});
 			
 			$scope.sortPlayersBy = function(property) {
+				logger.debug('RegisteredPlayersCtrl: setting orderedOn to ', property);
 				Players.sortPlayers(property);
 				$scope.orderedOn = property;
 			}
 
 			function showPlayersFor(subtournamentId) {
+				logger.debug('RegisteredPlayersCtrl: show players for subtournamentId: ' + subtournamentId);
 				Players.getRegisteredPlayers(subtournamentId)
 				.then(function() {
 					Players.sortPlayers('rank');
@@ -64,22 +73,26 @@
 			}
 		}]);
 
-	controllers.controller('LiveCtrl', ['$scope', '$state',
-		function($scope, $state) {
+	controllers.controller('LiveCtrl', ['$scope', '$state', 'logger',
+		function($scope, $state, logger) {
+			logger.info('LiveCtrl: Function not implemented!');
 		}]);
 
-	controllers.controller('RegisterCtrl', ['$scope', '$state', 'Tournament',
-		function($scope, $state, Tournament) {
+	controllers.controller('RegisterCtrl', ['$scope', '$state', 'Tournament', 'logger',
+		function($scope, $state, Tournament, logger) {
+			logger.debug('RegisterCtrl: setting selectedTab to "register"');
 			$scope.$parent.selectedTab = 'register';
 			$scope.regform = {};
 
 			if(Tournament.data.subtournaments) {
-				$scope.regform.subtournament = Tournament.data.subtournaments[0];
+				var defaultTournament = Tournament.data.subtournaments[0];
+				logger.debug('RegisterCtrl: setting registration subtournament to ', defaultTournament);
+				$scope.regform.subtournament = defaultTournament;
 			}
 		}]);
 
-	controllers.controller('RegisterExistingPlayerCtrl', ['$scope', '$state', 'SERVICE_RESPONSES', 'IthfPlayers', 'Players',
-		function($scope, $state, SERVICE_RESPONSES, IthfPlayers, Players) {
+	controllers.controller('RegisterExistingPlayerCtrl', ['$scope', '$state', 'SERVICE_RESPONSES', 'IthfPlayers', 'Players', 'logger',
+		function($scope, $state, SERVICE_RESPONSES, IthfPlayers, Players, logger) {
 			$scope.$watch('regform.namequery', function(data) {
 				updateIthfSearch(data);
 			});
