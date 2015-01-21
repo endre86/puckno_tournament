@@ -30,10 +30,9 @@ class DBHandler {
 
 		$result2 = $stmt2->get_result();
 
-		$resArr2 = array();
-		$resArr2['subtournaments'] = array();
+		$resArr['subtournaments'] = array();
 		while($r = $result2->fetch_assoc()) {
-			array_push($resArr2, $r);
+			array_push($resArr['subtournaments'], $r);
 		}
 
 		return $resArr;
