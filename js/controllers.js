@@ -14,7 +14,7 @@
 
 	controllers.controller('TournamentCtrl', ['$scope', '$stateParams', 'Tournament', 'logger',
 		function($scope, $stateParams, Tournament, logger) {
-			$scope.selectedTab = '';
+			$scope.selectedTab ? $scope.selectedTab : 'info';
 
 			var tournamentId = $stateParams.tournamentId;
 
@@ -27,20 +27,16 @@
 
 	controllers.controller('TournamentInfoCtrl', ['$scope', '$stateParams', 'Tournament', 'logger',
 		function($scope, $stateParams, Tournament, logger) {
-			logger.debug('TournamentInfoCtrl: setting selected tab to "info"');
-			$scope.$parent.selectedTab = 'info';
+			logger.debug('TournamentInfoCtrl: Nothing to do..');
 		}]);
 
 	controllers.controller('TournamentProgramCtrl', ['$scope', '$stateParams', 'Tournament', 'logger',
 		function($scope, $stateParams, Tournament, logger) {
-			logger.debug('TournamentProgramCtrl: setting selected tab to "program"');
-			$scope.$parent.selectedTab = 'program';
+			logger.debug('TournamentProgramCtrl: Nothing to do..');
 		}]);
 
 	controllers.controller('RegisteredPlayersCtrl', ['$scope', '$state', 'Tournament', 'Players', 'logger',
 		function($scope, $state, Tournament, Players, logger) {
-			logger.debug('RegisteredPlayersCtrl: setting selected tab to "players"');
-			$scope.$parent.selectedTab = 'players';
 			logger.debug('RegisteredPlayersCtrl: setting orderOn to "wr"');
 			$scope.orderedOn = 'wr';
 
@@ -80,8 +76,6 @@
 
 	controllers.controller('RegisterCtrl', ['$scope', '$state', 'Tournament', 'logger',
 		function($scope, $state, Tournament, logger) {
-			logger.debug('RegisterCtrl: setting selectedTab to "register"');
-			$scope.$parent.selectedTab = 'register';
 			$scope.regform = {};
 
 			if(Tournament.data.subtournaments) {

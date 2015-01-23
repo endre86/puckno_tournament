@@ -10,7 +10,6 @@ class TournamentController extends AbstractController {
 	public function get($id) {
 		parent::verifyIsUserOrExit();
 		$res = parent::getDBHandler()->getTournament($id);
-
 		$res['program'] = json_decode($res['program']);
 		$res['details'] = json_decode($res['details']);
 		$res['misc'] = json_decode($res['misc']);
