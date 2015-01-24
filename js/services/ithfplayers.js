@@ -5,7 +5,7 @@
 	.factory('IthfPlayers', ['$http', 'logger',
 
 		function($http, logger) {
-			var resource = 'php/api.php?ithf';
+			var resource = 'php/api.php?ithf/';
 
 			var service = {};
 			service.data = undefined;
@@ -34,7 +34,7 @@
 			service.filterOn = function(query) {
 				logger.debug('IthfPlayersService: filtering players on: ' + query);
 
-				var filter_start = Date.now().getTime();
+				var filter_start = Date.now();
 
 				var regex = '.*' + query.trim().replace(' ', '.*') + '.*';
 				var regexp = new RegExp(regex, 'ig');
@@ -47,7 +47,7 @@
 					}
 				});
 
-				var filter_time = Date.now().getTime() - filter_start;
+				var filter_time = Date.now() - filter_start;
 				logger.debug('Used ' + filter_time + 'MS to filter users');
 				logger.debug('Used ' + filter_time / 1000 + 'seconds to filter users');
 
