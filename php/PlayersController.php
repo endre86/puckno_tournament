@@ -16,11 +16,11 @@ class PlayersController extends AbstractController {
 	public function registerIthfPlayer($subtournamentId, $playerId) {
 		parent::verifyIsUserOrExit();
 		
-		if(!is_int($data['subtournamentId']) || is_int($data['playerId'])) {
-			return parent::createResponseJSONObject('Expected input data to be integers, got something else.');
+		if(!is_int($subtournamentId) || !is_int($playerId)) {
+			return parent::createResponseJSONObject('Expected input to be integers, got something else.');
 		}
 
-		$res = parent::getDBHandler()->registerITHFPlayer($data['subtournamentId'], $data['playerId']);
+		$res = parent::getDBHandler()->registerITHFPlayer($subtournamentId, $playerId);
 		return parent::createResponseJSONObject($res);
 	}
 
