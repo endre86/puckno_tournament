@@ -1,12 +1,15 @@
-#topbar {
-	background-color: #202020;
-	height: 50px;
-}
-
 body {
-	background: gray;
+	background-color: #B2BFB4;
 }
 
 a {
 	cursor: pointer;
+}
+
+/*
+* Override Boostrap to remove horizontal scrollbar.
+*/
+.row {
+margin-left: 0px;
+margin-right: 0px;
 }
