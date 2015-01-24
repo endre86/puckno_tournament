@@ -57,11 +57,27 @@ class API {
 		exit();
 	}
 
+	private function mapInputToParameters($controller, $function, $input) {
+		$params = array();
+
+		$reflectionMethod = new ReflectionMethod($controller, $function);
+		foreach($reflectionMethod->getParameters() as $parameter) {
+			if(array_key_exists($parameter->name, $input)) {
+				array_push($params, $input[$parameter->name]);
+			}
+			else {
+				array_push($params, null);
+			}
+		}
+
+		return $params;
+	}
+
 	private function execute($controller, $function, $data = null) {
 		//header('Content-Type: application/json: charset=utf-8');
 		if(is_array($data)) {
-			echo call_user_func_array(
-			array($controller, $function), $data);
+			$params = $this->mapInputToParameters($controller, $function, $data);
+			echo call_user_func_array(array($controller, $function), $params);
 		}
 		else {
 			echo call_user_func(array($controller, $function));

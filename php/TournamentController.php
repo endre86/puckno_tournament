@@ -23,21 +23,10 @@ class TournamentController extends AbstractController {
 		return parent::toJson($res);
 	}
 
-	public function create($dataAssocArray) {
+	public function create($id, $name, $language, $date, $deadline, $fee, $venue, $contact, 
+		$image, $misc, $program, $details) {
+		
 		parent::verifyIsAdminOrExit();
-
-		$id = $dataAssocArray['id'];
-		$name = $dataAssocArray['name'];
-		$language = $dataAssocArray['language'];
-		$date = $dataAssocArray['date'];
-		$deadline = $dataAssocArray['deadline'];
-		$fee = $dataAssocArray['fee'];
-		$venue = $dataAssocArray['venue'];
-		$contact = $dataAssocArray['contact'];
-		$image = $dataAssocArray['image'];
-		$misc = $dataAssocArray['misc'];
-		$program = $dataAssocArray['program'];
-		$details = $dataAssocArray['details'];
 
 		$res = parent::getDBHandler()->createTournament(
 			$id, $name, $language, $date, $deadline, $fee,
@@ -46,7 +35,9 @@ class TournamentController extends AbstractController {
 		return $parent::createResponseJSONObject($res);	
 	}
 
-	public function update($id, $dataAssocArray) {
+	public function update($id, $name, $language, $date, $deadline, $fee, $venue, $contact,
+		$image, $misc, $program, $details) {
+		
 		parent::verifyIsAdminOrExit();
 		
 		$name = $dataAssocArray['name'];

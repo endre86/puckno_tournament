@@ -76,4 +76,19 @@ abstract class AbstractController {
 	protected function toJson($arg) {
 		return json_encode($arg, JSON_UNESCAPED_UNICODE);
 	}
+
+	protected function cleanInput($input) {
+		if(is_array($input)) {
+			foreach($input as $key => $value) {
+				$input[$key] = $this->cleanInput($value);
+			}
+		}
+		else {
+			$input = trim($input);
+			$input = stripslashes($input);
+			$input = htmlspecialchars($input);
+		}
+
+		return $input;
+	}
 }

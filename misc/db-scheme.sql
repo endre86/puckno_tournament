@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 18, 2015 at 08:39 PM
--- Server version: 5.5.40-0ubuntu0.14.04.1
+-- Generation Time: Jan 24, 2015 at 12:07 PM
+-- Server version: 5.5.41-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -48,12 +48,12 @@ CREATE TABLE IF NOT EXISTS `ithf_players` (
 --
 
 CREATE TABLE IF NOT EXISTS `local_players` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `player` varchar(255) CHARACTER SET utf8 NOT NULL,
   `club` varchar(255) CHARACTER SET utf8 NOT NULL,
   `nation` varchar(3) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=13 ;
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `subtournaments` (
   `tournament_id` varchar(12) CHARACTER SET utf8 NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `tournaments` (
   `fee` varchar(255) CHARACTER SET utf8 NOT NULL,
   `venue` varchar(255) CHARACTER SET utf8 NOT NULL,
   `contact` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `image` varchar(255) CHARACTER SET utf8 NULL,
+  `image` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `misc` text CHARACTER SET utf8 NOT NULL,
   `program` text CHARACTER SET utf8 NOT NULL,
   `details` text CHARACTER SET utf8 NOT NULL,

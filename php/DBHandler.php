@@ -19,7 +19,6 @@ class DBHandler {
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
-		$resArray = array();
 		
 		$resArr = $result->fetch_array(MYSQLI_ASSOC);
 

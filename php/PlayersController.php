@@ -13,20 +13,26 @@ class PlayersController extends AbstractController {
 		return parent::toJson($res);
 	}
 
-	public function registerIthfPlayer($data) {
+	public function registerIthfPlayer($subtournamentId, $playerId) {
 		parent::verifyIsUserOrExit();
+		
+		if(!is_int($data['subtournamentId']) || is_int($data['playerId'])) {
+			return parent::createResponseJSONObject('Expected input data to be integers, got something else.');
+		}
+
 		$res = parent::getDBHandler()->registerITHFPlayer($data['subtournamentId'], $data['playerId']);
 		return parent::createResponseJSONObject($res);
 	}
 
-	public function registerLocalPlayer($data) {
+	public function registerLocalPlayer($subtournamentId, $player, $club, $nation) {
 		parent::verifyIsUserOrExit();
 
-		$data['player'] = mysqli_escape_string($data['player']);
-		$data['club'] = mysqli_escape_string($data['club']);
-		$data['nation'] = mysqli_escape_string($data['nation']);
-		$res = parent::getDBHandler()->registerLocalPlayer(
-			$data['subtournamentId'], $data['player'], $data['club'], $data['nation']);
+		$subtournamentId = parent::cleanInput($subtournamentId);
+		$player = parent::cleanInput($player);
+		$club = parent::cleanInput($club);
+		$nation = parent::cleanInput($nation);
+
+		$res = parent::getDBHandler()->registerLocalPlayer($subtournamentId, $player, $club, $nation);
 		return parent::createResponseJSONObject($res);
 	}
 }

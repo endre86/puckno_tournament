@@ -32,7 +32,6 @@
 
 			service.registerIthfPlayer = function(data) {
 				var url = resource + 'registerIthfPlayer';
-				data.type = 'ithf';
 
 				logger.debug('PlayersService->registerIthfPlayer AJAX: ' + url, data);
 				return $http({
@@ -52,7 +51,6 @@
 
 			service.registerLocalPlayer = function(data) {
 				var url = resource + 'registerLocalPlayer';
-				data.type = 'local';
 
 				logger.debug('PlayersService->registerLocalPlayer AJAX: ' + url, data);
 				return $http({
