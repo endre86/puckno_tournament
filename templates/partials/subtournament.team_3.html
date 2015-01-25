@@ -1,0 +1,19 @@
+<p><b>Det er {{tournamentTeams.length > 0 ? tournamentTeams.length : '0'}} registrerte lag i denne turneringen.</b></p>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Lag</th>
+			<th>Spiller</th>
+			<th>Spiller</th>
+			<th>Spiller</th>
+		</tr>
+
+		<tr ng-repeat="team in tournamentTeams">
+			<td>{{team.name}}</td>
+			<td>{{team.player1}}</td>
+			<td>{{team.player2}}</td>
+			<td>{{team.player3}}</td>
+			<!-- <td ng-repeat="player in team.players">player</td> -->
+		</tr>
+</table>

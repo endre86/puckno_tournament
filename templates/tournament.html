@@ -1,24 +1,24 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<b class="panel-title"><h2><b>{{tournament.name}}</b></h2></b>
-		
-	<ul class="nav nav-pills">
-		<li ng-class="{true: 'active'}[selectedTab === 'info' || !selectedTab]">
-			<a ui-sref="tournament.info({tournamentId: tournament.id})"  ng-click="selectedTab='info'" data-toggle="tab">Informasjon</a>
-		</li>
-		<li ng-class="{true: 'active'}[selectedTab === 'program']">
-			<a ui-sref="tournament.program({tournamentId: tournament.id})" ng-click="selectedTab='program'" data-toggle="tab">Program</a>
-		</li>
-		<li ng-class="{true: 'active'}[selectedTab === 'players']">
-			<a ui-sref="tournament.players" ng-click="selectedTab='players'" data-toggle="tab">Spillere</a>
-		</li>
-		<li ng-class="{true: 'active'}[selectedTab === 'live']">
-			<a ui-sref="tournament.live" ng-click="selectedTab='live'" data-toggle="tab">Live resultater</a>
-		</li>
-		<li ng-class="{true: 'active'}[selectedTab === 'register']">
-			<a ui-sref="tournament.register.existing-player" ng-click="selectedTab='register'" data-toggle="tab"><b>Påmelding</b></a>
-		</li>
-	</ul>
+		<br />
+		<ul class="nav nav-pills">
+			<li ng-class="{true: 'active'}[selectedTab === 'info' || !selectedTab]">
+				<a ui-sref="tournament.info({tournamentId: tournament.id})"  ng-click="selectedTab='info'" data-toggle="tab">Informasjon</a>
+			</li>
+			<li ng-class="{true: 'active'}[selectedTab === 'program']">
+				<a ui-sref="tournament.program({tournamentId: tournament.id})" ng-click="selectedTab='program'" data-toggle="tab">Program</a>
+			</li>
+			<li ng-class="{true: 'active'}[selectedTab === 'players']">
+				<a ui-sref="tournament.players" ng-click="selectedTab='players'" data-toggle="tab">Spillere</a>
+			</li>
+			<li ng-class="{true: 'active'}[selectedTab === 'live']">
+				<a ui-sref="tournament.live" ng-click="selectedTab='live'" data-toggle="tab">Live resultater</a>
+			</li>
+			<li ng-class="{true: 'active'}[selectedTab === 'register']">
+				<a ui-sref="tournament.register" ng-click="selectedTab='register'" data-toggle="tab"><b>Påmelding</b></a>
+			</li>
+		</ul>
 	</div>
 
 	<div class="panel panel-body" ui-view></div>

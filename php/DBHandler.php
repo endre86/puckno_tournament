@@ -128,6 +128,21 @@ class DBHandler {
 		return $resArr;
 	}
 
+	public function getTeam3For($subtournamentId) {
+		$stmt = $this->mysqli->prepare('SELECT * FROM subtournament_team3 WHERE subtournamentId=? ORDER BY name ASC');
+		$stmt->bind_param('i', $subtournamentId);
+
+		$stmt->execute();
+		$results = $stmt->get_result();
+
+		$resArr = array();
+		while($r = $results->fetch_assoc()) {
+			array_push($resArr, $r);
+		}
+
+		return $resArr;
+	}
+
 	public function searchITHFPlayers($name) {
 		$stmt = $this->mysqli->prepare('SELECT * FROM ithf_players WHERE player LIKE ?');
 		$stmt->bind_param('s', $name);
@@ -178,6 +193,13 @@ class DBHandler {
 
 		$stmt = $this->mysqli->prepare('INSERT INTO subtournament_players (subtournament_id, player_id, local_player_flag, ithf_player_flag) VALUES (?,?,1,0)');
 		$stmt->bind_param('ii', $subtournamentId, $playerId);
+
+		return $this->executeAndReturnTrueOrError($stmt);
+	}
+
+	public function registerTeam3($subtournamentId, $name, $player1, $player2, $player3) {
+		$stmt = $this->mysqli->prepare('INSERT INTO subtournament_team3 (subtournamentId, name, player1, player2, player3) VALUES (?,?,?,?,?)');
+		$stmt->bind_param('issss', $subtournamentId, $name, $player1, $player2, $player3);
 
 		return $this->executeAndReturnTrueOrError($stmt);
 	}

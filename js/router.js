@@ -12,7 +12,7 @@
 					})
 					.state('tournament', {
 						abstract: true,
-						url: '/tournament/{tournamentId}',
+						url: '/{tournamentId}',
 						templateUrl: 'templates/tournament.html',
 						controller: 'TournamentCtrl'
 					})
@@ -37,21 +37,21 @@
 						controller: 'LiveCtrl'
 					})
 					.state('tournament.register', {
-						abstract: true,
+						// abstract: true,
 						url: '/register',
 						templateUrl: 'templates/tournament.register.html',
 						controller: 'RegisterCtrl'
 					})
-					.state('tournament.register.existing-player', {
-						url: '/existing-player',
-						templateUrl: 'templates/tournament.register.existing-player.html',
-						controller: 'RegisterExistingPlayerCtrl'
-					})
-					.state('tournament.register.new-player', {
-						url: '/new-player',
-						templateUrl: 'templates/tournament.register.new-player.html',
-						controller: 'RegisterNewPlayerCtrl'
-					})
+					// .state('tournament.register.existing-player', {
+					// 	url: '/existing-player',
+					// 	templateUrl: 'templates/tournament.register.existing-player.html',
+					// 	controller: 'RegisterExistingPlayerCtrl'
+					// })
+					// .state('tournament.register.new-player', {
+					// 	url: '/new-player',
+					// 	templateUrl: 'templates/tournament.register.new-player.html',
+					// 	controller: 'RegisterNewPlayerCtrl'
+					// })
 					.state('admin', {
 						abstract: true,
 						url: '/admin',

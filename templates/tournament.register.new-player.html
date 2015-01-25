@@ -3,23 +3,12 @@
 	<p>(Error: {{regform.error}})</p></div>
 <form class="form-horizontal" role="form" ng-submit="registerLocalPlayer(regform)">
 	<div class="form-group">
-		<label class="col-sm-2 control-label">Turnering:</label>
-		<div class="col-sm-10">
-			<select 
-				class="form-control"
-				ng-model="regform.subtournament"
-				ng-options="subtour.name for subtour in tournament.subtournaments">
-			</select>
-		</div>
-	</div>
-
-	<div class="form-group">
 		<label class="col-sm-2 control-label">Navn:</label>
 		<div class="col-sm-10">
 			<input type="text" class="form-control" ng-model="regform.name" id="namesearch" placeholder="Fornavn Etternavn" />
 		</div>
 	</div>
-	
+
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Klubb:</label>
 		<div class="col-sm-10">

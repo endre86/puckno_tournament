@@ -1,3 +1,38 @@
+<div class="row">
+	<div class="col-md-12">		
+		<div class="panel panel-default">
+			<ul class="nav nav-tabs">
+				<li ng-class="{true: 'active'}[activeTab === 'existing-player' || !activeTab]">
+					<a ng-click="activeTab = 'existing-player'" ui-sref="tournament.register.existing-player">Eksisterende spiller</a>
+				</li>
+				<li ng-class="{true: 'active'}[activeTab === 'new-player']">
+					<a ng-click="activeTab = 'new-player'" ui-sref="tournament.register.new-player">Ny spiller</a>
+				</li>
+			</ul>
+			<div class="panel">
+				<div class="tab-content">
+					<div class="tab-pane" 
+						 id="existing_player"
+						 ng-class="{true: 'active'}[activeTab === 'existing_player' || !activeTab]">
+					</div>
+					
+					<div class="panel panel-body" ng-switch="registerIndividualTab">
+						<div ng-switch-when="existingPlayer">
+							<div ng-include="'templates/partials/regform.individual.existingplayer.html'"></div>
+						</div>
+						<div ng-switch-when="newPlayer">
+							<div ng-include="'templates/partials/regform.individual.newplayer.html'"></div>
+						</div>
+						<div ng-switch-default>
+							Vennligst velg en turnering.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="bg-success" ng-show="regform.success == true"><p>{{regform.player.player}} er nå registrert til {{regform.subtournament.name}}!</p><p>Vær oppmerksom på at det kan ta noen minutter før nettsiden blir oppdatert.</p></div>
 	<div class="bg-danger" ng-show="regform.success == false"><p>Noe gikk galt! Er spilleren allerede registrert? Det kan ta noen minutter før spillerlistene blir oppdatert. Vedvarer problemet kan turneringsansvarlig kontaktes.</p>
 	<p>(Error: {{regform.error}})</p></div>

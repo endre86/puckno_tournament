@@ -64,6 +64,7 @@ CREATE TABLE IF NOT EXISTS `local_players` (
 CREATE TABLE IF NOT EXISTS `subtournaments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tournament_id` varchar(12) CHARACTER SET utf8 NOT NULL,
+  `type` varchar(255) CHARACTER SET utf8 NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=6 ;
@@ -80,6 +81,55 @@ CREATE TABLE IF NOT EXISTS `subtournament_players` (
   `local_player_flag` tinyint(1) NOT NULL DEFAULT '0',
   `ithf_player_flag` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`subtournament_id`,`player_id`,`local_player_flag`,`ithf_player_flag`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+-- --
+-- -- Table structure for table `team_players`
+-- --
+
+-- CREATE TABLE IF NOT EXISTS `team_players` (
+--   `team_id` int(11) NOT NULL,
+--   `player_id` int(11) NOT NULL,
+--   `local_player_flag` tinyint(1) NOT NULL DEFAULT '0',
+--   `ithf_player_flag` tinyint(1) NOT NULL DEFAULT '0',
+--   PRIMARY KEY (`subtournament_id`,`player_id`,`local_player_flag`,`ithf_player_flag`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- Table structure for table `team`
+-- --
+
+-- CREATE TABLE IF NOT EXISTS `team` (
+--   `id` int(11) NOT NULL AUTO_INCREMENT,
+--   `subtournament_id` int(11) NOT NULL,
+--   `name` varchar(255) NOT NULL,
+--   PRIMARY KEY (`id`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+-- --
+-- -- Table structure for table `subtournament_teams`
+-- --
+
+-- CREATE TABLE IF NOT EXISTS `subtournament_teams` (
+--   `subtournament_id` int(11) NOT NULL,
+--   `team_id` int(11) NOT NULL,
+--   PRIMARY KEY (`subtournament_id`,`team_id`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `subtournament_team3` (
+  `subtournamentId` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `player1` varchar(255) NOT NULL,
+  `player2` varchar(255) NOT NULL,
+  `player3` varchar(255) NOT NULL,
+  PRIMARY KEY (`subtournamentId`,`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------

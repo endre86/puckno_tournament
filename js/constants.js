@@ -28,4 +28,9 @@
 			value: 'best',
 			isNumeric: true}
 	});
+
+	constants.constant('SUBTOUR_TYPE', {
+		individual: 'individual',
+		team_3: 'team_3'
+	});
 })(angular);

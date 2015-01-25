@@ -35,36 +35,67 @@
 			logger.debug('TournamentProgramCtrl: Nothing to do..');
 		}]);
 
-	controllers.controller('RegisteredPlayersCtrl', ['$scope', '$state', 'Tournament', 'Players', 'logger',
-		function($scope, $state, Tournament, Players, logger) {
-			logger.debug('RegisteredPlayersCtrl: setting orderOn to "wr"');
-			$scope.orderedOn = 'wr';
+	controllers.controller('RegisteredPlayersCtrl', ['$scope', '$state', '$stateParams', 'Tournament', 'Players', 'SUBTOUR_TYPE', 'logger',
+		function($scope, $state, $stateParams, Tournament, Players, SUBTOUR_TYPE, logger) {
+			logger.debug('RegisteredPlayersCtrl: Setting orderOn to "wr"');
 
 			if(Tournament.data.subtournaments) {
-				logger.debug('RegisteredPlayersCtrl: subtournaments loaded, setting to scope.');
-				$scope.viewTournament = Tournament.data.subtournaments[0];
+				logger.debug('RegisteredPlayersCtrl: Subtournaments loaded, setting to scope.');
+				$scope.viewSubTournament = Tournament.data.subtournaments[0];
 			}
 			else {
-				logger.error('RegisteredPlayersCtrl: subtournaments not loaded!');
+				logger.debug('RegisteredPlayersCtrl: Subtournaments not loaded!');
+				logger.debug('RegisteredPlayersCtrl: Setting up watch on tournament data.');
+				$scope.$watch(Tournament.data.subtournaments, function() {
+					if(Tournament.data.subtournaments) {
+						logger.debug('RegisteredPlayersCtrl: Tournament loaded: ', Tournament.data);
+						$scope.viewSubTournament = Tournament.data.subtournaments[0];
+					}
+				});
 			}
 
-			$scope.$watch('viewTournament', function() {
-				logger.debug('RegisteredPlayersCtrl: setting viewTournament to ', $scope.viewTournament);
-				showPlayersFor($scope.viewTournament.id);
+			$scope.$watch('viewSubTournament', function() {
+				logger.debug('RegisteredPlayersCtrl: setting viewSubTournament to ', $scope.viewSubTournament);
+				
+				if(!$scope.viewSubTournament) {
+					logger.debug('RegisteredPlayersCtrl: No subtournament selected.');
+					return;
+				}
+
+				switch($scope.viewSubTournament.type) {
+					case SUBTOUR_TYPE.individual:
+						logger.log('RegisteredPlayersCtrl: Show individual subtournament.');
+						showIndividualSubTournament($scope.viewSubTournament.id);
+						break;
+					case SUBTOUR_TYPE.team_3:
+						logger.log('RegisteredPlayersCtrl: Show team_3 subtournament.');
+						showTeam3SubTournament($scope.viewSubTournament.id);
+						break;
+					default:
+						logger.error('RegisteredPlayersCtrl: Unknown tournament type for subtournament: ', $scope.viewSubTournament);
+						break;
+				}
 			});
 			
 			$scope.sortPlayersBy = function(property) {
-				logger.debug('RegisteredPlayersCtrl: setting orderedOn to ', property);
+				logger.debug('RegisteredPlayersCtrl: Sorting players by ', property);
 				Players.sortPlayers(property);
 				$scope.orderedOn = property;
 			}
 
-			function showPlayersFor(subtournamentId) {
-				logger.debug('RegisteredPlayersCtrl: show players for subtournamentId: ' + subtournamentId);
+			function showIndividualSubTournament(subtournamentId) {
+				logger.debug('RegisteredPlayersCtrl: show individual subtournament with subtournamentId: ' + subtournamentId);
 				Players.getRegisteredPlayers(subtournamentId)
 				.then(function() {
 					Players.sortPlayers('rank');
 					$scope.tournamentPlayers = Players.data;
+				});
+			}
+
+			function showTeam3SubTournament(subtournamentId) {
+				Players.getRegisteredTeam3(subtournamentId)
+				.then(function() {
+					$scope.tournamentTeams = Players.data;
 				});
 			}
 		}]);
@@ -74,48 +105,153 @@
 			logger.info('LiveCtrl: Function not implemented!');
 		}]);
 
-	controllers.controller('RegisterCtrl', ['$scope', '$state', 'Tournament', 'logger',
-		function($scope, $state, Tournament, logger) {
+	controllers.controller('RegisterCtrl', ['$scope', '$state', 'Tournament', 'Players', 'IthfPlayers', 'SUBTOUR_TYPE', 'SERVICE_RESPONSES', 'logger',
+		function($scope, $state, Tournament, Players, IthfPlayers, SUBTOUR_TYPE, SERVICE_RESPONSES, logger) {
 			$scope.regform = {};
+			$scope.SUBTOUR_TYPE = SUBTOUR_TYPE;
 
 			if(Tournament.data.subtournaments) {
 				var defaultTournament = Tournament.data.subtournaments[0];
 				logger.debug('RegisterCtrl: setting registration subtournament to ', defaultTournament);
 				$scope.regform.subtournament = defaultTournament;
 			}
-		}]);
 
-	controllers.controller('RegisterExistingPlayerCtrl', ['$scope', '$state', 'SERVICE_RESPONSES', 'IthfPlayers', 'Players', 'logger',
-		function($scope, $state, SERVICE_RESPONSES, IthfPlayers, Players, logger) {
-			$scope.$watch('regform.namequery', function(data) {
-				updateIthfSearch(data);
+			$scope.$watch('regform.subtournament', function() {
+				logger.debug('RegisterCtrl: Setting registration for: ', $scope.regform.subtournament);
+				
+				if(!$scope.regform.subtournament) {
+					logger.debug('RegisterCtrl: No subtournament selected.');
+					return;
+				}
 			});
 
-			$scope.registerIthfPlayer = function(data) {
-				if(!data || !data.subtournament || !data.player) {
-					$scope.regform.success = false;
-					$scope.regform.error = 'Make sure you\'ve selected both a valid tournament and player.';
+			$scope.register = function(regform) {
+				switch(regform.subtournament.type) {
+					case SUBTOUR_TYPE.individual:
+						logger.log('RegisterCtrl: Register for individual tournament: ', $scope.regform.subtournament);
+						registerIndividual(regform);
+						break;
+					case SUBTOUR_TYPE.team_3:
+						logger.log('RegisterCtrl: Register for team_3 tournament: ', $scope.regform.subtournament);
+						registerTeam3(regform);
+						break;
+					default:
+						logger.error('RegisterCtrl: Could not register, unknown tournament type for subtournament: ', $scope.regform.subtournament);
+						break;
+				}
+			}
+
+			function registerIndividual(regform) {
+				logger.debug('RegisterCtrl.registerIndividual: ', regform);
+				
+				if(regform.playerType === 'existing') {
+					registerIndividualIthf(regform);
+				}
+				else if(regform.playerType === 'new') {
+					registerIndividualNew(regform);
+				}
+				else {
+					logger.error('RegisterCtrl: Could not understand player type for individual registration: ', regform);
+					showErrorMessage('Could not understand the player type: ' + regform.playerType);
+				}
+			}
+
+			function registerIndividualIthf(regform) {
+				if(!regform || !regform.subtournament || !regform.player) {
+					logger.debug('RegisterCtrl: registerIndividualIthf called but missing required data: ', regform);
+					showErrorMessage('Make sure you\'ve selected both a valid tournament and player.');
 					return;
 				}
 
 				var postdata = {
-					playerId: data.player.id,
-					subtournamentId: data.subtournament.id
+					playerId: regform.player.id,
+					subtournamentId: regform.subtournament.id
 				};
+
+				logger.debug('RegisterCtrl: Registering individual ITHF with: ', postdata);
 
 				Players.registerIthfPlayer(postdata)
 				.then(
 					function(response) {
-						$scope.regform.success = (response.data.status === SERVICE_RESPONSES.status_success);
-						$scope.regform.error = response.data.message;
+						logger.info('RegisterCtrl: Callback from registration: ', response);
+						showOkMessage(response);
 					},
 					function(error) {
-						$scope.regform.success = false;
-						$scope.regform.error = error;
+						logger.error('RegisterCtrl: Registration failed: ', error);
+						showErrorMessage(error);
 					});
 			}
 
+			function registerIndividualNew(regform) {
+				if(!regform ||
+				   !regform.subtournament || 
+				   !regform.name || 
+				   !regform.name.length >= 5) {
+				   	logger.error('RegisterCtrl: registerIndividualNew called, but missing data: ', regform);
+					showErrorMessage('Make sure that you have selected a tournament and supplied a name with at least 5 characters.');
+					return;
+				}
+
+				var postdata = {
+					subtournamentId: regform.subtournament.id,
+					player: regform.name,
+					club: regform.club || '???',
+					nation: (regform.nation.toLowerCase() === 'norway' ? 'NOR' : regform.nation)
+				}
+
+				Players.registerLocalPlayer(postdata).then(
+					function(response) {
+						logger.info('RegisterCtrl: Callback from registration: ', response);
+						showOkMessage(response);
+					},
+					function(error) {
+						logger.error('RegisterCtrl: Registration failed: ', error);
+						showErrorMessage(error);
+					});
+			}
+
+			function registerTeam3(regform) {
+				logger.debug('RegisterCtrl.registerTeam3: ', regform );
+
+				if(!regform ||
+				   !regform.teamName ||
+				   regform.teamName.length < 3 ||
+				   !regform.player1 ||
+				   regform.player1.length < 5 ||
+				   !regform.player2 ||
+				   regform.player2.length < 5 ||
+				   !regform.player3 ||
+				   regform.player3.length < 5) {
+					logger.error('RegisterCtrl: registerTeam3 called, but missing data: ', regform);
+					showErrorMessage('Make sure that you have selected a tournament and supplied a team name at least 3 characters long as well as three player names that are at least 5 characters long.');
+					return;
+				}
+
+				var postData = {
+					subtournamentId: regform.subtournament.id,
+					name: regform.teamName,
+					player1: regform.player1,
+					player2: regform.player2,
+					player3: regform.player3
+				}
+
+				Players.registerTeam3(postData).then(
+					function(response) {
+						logger.info('RegisterCtrl: Callback from registration: ', response);
+						showOkMessage(response);
+					},
+					function(error) {
+						logger.error('RegisterCtrl: Registration failed: ', error);
+						showErrorMessage(error);
+					});
+			}
+
+			$scope.$watch('regform.ithfNamequery', function(data) {
+				updateIthfSearch(data);
+			});
+
 			function updateIthfSearch(query) {
+				logger.debug('RegisterExistingPlayerCtrl: Updating ITHF search: ', query);
 				if(query && query.trim().length >= 3) {
 					if(!IthfPlayers.data) {
 						IthfPlayers.loadPlayers()
@@ -135,38 +271,15 @@
 					$scope.regform.player = IthfPlayers.data[0];
 				}
 			}
-		}]);
 
-	controllers.controller('RegisterNewPlayerCtrl', ['$scope', '$state', 'SERVICE_RESPONSES', 'Players',
-		function($scope, $state, SERVICE_RESPONSES, Players) {
-			$scope.regform = {};
+			function showErrorMessage(errorResponse) {
+				$scope.regform.success = false;
+				$scope.regform.error = errorResponse;
+			}
 
-			$scope.registerLocalPlayer = function(data) {
-				if(!data ||
-				   !data.subtournament || 
-				   !data.name || 
-				   !data.name.length >= 5) {
-					$scope.regform.success = false;
-					$scope.regform.error = 'Make sure that you have selected a tournament and supplied a name with at least 5 characters.';
-					return;
-				}
-
-				var postdata = {
-					subtournamentId: data.subtournament.id,
-					player: data.name,
-					club: data.club || '???',
-					nation: (data.nation.toLowerCase() === 'norway' ? 'NOR' : data.nation)
-				}
-				
-				Players.registerLocalPlayer(postdata).then(
-					function(response) {
-						$scope.regform.success = (response.data.status === SERVICE_RESPONSES.status_success);
-						$scope.regform.error = response.data.message;
-					},
-					function(error) {
-						$scope.regform.success = false;
-						$scope.regform.error = error;
-					});
+			function showOkMessage(okResponse) {
+				$scope.regform.success = (okResponse.data.status === SERVICE_RESPONSES.status_success);
+				$scope.regform.error = okResponse.data.message;
 			}
 		}]);
 })(angular);

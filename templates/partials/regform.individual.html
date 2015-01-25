@@ -1,0 +1,32 @@
+<br />
+<div class="panel panel-default">
+	<ul class="nav nav-tabs">
+		<li ng-class="{true: 'active'}[registerIndividualTab === 'existingPlayer' || !registerIndividualTab]">
+			<a ng-click="registerIndividualTab = 'existingPlayer'">Eksisterende spiller</a>
+		</li>
+		<li ng-class="{true: 'active'}[registerIndividualTab === 'newPlayer']">
+			<a ng-click="registerIndividualTab = 'newPlayer'">Ny spiller</a>
+		</li>
+	</ul>
+	<div class="panel">
+		<div class="tab-content">
+			<div class="tab-pane" 
+				 id="existingPlayer"
+				 ng-class="{true: 'active'}[registerIndividualTab === 'existingPlayer' || !registerIndividualTab]">
+			</div>
+			
+			<div class="panel panel-body" ng-switch="registerIndividualTab">
+				<div ng-switch-when="existingPlayer">
+					<div ng-include="'templates/partials/regform.individual.existingplayer.html'"></div>
+				</div>
+				<div ng-switch-when="newPlayer">
+					<div ng-include="'templates/partials/regform.individual.newplayer.html'"></div>
+				</div>
+				<div ng-switch-default>
+					<!-- TODO: Should set registerIndividualTab to a default value somehow (try and keep it out of the controller). -->
+					<div ng-include="'templates/partials/regform.individual.existingplayer.html'"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
