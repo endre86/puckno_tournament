@@ -25,9 +25,13 @@
 				});
 		}]);
 
-	controllers.controller('TournamentInfoCtrl', ['$scope', '$stateParams', 'Tournament', 'logger',
-		function($scope, $stateParams, Tournament, logger) {
+	controllers.controller('TournamentInfoCtrl', ['$scope', '$sce', '$stateParams', 'Tournament', 'logger',
+		function($scope, $sce, $stateParams, Tournament, logger) {
 			logger.debug('TournamentInfoCtrl: Nothing to do..');
+
+			$scope.trustHtml = function(html) {
+				return $sce.trustAsHtml(html);
+			}
 		}]);
 
 	controllers.controller('TournamentProgramCtrl', ['$scope', '$stateParams', 'Tournament', 'logger',

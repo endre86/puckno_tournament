@@ -1,5 +1,11 @@
+<div class="row" ng-show="tournament.image.length > 0">
+	<img ng-show="tournament.image"
+		 ng-src="{{tournament.image}}" 
+		 style="text-align:center; vertical-align:middle; max-width:600px; max-height:600px;"/>
+</div>
+
 <div class="row">
-	<div class="col-xs-6 col-md-6">
+	<div class="col-xs-10 col-md-10">
 		<table class="table">
 			<tr>
 				<td>Dato:</td>
@@ -15,40 +21,28 @@
 			</tr>
 			<tr>
 				<td>Sted:</td>
-				<td>{{tournament.venue}}</td>
+				<td ng-bind-html="trustHtml(tournament.venue)"></td>
 			</tr>
 			<tr>
 				<td>Deltakeravgift:</td>
-				<td>{{tournament.fee}}</td>
+				<td ng-bind-html="trustHtml(tournament.fee)"></td>
 			</tr>
 			<tr ng-repeat="misc in tournament.misc">
-				<td>{{misc.item}}:</td>
-				<td>{{misc.value}}</td>
+				<td ng-bind-html="trustHtml(misc.item + ':')"></td>
+				<td ng-bind-html="trustHtml(misc.value)"></td>
 			</tr>
 			<tr>
 				<td>Kontaktperson:</td>
-				<td>{{tournament.contact}}</td>
+				<td ng-bind-html="trustHtml(tournament.contact)"></td>
 			</tr>
 		</table>
 	</div>
-
-	<div class="col-xs-4 col-md-4">
-	<img ng-show="tournament.image"
-		 ng-src="{{tournament.image}}" 
-		 style="text-align:center; vertical-align:middle; max-width:400px; max-height:400px; padding: 50px;"/>
-	</div>
-
 </div>
 
 <div class="row">
-<div class="col-md-10" ng-repeat="section in tournament.details">
-<h3>{{section.title}}</h3>
-{{section.content}}
-</div>
-</div>
-
-<div class="row" ng-show="tournament.program.length > 0">
-<div class="col-md-10">
-</div>
+	<div class="col-md-10" ng-repeat="section in tournament.details">
+		<h3>{{section.title}}</h3>
+		<div ng-bind-html="trustHtml(section.content)"></div>
+	</div>
 </div>
 		
