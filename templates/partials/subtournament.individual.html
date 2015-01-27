@@ -1,4 +1,4 @@
-<p><b>Det er {{tournamentPlayers.length > 0 ? tournamentPlayers.lenght : '0'}} registrerte spillere i denne turneringen.</b></p>
+<p><b>Det er {{tournamentPlayers.length > 0 ? tournamentPlayers.length : '0'}} registrerte spillere i denne turneringen.</b></p>
 
 <table class="table table-hover">
 	<thead>
@@ -23,7 +23,7 @@
 				<span class="glyphicon glyphicon-sort" style="color: #A0A0A0; font-size: 12px;" ng-hide="orderedOn === 'points'"></span>
 				<span class="glyphicon glyphicon-sort" style="color: #383838; font-size: 12px;" ng-hide="orderedOn !== 'points'"></span>
 			</th>
-			<th ng-click="sortPlayersBy('best')" style="cursor:pointer">Best score 
+			<th ng-click="sortPlayersBy('best')" style="cursor:pointer">Player Value
 				<span class="glyphicon glyphicon-sort" style="color: #A0A0A0; font-size: 12px;" ng-hide="orderedOn === 'best'"></span>
 				<span class="glyphicon glyphicon-sort" style="color: #383838; font-size: 12px;" ng-hide="orderedOn !== 'best'"></span>
 			</th>
