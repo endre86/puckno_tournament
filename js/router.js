@@ -17,7 +17,7 @@
 						controller: 'TournamentCtrl'
 					})
 					.state('tournament.info', {
-						url: '/info',
+						url: '/',
 						templateUrl: 'templates/tournament.info.html',
 						controller: 'TournamentInfoCtrl'
 					})
