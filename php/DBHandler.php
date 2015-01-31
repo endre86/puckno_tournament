@@ -150,12 +150,12 @@ class DBHandler {
 
 		$results = $stmt->get_result();
 
-		$jsonArr = array();
+		$resArr = array();
 		while($r = $results->fetch_assoc()) {
-			array_push($jsonArr, $r);
+			array_push($resArr, $r);
 		}
 
-		return json_encode($jsonArr, JSON_UNESCAPED_UNICODE);
+		return $resArr;
 	}
 
 	public function getAllITHFPlayers() {
@@ -164,12 +164,12 @@ class DBHandler {
 
 		$results = $stmt->get_result();
 
-		$jsonArr = array();
+		$resArr = array();
 		while($r = $results->fetch_assoc()) {
-			array_push($jsonArr, $r);
+			array_push($resArr, $r);
 		}
 
-		return json_encode($jsonArr, JSON_UNESCAPED_UNICODE);
+		return $resArr;
 	}
 
 	public function registerITHFPlayer($subtournamentId, $playerId) {
@@ -210,6 +210,99 @@ class DBHandler {
 		return $this->executeAndReturnTrueOrError($stmt);
 	}
 
+	public function updateIthfTable($ithfPlayersArr, $numPlayersPerQuery = 100) {
+		$stmt = $this->mysqli->prepare('truncate ithf_players');
+		
+		if(!$stmt->execute()) {
+			return false;
+		}
+
+		// Doing fancy stuff: inserting an n number of players at a time
+		// residual is used to do the leftovers after players left < numPlayersPerQuery
+		$residual = sizeof($ithfPlayersArr) % $numPlayersPerQuery;
+		$numPlayersSubtractedResidual = sizeof($ithfPlayersArr) - $residual;
+		$numValuesPerPlayer = 7;
+
+		// So for the first 'numPlayersSubtractedResidual' number of players:
+		$valuesString = $this->updateIthfTable_QueryValuesStringHelper($numPlayersPerQuery, $numValuesPerPlayer);
+		$prepareString = $this->updateIthfTable_PrepareStringHelper($numPlayersPerQuery, $numValuesPerPlayer);
+
+		for($i = 0; $i < $numPlayersSubtractedResidual; $i += $numPlayersPerQuery) {
+			$res = $this->updateIthfTable_DoInserts($ithfPlayersArr, $numPlayersPerQuery, $valuesString, $prepareString);
+
+			if(!$res) {
+				echo 'failed: in first batch: ';
+				print_r($this->mysqli);
+				return false;
+			}
+		}
+
+		// Then lets do the leftovers
+		if($residual > 0) {
+			$residualValueString = $this->updateIthfTable_QueryValuesStringHelper($residual, $numValuesPerPlayer);
+			$residualPrepareString = $this->updateIthfTable_PrepareStringHelper($residual, $numValuesPerPlayer);
+			
+			$res = $this->updateIthfTable_DoInserts($ithfPlayersArr, $residual, $residualValueString, $residualPrepareString, true);	
+
+			if(!$res) {
+				echo 'failed: in residual: ';
+				print_r($this->mysqli);
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	private function updateIthfTable_DoInserts(&$ithfPlayersArr, $numPlayersPerQuery, $valuesString, $prepareString, $isRes = false) {
+		// SQL we will run
+		$sql = 'INSERT INTO ithf_players (rank, id, player, club, nation, points, best) VALUES ';
+
+		$bindParams = array();
+
+		// first value to call_user_func_array should be the prepareString, ie 'sssssss'
+		$bindParams[] = $prepareString;
+
+		for($j = 0; $j < $numPlayersPerQuery; $j++) {
+
+			$playerString = array_shift($ithfPlayersArr);
+			$playerValues = explode("\t", $playerString);
+
+			$bindParams = array_merge($bindParams, $playerValues);
+		}
+
+		// bind_param only accepts references
+		foreach($bindParams as $key => &$value) {
+			$param = 'param'.$key;
+			$$param = $value;
+			$bindParams[$key] = &$$param;
+		}
+
+		$stmt = $this->mysqli->prepare($sql . $valuesString);
+		call_user_func_array(array($stmt, 'bind_param'), $bindParams);
+
+		return $stmt->execute();
+	}
+
+	private function updateIthfTable_QueryValuesStringHelper($numPlayersPerQuery, $numValuesPerPlayer) {
+		$innerString = '(';
+		$innerString .= str_repeat('?,', $numValuesPerPlayer);
+		$innerString = rtrim($innerString, ',');
+		$innerString .= '),';
+
+		$string = str_repeat($innerString, $numPlayersPerQuery);
+		$string = rtrim($string, ',');
+
+		return $string;
+	}
+
+	private function updateIthfTable_PrepareStringHelper($numPlayersPerQuery, $numValuesPerPlayer) {
+		$string = str_repeat('s', $numPlayersPerQuery * $numValuesPerPlayer);
+		return $string;
+	}
+
+
+
 	public function getHashedPasswordFor($username) {
 		$stmt = $this->mysqli->prepare('SELECT password FROM admins WHERE username=?');
 		$stmt->bind_param('s', $username);
@@ -230,36 +323,4 @@ class DBHandler {
 
 		return $stmt->error;
 	}
-
-	/**
-	 * Used when a string in the array is
-	 * a json array or object.
-	 *
-	 * Ex: array['x'] = "[{\"key\" : \"value\"}]"
-	 */
-	private function arrayToJsonHelper($array) {
-		if(!is_array($array)) return '{}';
-		return '{' .
-			implode(',', array_map(function($value, $key) {
-				if(is_array($value)) {
-					return '"' . $key .'":[' . $this->arrayToJsonHelper($value) . ']';
-				}
-				else if(substr($value, 0, 1) == '[' ||
-				   substr($value, 0, 1 == '{')) {
-					return '"' . $key . '":' . $value;
-				}
-
-				return '"' . $key . '":"' . $value . '"';
-			}, $array, array_keys($array))) . '}';
-	}
-
 }
-
- //require('Credentials.php');
- //$db = new DBHandler(
- //			DBCredentials::HOST, 
- //			DBCredentials::USER_USERNAME, 
- //			DBCredentials::USER_PASSWORD, 
- //			DBCredentials::DATABASE);
- //$db->getTournament('nm15');
- //echo $db->registerLocalPlayer('2', 'test', 'local', 'RON');
