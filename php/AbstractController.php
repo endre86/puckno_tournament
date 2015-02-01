@@ -74,7 +74,7 @@ abstract class AbstractController {
 	}
 
 	protected function toJson($arg) {
-		return json_encode($arg, JSON_UNESCAPED_UNICODE);
+		return json_encode($arg, 256);
 	}
 
 	protected function cleanInput($input) {
