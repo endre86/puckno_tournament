@@ -24,6 +24,7 @@
 				.success(function(response) {
 					logger.info('PlayersService->getRegisteredPlayers returned: ', response);
 					service.data = response;
+					setPlayersTournamentRank();
 				})
 				.error(function(error) {
 					logger.error('PlayersService->getRegisteredPlayers failed: ', error);
@@ -136,6 +137,20 @@
 						return 0;
 					});
 				}
+			}
+
+			function setPlayersTournamentRank() {
+				logger.debug('PlayersService: Setting players tournamentRank.');
+				service.sortPlayers(PLAYER.rank.value);
+				var curentRank = 1;
+				service.data.forEach(function(player) {
+					if(isNaN(player.rank)) {
+						player.tournamentRank = -1;
+					}
+					else {
+						player.tournamentRank = curentRank++;	
+					}
+				});
 			}
 
 			return service;

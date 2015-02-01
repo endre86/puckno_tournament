@@ -3,6 +3,7 @@
 <table class="table table-hover">
 	<thead>
 		<tr>
+			<th ng-click="sortPlayersBy('rank')" style="cursor:pointer">#</th>
 			<th ng-click="sortPlayersBy('rank')" style="cursor:pointer">WR
 				<span class="glyphicon glyphicon-sort" style="color: #A0A0A0; font-size: 12px;" ng-hide="orderedOn === 'rank'"></span>
 				<span class="glyphicon glyphicon-sort" style="color: #383838; font-size: 12px;" ng-hide="orderedOn !== 'rank'"></span>
@@ -30,6 +31,7 @@
 		</tr>
 
 		<tr ng-repeat="player in tournamentPlayers">
+			<td>{{player.tournamentRank}}</td>
 			<td>{{player.rank}}</td>
 			<td>{{player.player}}</td>
 			<td>{{player.club}}</td>
