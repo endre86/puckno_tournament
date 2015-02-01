@@ -40,13 +40,13 @@
 	];
 
 	var noDays = [
+		'Søn',
 		'Man',
 		'Tirs',
 		'Ons',
 		'Tors',
 		'Fre',
-		'Lør',
-		'Søn'
+		'Lør'
 	];
 
 })(this);
