@@ -2,6 +2,6 @@
 
 A simple web application for managing tablehockey tournament.
 
-###### Under developement
+###### Under continious developement
 
-###### http://puck.no
+###### http://puck.no/turnering
