@@ -31,6 +31,7 @@
 
 	constants.constant('SUBTOUR_TYPE', {
 		individual: 'individual',
-		team_3: 'team_3'
+		team_3: 'team_3',
+		team_5: 'team_5'
 	});
 })(angular);

@@ -75,6 +75,10 @@
 						logger.log('RegisteredPlayersCtrl: Show team_3 subtournament.');
 						showTeam3SubTournament($scope.viewSubTournament.id);
 						break;
+					case SUBTOUR_TYPE.team_5:
+						logger.log('RegisteredPlayersCtrl: Show team_5 subtournament.');
+						showTeam5SubTournament($scope.viewSubTournament.id);
+						break;
 					default:
 						logger.error('RegisteredPlayersCtrl: Unknown tournament type for subtournament: ', $scope.viewSubTournament);
 						break;
@@ -98,6 +102,13 @@
 
 			function showTeam3SubTournament(subtournamentId) {
 				Players.getRegisteredTeam3(subtournamentId)
+				.then(function() {
+					$scope.tournamentTeams = Players.data;
+				});
+			}
+
+			function showTeam5SubTournament(subtournamentId) {
+				Players.getRegisteredTeam5(subtournamentId)
 				.then(function() {
 					$scope.tournamentTeams = Players.data;
 				});
@@ -132,12 +143,16 @@
 			$scope.register = function(regform) {
 				switch(regform.subtournament.type) {
 					case SUBTOUR_TYPE.individual:
-						logger.log('RegisterCtrl: Register for individual tournament: ', $scope.regform.subtournament);
+						logger.debug('RegisterCtrl: Register for individual tournament: ', $scope.regform.subtournament);
 						registerIndividual(regform);
 						break;
 					case SUBTOUR_TYPE.team_3:
-						logger.log('RegisterCtrl: Register for team_3 tournament: ', $scope.regform.subtournament);
+						logger.debug('RegisterCtrl: Register for team_3 tournament: ', $scope.regform.subtournament);
 						registerTeam3(regform);
+						break;
+					case SUBTOUR_TYPE.team_5:
+						logger.debug('RegisterCtrl: Register for team_5 tournament: ', $scope.regform.subtournament);
+						registerTeam5(regform);
 						break;
 					default:
 						logger.error('RegisterCtrl: Could not register, unknown tournament type for subtournament: ', $scope.regform.subtournament);
@@ -240,6 +255,42 @@
 				}
 
 				Players.registerTeam3(postData).then(
+					function(response) {
+						logger.info('RegisterCtrl: Callback from registration: ', response);
+						showOkMessage(response);
+					},
+					function(error) {
+						logger.error('RegisterCtrl: Registration failed: ', error);
+						showErrorMessage(error);
+					});
+			}
+
+			function registerTeam5(regform) {
+				logger.debug('RegisterCtrl.registerTeam5: ', regform );
+
+				if(!regform ||
+				   !regform.teamName ||
+				   regform.teamName.length < 3 ||
+				   !regform.player1 ||
+				   regform.player1.length < 5 ||
+				   !regform.player2 ||
+				   regform.player2.length < 5) {
+					logger.error('RegisterCtrl: registerTeam5 called, but missing data: ', regform);
+					showErrorMessage('Make sure that you have selected a tournament and supplied a team name at least 3 characters long as well as minimum two player names that are at least 5 characters long.');
+					return;
+				}
+
+				var postData = {
+					subtournamentId: regform.subtournament.id,
+					name: regform.teamName,
+					player1: regform.player1,
+					player2: regform.player2,
+					player3: regform.player3,
+					player4: regform.player4,
+					player5: regform.player5
+				}
+
+				Players.registerTeam5(postData).then(
 					function(response) {
 						logger.info('RegisterCtrl: Callback from registration: ', response);
 						showOkMessage(response);

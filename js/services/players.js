@@ -51,6 +51,26 @@
 				});
 			}
 
+			service.getRegisteredTeam5 = function(subtournamentId) {
+				var url = resource + 'getTeam5For';
+				var data = {subtournamentId: subtournamentId};
+				logger.debug('PlayersService->getRegisteredTeam5 AJAX: ' + url, data);
+				return $http({
+					method: 'POST',
+					url: url,
+					data: data,
+					cache: false,
+					isArray: true
+				})
+				.success(function(response) {
+					logger.info('PlayersService->getRegisteredTeam3 returned: ', response);
+					service.data = response;
+				})
+				.error(function(error) {
+					logger.error('PlayersService->getRegisteredTeam3 failed: ', error);
+				});
+			}
+
 			service.registerIthfPlayer = function(data) {
 				var url = resource + 'registerIthfPlayer';
 
@@ -92,7 +112,7 @@
 			service.registerTeam3 = function(data) {
 				var url = resource + 'registerTeam3';
 
-				logger.debug('PlayersService->registerTeam AJAX: ' + url, data);
+				logger.debug('PlayersService->registerTeam3 AJAX: ' + url, data);
 
 				return $http({
 					method: 'POST',
@@ -101,10 +121,29 @@
 					cache: false
 				})
 				.success(function(response) {
-					logger.info('PlayersService->registerTeam returned: ', response);
+					logger.info('PlayersService->registerTeam3 returned: ', response);
 				})
 				.error(function(error) {
-					logger.error('PlayersService->registerTeam failed: ', error);
+					logger.error('PlayersService->registerTeam3 failed: ', error);
+				});
+			}
+
+			service.registerTeam5 = function(data) {
+				var url = resource + 'registerTeam5';
+
+				logger.debug('PlayersService->registerTeam5 AJAX: ' + url, data);
+
+				return $http({
+					method: 'POST',
+					url: url,
+					data: data,
+					cache: false
+				})
+				.success(function(response) {
+					logger.info('PlayersService->registerTeam5 returned: ', response);
+				})
+				.error(function(error) {
+					logger.error('PlayersService->registerTeam5 failed: ', error);
 				});
 			}
 

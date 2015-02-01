@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 24, 2015 at 12:07 PM
+-- Generation Time: Feb 01, 2015 at 07:43 PM
 -- Server version: 5.5.41-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.5
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `puckno_tournament`
 --
-CREATE DATABASE IF NOT EXISTS `puckno_tournament` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
-USE `puckno_tournament`;
 
 -- --------------------------------------------------------
 
@@ -53,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `local_players` (
   `club` varchar(255) CHARACTER SET utf8 NOT NULL,
   `nation` varchar(3) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=17 ;
 
 -- --------------------------------------------------------
 
@@ -64,8 +62,8 @@ CREATE TABLE IF NOT EXISTS `local_players` (
 CREATE TABLE IF NOT EXISTS `subtournaments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tournament_id` varchar(12) CHARACTER SET utf8 NOT NULL,
-  `type` varchar(255) CHARACTER SET utf8 NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `type` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=6 ;
 
@@ -85,61 +83,33 @@ CREATE TABLE IF NOT EXISTS `subtournament_players` (
 
 -- --------------------------------------------------------
 
--- --
--- -- Table structure for table `team_players`
--- --
-
--- CREATE TABLE IF NOT EXISTS `team_players` (
---   `team_id` int(11) NOT NULL,
---   `player_id` int(11) NOT NULL,
---   `local_player_flag` tinyint(1) NOT NULL DEFAULT '0',
---   `ithf_player_flag` tinyint(1) NOT NULL DEFAULT '0',
---   PRIMARY KEY (`subtournament_id`,`player_id`,`local_player_flag`,`ithf_player_flag`)
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- -- --------------------------------------------------------
-
--- --
--- -- Table structure for table `team`
--- --
-
--- CREATE TABLE IF NOT EXISTS `team` (
---   `id` int(11) NOT NULL AUTO_INCREMENT,
---   `subtournament_id` int(11) NOT NULL,
---   `name` varchar(255) NOT NULL,
---   PRIMARY KEY (`id`)
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-
--- --
--- -- Table structure for table `subtournament_teams`
--- --
-
--- CREATE TABLE IF NOT EXISTS `subtournament_teams` (
---   `subtournament_id` int(11) NOT NULL,
---   `team_id` int(11) NOT NULL,
---   PRIMARY KEY (`subtournament_id`,`team_id`)
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
--- --------------------------------------------------------
+--
+-- Table structure for table `subtournament_team3`
+--
 
 CREATE TABLE IF NOT EXISTS `subtournament_team3` (
   `subtournamentId` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `player1` varchar(255) NOT NULL,
-  `player2` varchar(255) NOT NULL,
-  `player3` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL,
+  `player1` varchar(255) COLLATE utf8_bin NOT NULL,
+  `player2` varchar(255) COLLATE utf8_bin NOT NULL,
+  `player3` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`subtournamentId`,`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
--- --------------------------------------------------------
+--
+-- Table structure for table `subtournament_team5`
+--
 
 CREATE TABLE IF NOT EXISTS `subtournament_team5` (
   `subtournamentId` int(11) NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `players` text CHARACTER SET utf8 NOT NULL,
+  `player1` text CHARACTER SET utf8 NOT NULL,
+  `player2` text CHARACTER SET utf8 NOT NULL,
+  `player3` text CHARACTER SET utf8,
+  `player4` text CHARACTER SET utf8,
+  `player5` text CHARACTER SET utf8,
   PRIMARY KEY (`subtournamentId`,`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
