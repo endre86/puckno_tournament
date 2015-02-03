@@ -39,8 +39,8 @@
 			logger.debug('TournamentProgramCtrl: Nothing to do..');
 		}]);
 
-	controllers.controller('RegisteredPlayersCtrl', ['$scope', '$state', '$stateParams', 'Tournament', 'Players', 'SUBTOUR_TYPE', 'logger',
-		function($scope, $state, $stateParams, Tournament, Players, SUBTOUR_TYPE, logger) {
+	controllers.controller('RegisteredPlayersCtrl', ['$scope', 'Tournament', 'Players', 'Teams', 'SUBTOUR_TYPE', 'logger',
+		function($scope, Tournament, Players, Teams, SUBTOUR_TYPE, logger) {
 			logger.debug('RegisteredPlayersCtrl: Setting orderOn to "wr"');
 
 			if(Tournament.data.subtournaments) {
@@ -101,16 +101,16 @@
 			}
 
 			function showTeam3SubTournament(subtournamentId) {
-				Players.getRegisteredTeam3(subtournamentId)
+				Teams.getRegisteredTeam3(subtournamentId)
 				.then(function() {
-					$scope.tournamentTeams = Players.data;
+					$scope.tournamentTeams = Teams.data;
 				});
 			}
 
 			function showTeam5SubTournament(subtournamentId) {
-				Players.getRegisteredTeam5(subtournamentId)
+				Teams.getRegisteredTeam5(subtournamentId)
 				.then(function() {
-					$scope.tournamentTeams = Players.data;
+					$scope.tournamentTeams = Teams.data;
 				});
 			}
 		}]);
@@ -120,8 +120,8 @@
 			logger.info('LiveCtrl: Function not implemented!');
 		}]);
 
-	controllers.controller('RegisterCtrl', ['$scope', '$state', 'Tournament', 'Players', 'IthfPlayers', 'SUBTOUR_TYPE', 'SERVICE_RESPONSES', 'logger',
-		function($scope, $state, Tournament, Players, IthfPlayers, SUBTOUR_TYPE, SERVICE_RESPONSES, logger) {
+	controllers.controller('RegisterCtrl', ['$scope', 'Tournament', 'Players', 'Teams', 'IthfPlayers', 'SUBTOUR_TYPE', 'SERVICE_RESPONSES', 'logger',
+		function($scope, Tournament, Players, Teams, IthfPlayers, SUBTOUR_TYPE, SERVICE_RESPONSES, logger) {
 			$scope.regform = {};
 			$scope.SUBTOUR_TYPE = SUBTOUR_TYPE;
 
@@ -254,7 +254,7 @@
 					player3: regform.player3
 				}
 
-				Players.registerTeam3(postData).then(
+				Teams.registerTeam3(postData).then(
 					function(response) {
 						logger.info('RegisterCtrl: Callback from registration: ', response);
 						showOkMessage(response);
@@ -290,7 +290,7 @@
 					player5: regform.player5
 				}
 
-				Players.registerTeam5(postData).then(
+				Teams.registerTeam5(postData).then(
 					function(response) {
 						logger.info('RegisterCtrl: Callback from registration: ', response);
 						showOkMessage(response);

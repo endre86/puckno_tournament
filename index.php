@@ -28,6 +28,7 @@
 		<script style="text/javascript" src="js/services/logger.js"></script>
 		<script style="text/javascript" src="js/services/tournament.js"></script>
 		<script style="text/javascript" src="js/services/players.js"></script>
+		<script style="text/javascript" src="js/services/teams.js"></script>
 		<script style="text/javascript" src="js/services/ithfplayers.js"></script>
 		<script style="text/javascript" src="js/services/auth.js"></script>
 		<script style="text/javascript" src="js/filters.js"></script>
