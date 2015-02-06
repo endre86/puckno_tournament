@@ -11,6 +11,10 @@
 
 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	*/
+
+	/*
+	 * Modified by Endre Vestbø
+	 */
 	
 	/* Finally, A light, permissions-checking logging class. 
 	 * 
@@ -51,7 +55,7 @@
 		
 		private $file_handle;
 		
-		public function __construct( $filepath , $priority )
+		public function __construct( $filepath , $priority = KLogger::INFO)
 		{
 			if ( $priority == KLogger::OFF ) return;
 			
@@ -93,15 +97,27 @@
 		{
 			$this->Log( $line , KLogger::INFO );
 		}
+
+		public function info($line) {
+			$this->LogInfo($line);
+		}
 		
 		public function LogDebug($line)
 		{
 			$this->Log( $line , KLogger::DEBUG );
 		}
+
+		public function debug($line) {
+			$this->LogDebug($line);
+		}
 		
 		public function LogWarn($line)
 		{
 			$this->Log( $line , KLogger::WARN );	
+		}
+
+		public function warn($line) {
+			$this->LogWarn($line);
 		}
 		
 		public function LogError($line)
@@ -109,9 +125,17 @@
 			$this->Log( $line , KLogger::ERROR );		
 		}
 
+		public function error($line) {
+			$this->LogError($line);
+		}
+
 		public function LogFatal($line)
 		{
 			$this->Log( $line , KLogger::FATAL );
+		}
+
+		public function fatal($line) {
+			$this->LogFatal($line);
 		}
 		
 		public function Log($line, $priority)
