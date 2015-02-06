@@ -5,13 +5,18 @@ error_reporting(-1);
 
 $_SESSION['user'] = true; // TODO: DEBUG => REMOVE
 
-
+require_once('lib/KLogger.php');
 
 /**
  * Simple API for handling requests.
  */
 class API {
+	private $logger;
 	private $controller;
+
+	public function __construct() {
+		$this->logger = new KLogger('../Log/' . date('Y-m') . '.log', KLogger::DEBUG);
+	}
 
 	public function processApi() {
 		$request = explode('/', array_keys($_REQUEST)[0]);
@@ -19,29 +24,34 @@ class API {
 		$method = $request[1];
 
 		if(!file_exists($controller . '.php')) {
+			$this->logger->error('API: No such controller: ' . $controller);
 			echo 'No such controller: ' . $controller;
 			$this->send404AndExit();
 		}
 
 		require_once($controller . '.php');
-		$controller = new $controller($this);
+		$controller = new $controller($this, $this->logger);
 
 		$requestMethod = $_SERVER['REQUEST_METHOD'];
 		if(!method_exists($controller, $method)) {
+			$this->logger->error('API: No such method: ' . get_class($controller) . '->' . $method);
 			echo 'No such method: ' . get_class($controller) . '->' . $method;
 			$this->send404AndExit();
 		}
 
 		switch($requestMethod) {
 			case 'GET':
+				$this->logger->debug('API: Handeling GET ' . get_class($controller) . '->' . $method);
 				$this->execute($controller, $method);
 				break;
 			case 'POST':
+				$this->logger->debug('API: Handeling POST ' . get_class($controller) . '->' . $method);
 				$data = file_get_contents("php://input");
   				$data = json_decode($data, TRUE);
 				$this->execute($controller, $method, $data);
 				break;
 			default:
+				$this->logger->info('API: Unhandled request method ' . $requestMethod . ' for ' . get_class($controller) . '->' . $method);
 				$this->send404AndExit();
 				break;
 		}
@@ -54,6 +64,11 @@ class API {
 
 	public function send404AndExit() {
 		header('HTTP/1.1 404 Not Found');
+		exit();
+	}
+
+	public function send420AndExit() {
+		header('HTTP/1.1 420 Method Failure');
 		exit();
 	}
 

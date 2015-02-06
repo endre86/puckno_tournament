@@ -1,17 +1,22 @@
 <?php
 
-require('DBHandler.php');
-require('Credentials.php');
+require_once('lib/KLogger.php');
+require_once('DBHandler.php');
+require_once('Credentials.php');
 
 abstract class AbstractController {
 	const ADMIN = 'admin';
 	const USER = 'user';
+	const SESSION_USERNAME = 'username';
 
 	private $api;
 	private $dbHandler;
 
-	protected function __construct($api) {
+	protected $logger;
+
+	protected function __construct($api, $logger) {
 		$this->api = $api;
+		$this->logger = $logger;
 
 		$username;
 		$password;
@@ -40,14 +45,21 @@ abstract class AbstractController {
 
 	protected function verifyIsUserOrExit() {
 		if(!isset($_SESSION[$this::USER])) {
+			$this->logger->debug('AbstractController: Exit on verifyIsUserOrExit');
 			$this->api->send403AndExit();
 		}
 	}
 
 	protected function verifyIsAdminOrExit() {
 		if(!isset($_SESSION[$this::ADMIN])) {
+			$this->logger->debug('AbstractController: Exit on verifyIsAdminOrExit');
 			$this->api->send403AndExit();
 		}
+	}
+
+	protected function failAndExit() {
+		$this->logger->debug('AbstractController: Exit on failAndExit');
+		$this->api->send420AndExit();
 	}
 
 	protected function createResponseJSONObject($response) {
