@@ -7,23 +7,28 @@ class AuthenticationController extends AbstractController {
 		parent::__construct($api);
 	}
 
-	public function login($credentials) {
+	public function login($username, $password) {
 		parent::verifyIsUserOrExit();
 
-		$pw = parent::getDBHandler()->getHashedPasswordFor($credentials['username']);
+		$pw = parent::getDBHandler()->getHashedPasswordFor($username);
 
-		if(password_verify($credentials['password'], $pw)) {
+		if(password_verify($password, $pw)) {
 			$_SESSION[parent::ADMIN] = true;
+			$_SESSION[parent::SESSION_USERNAME] = $username;
+			$this->logger->info('Successfully logged in user ' . $username);
 			return parent::createSuccessJSONObject();
 		}
 
+		$this->logger->info('Failed login attempt for ' . $username);
 		return parent::createErrorJSONObject('Bad username / password combination');
 	}
 
 	public function logout() {
 		parent::verifyIsAdminOrExit();
 
+		$this->logger->debug('Logout called for ' . $_SESSION[parent::SESSION_USERNAME]);
 		unset($_SESSION[parent::ADMIN]);
+		unset($_SESSION[parent::SESSION_USERNAME]);
 		return parent::createSuccessJSONObject();
 	}
 }
