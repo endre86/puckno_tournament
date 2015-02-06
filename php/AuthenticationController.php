@@ -10,6 +10,9 @@ class AuthenticationController extends AbstractController {
 	public function login($username, $password) {
 		parent::verifyIsUserOrExit();
 
+		$username = parent::cleanInput($username);
+		$password = parent::cleanInput($password);
+
 		$pw = parent::getDBHandler()->getHashedPasswordFor($username);
 
 		if(password_verify($password, $pw)) {
