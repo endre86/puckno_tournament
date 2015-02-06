@@ -3,8 +3,8 @@ require('AbstractController.php');
 
 class AuthenticationController extends AbstractController {
 
-	public function __construct($api) {
-		parent::__construct($api);
+	public function __construct($api, $logger) {
+		parent::__construct($api, $logger);
 	}
 
 	public function login($username, $password) {
