@@ -22,7 +22,12 @@
 					cache: true
 				})
 				.success(function(response) {
-					logger.info('IthfPlayersService: Got players. Count: ' + response.length);
+					if(typeof reponse === 'string') {
+						logger.info('IthfPlayersService: Got ITHF players, unexpected string: ', response);
+						return;
+					}
+					
+					logger.info('IthfPlayersService: Got ITHF players, Count: ', response.length);
 					allData = response;
 					service.data = response;
 				})
