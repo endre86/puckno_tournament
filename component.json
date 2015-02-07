@@ -1,7 +1,0 @@
-{
-	"name": "puckno_tournament",
-	"version": "0.0.1",
-	"dependencies": {
-		"trumbowyg": "1.1.4"
-	}
-}

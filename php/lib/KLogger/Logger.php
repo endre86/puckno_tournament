@@ -1,4 +1,5 @@
 <?php
+namespace Katzgrau\KLogger;
 
 use DateTime;
 use RuntimeException;
@@ -23,7 +24,7 @@ use RuntimeException;
 /**
  * Class documentation
  */
-class Logger
+class Logger 
 {
     /**
      * Path to the log file
@@ -226,5 +227,3 @@ class Logger
         return $indent.str_replace("\n", "\n".$indent, $string);
     }
 }
-
-$logger = new Logger('../Log/test.log');
