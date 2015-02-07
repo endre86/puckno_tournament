@@ -10,5 +10,8 @@
 # bower packages
 bower_components/*
 
+# Log files
+*.log
+
 # untracked files:
 	# php/credentials.php
