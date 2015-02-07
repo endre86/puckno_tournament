@@ -17,7 +17,7 @@ class TournamentController extends AbstractController {
 		$res['details'] = json_decode($res['details']);
 		$res['misc'] = json_decode($res['misc']);
 
-		$this->logger->debug('TournamentController: Got tournament ' - $res['id']);
+		$this->logger->debug('TournamentController: Got tournament ' . $res['id']);
 
 		return parent::toJson($res);
 	}
