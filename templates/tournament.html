@@ -12,6 +12,12 @@
 			<li ng-class="{true: 'active'}[selectedTab === 'players']">
 				<a ui-sref="tournament.players" ng-click="selectedTab='players'" data-toggle="tab">Spillere</a>
 			</li>
+			
+			<!-- TODO: Make functionality to add external pages to main menu -->
+			<li ng-show="tournament.id === 'nm15'">
+				<a href="https://docs.google.com/forms/d/1-rWPLjnYXTv0BNxwyRYazuHNxcFeGsfrYdpixEwDkvQ/viewform">Puck Awards</a>
+			</li>
+
 			<li ng-class="{true: 'active'}[selectedTab === 'live']">
 				<a ui-sref="tournament.live" ng-click="selectedTab='live'" data-toggle="tab">Live resultater</a>
 			</li>

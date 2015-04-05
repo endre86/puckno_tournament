@@ -69,7 +69,7 @@
 				switch($scope.viewSubTournament.type) {
 					case SUBTOUR_TYPE.individual:
 						logger.log('RegisteredPlayersCtrl: Show individual subtournament.');
-						showIndividualSubTournament($scope.viewSubTournament.id);
+						showIndividualSubTournament($scope.viewSubTournament);
 						break;
 					case SUBTOUR_TYPE.team_3:
 						logger.log('RegisteredPlayersCtrl: Show team_3 subtournament.');
@@ -91,11 +91,10 @@
 				$scope.orderedOn = property;
 			}
 
-			function showIndividualSubTournament(subtournamentId) {
-				logger.debug('RegisteredPlayersCtrl: show individual subtournament with subtournamentId: ' + subtournamentId);
-				Players.getRegisteredPlayers(subtournamentId)
+			function showIndividualSubTournament(subtournament) {
+				logger.debug('RegisteredPlayersCtrl: show individual subtournament: ', subtournament);
+				Players.getRegisteredPlayers(subtournament)
 				.then(function() {
-					Players.sortPlayers('rank');
 					$scope.tournamentPlayers = Players.data;
 				});
 			}

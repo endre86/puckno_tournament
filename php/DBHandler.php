@@ -233,7 +233,7 @@ class DBHandler {
 	}
 
 	public function updateIthfTable($ithfPlayersArr, $numPlayersPerQuery = 100) {
-		$stmt = $this->mysqli->prepare('truncate ithf_players');
+		$stmt = $this->mysqli->prepare('delete from ithf_players');
 		
 		if(!$stmt->execute()) {
 			return false;

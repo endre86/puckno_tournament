@@ -11,14 +11,10 @@
 				<td>Dato:</td>
 				<td>{{tournament.date | prettyprintDatestamp}}</td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td>Dager igjen:</td>
 				<td>{{tournament.date | daysUntil}}</td>
-			</tr>
-			<tr>
-				<td>Påmeldingsfrist:</td>
-				<td>{{tournament.deadline | prettyprintDatestamp}}</td>
-			</tr>
+			</tr> -->
 			<tr>
 				<td>Sted:</td>
 				<td ng-bind-html="trustHtml(tournament.venue)"></td>

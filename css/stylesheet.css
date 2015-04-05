@@ -10,6 +10,14 @@ a {
 * Override Boostrap to remove horizontal scrollbar.
 */
 .row {
-margin-left: 0px;
-margin-right: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.no-whitespace-wrap {
+	white-space: nowrap;
+}
+
+.allow-whitespace-wrap {
+	white-space: normal;
 }

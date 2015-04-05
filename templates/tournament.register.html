@@ -24,6 +24,12 @@
 		<p>(Error: {{regform.error}})</p>
 	</div>
 
+	<div ng-show="regform.subtournament && regform.subtournament.registrationMsg.length && regform.subtournament.registrationMsg.length > 0">
+		<center>
+			<h5 class="text-warning">{{regform.subtournament.registrationMsg}}</h5><br/>
+		</center>
+	</div>
+
 	<div class="col-md-12" ng-switch="regform.subtournament.type">
 		<div ng-switch-when="individual">
 			<div ng-include="'templates/partials/regform.individual.html'"></div>
