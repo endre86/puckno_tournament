@@ -11,13 +11,23 @@
 		<link rel="stylesheet" href="bower_components/trumbowyg/dist/ui/trumbowyg.min.css">
 		<link href="css/stylesheet.css" rel="stylesheet">
 
-		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+		<script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
+		<script type="text/javascript" src="node_modules/angular-resource/angular-resource.min.js"></script>
+		<script type="text/javascript" src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+		<script type="text/javascript" src="node_modules/angular-translate/dist/angular-translate.min.js"></script>
+		<script type="text/javascript" src="node_modules/angular-translate/dist/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+
+		
+		<!--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0rc3/angular.min.js"></script>
 		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0rc3/angular-route.min.js"></script>
 		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0rc3/angular-resource.min.js"></script>
 		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
+		
 
-		<script type="text/javascript" src="bower_components/trumbowyg/dist/trumbowyg.min.js"></script>
+		<script type="text/javascript" src="bower_components/trumbowyg/dist/trumbowyg.min.js"></script>-->
 		
 		<script style="text/javascript" src="js/app.js"></script>
 		<script style="text/javascript" src="js/router.js"></script>

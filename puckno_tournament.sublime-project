@@ -1,0 +1,27 @@
+{
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				".gitignore",
+				".gitattributes",
+				".bowerrc",
+				".jshintrc",
+				".editorconfig",
+				"*.sublime-*"
+			],
+			"folder_exclude_patterns":
+			[
+				".git"
+			],
+			"path": "."
+		}
+	],
+	"settings":
+	[
+		{
+			"tab_size": 4
+		}
+	]
+}

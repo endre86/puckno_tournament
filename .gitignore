@@ -2,16 +2,16 @@
 *.ignoregit
 
 # sublime text project files
-*.sublime-*
+#*.sublime-*
 
 # credentials
 *credentials*
 
-# bower packages
-bower_components/*
+#node modules
+node_modules/*
 
 # Log files
 *.log
 
-# untracked files:
-	# php/credentials.php
+# Untracked files
+	# php/Credentials.php

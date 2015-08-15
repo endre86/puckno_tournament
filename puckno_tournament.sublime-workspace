@@ -1,0 +1,585 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"translate",
+				"translateProvider"
+			],
+			[
+				"pri",
+				"print_r"
+			],
+			[
+				"pr",
+				"primary-color-lighten"
+			],
+			[
+				"main",
+				"main-body-container"
+			],
+			[
+				"win",
+				"windowInnerWidth"
+			],
+			[
+				"origi",
+				"originalClass"
+			],
+			[
+				"getE",
+				"getElementByClassName"
+			],
+			[
+				"pa",
+				"padding-bottom: "
+			],
+			[
+				"padding",
+				"padding-bottom: "
+			],
+			[
+				"pos",
+				"position: "
+			],
+			[
+				"pad",
+				"padding-top: "
+			],
+			[
+				"mar",
+				"margin-top: "
+			],
+			[
+				"font",
+				"font-size: "
+			],
+			[
+				"in",
+				"initial	(index.html)"
+			],
+			[
+				"menu-top",
+				"menu-top-centered"
+			],
+			[
+				"primary-col",
+				"primary-color-lighten-2"
+			],
+			[
+				"max",
+				"max-width: "
+			],
+			[
+				"ba",
+				"background	(_layout.scss)"
+			],
+			[
+				"ali",
+				"align	(_layout.scss)"
+			],
+			[
+				"base-font",
+				"base-font-stack"
+			],
+			[
+				"padd",
+				"padding: "
+			],
+			[
+				"button-s",
+				"button-shadow-clicked"
+			],
+			[
+				"font-s",
+				"font-size: "
+			],
+			[
+				"prim",
+				"primary-color-lighten-2"
+			],
+			[
+				"primary-color-li",
+				"primary-color-lighten-2"
+			],
+			[
+				"transi",
+				"transition-property: "
+			],
+			[
+				"over",
+				"overflow: "
+			],
+			[
+				"hei",
+				"height: "
+			],
+			[
+				"primary-c",
+				"primary-color-darken"
+			],
+			[
+				"PADD",
+				"padding-left: "
+			],
+			[
+				"align",
+				"align-content: "
+			],
+			[
+				"box-sha",
+				"box-shadow-header"
+			],
+			[
+				"background-i",
+				"background-image: "
+			],
+			[
+				"vert",
+				"vertical-align: "
+			],
+			[
+				"paddin",
+				"padding-top: "
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"list",
+				"list-style-type: "
+			],
+			[
+				"clear",
+				"clearfix	(_mixins.scss)"
+			],
+			[
+				"line",
+				"line-height: "
+			],
+			[
+				"prima",
+				"primary-color"
+			],
+			[
+				"s",
+				"shadow"
+			],
+			[
+				"float",
+				"float: "
+			],
+			[
+				"floa",
+				"float: "
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"letter",
+				"letter-spacing: "
+			],
+			[
+				"base-f",
+				"base-font-color"
+			],
+			[
+				"bor",
+				"border: "
+			],
+			[
+				"ma",
+				"margin-bottom: "
+			],
+			[
+				"blo",
+				"inline-block"
+			],
+			[
+				"marg",
+				"margin-right: "
+			],
+			[
+				"fl",
+				"float: "
+			],
+			[
+				"box",
+				"box-shadow: "
+			],
+			[
+				"bac",
+				"background: "
+			],
+			[
+				"vis",
+				"visibility"
+			],
+			[
+				"di",
+				"display: "
+			],
+			[
+				"v",
+				"visible	(_layout.scss)"
+			],
+			[
+				"base",
+				"base-font-color"
+			],
+			[
+				"displa",
+				"display: "
+			],
+			[
+				"main-menu-",
+				"main-menu-top"
+			],
+			[
+				"main-menu",
+				"main-menu-top"
+			],
+			[
+				"node",
+				"node_modules/css"
+			],
+			[
+				"lig",
+				"lightness	Sass-function"
+			],
+			[
+				"base-fo",
+				"base-font-stack"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"compa",
+				"Compare with..."
+			],
+			[
+				"compare",
+				"Compare with..."
+			],
+			[
+				"path",
+				"Insert Filepath"
+			],
+			[
+				"inser",
+				"Insert Filepath"
+			],
+			[
+				"color",
+				"Color Picker"
+			],
+			[
+				"colo",
+				"Color Picker"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"sass",
+				"Set Syntax: Sass"
+			],
+			[
+				"lore",
+				"Snippet: Lorem ipsum"
+			],
+			[
+				"instll",
+				"Package Control: Install Package"
+			],
+			[
+				"lorem",
+				"Snippet: Lorem ipsum"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 146.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/endre/Projects/turnering_tmp/templates/tournament.players.html",
+		"/home/endre/Projects/turnering_tmp/templates/tournament.info.html",
+		"/home/endre/Projects/turnering_tmp/index.php",
+		"/home/endre/Projects/turnering_tmp/php/lib/KLogger.php",
+		"/home/endre/Projects/turnering_tmp/php/info.php",
+		"/home/endre/Projects/turnering_tmp/php/DBHandler.php",
+		"/home/endre/Projects/turnering_tmp/php/AbstractController.php",
+		"/home/endre/Projects/turnering_tmp/php/TournamentController.php",
+		"/home/endre/Projects/turnering_tmp/php/Credentials.php",
+		"/home/endre/Projects/turnering_tmp/readme.txt",
+		"/home/endre/Desktop/Programmering/www/puckno_tournament_backup/puckno_tournament/php/Credentials.php",
+		"/home/endre/Projects/puckno_tournament/php/Credentials.php",
+		"/home/endre/.cache/.fr-EIbXzG/Programmering/web10_backup/gtelite.com/gtstats/index.php",
+		"/home/endre/.cache/.fr-RR7pvA/Programmering/web10_backup/gtelite.com/index.php",
+		"/home/endre/.cache/.fr-yrzGA4/Programmering/web10_backup/gtelite.com/php_mysql.php",
+		"/home/endre/Projects/puckno_tournament/puckno_tournament.sublime-project",
+		"/home/endre/Projects/puckno_tournament/js/services/logger.js",
+		"/home/endre/Desktop/Programmering/www/puckno_tournament/js/services.js",
+		"/home/endre/.cache/.fr-tvtD2k/Programmering/sommer2013/final/src/js/io.js",
+		"/home/endre/.cache/.fr-uoBqmj/Programmering/sommer2013/final/src/js/item.js",
+		"/home/endre/.cache/.fr-vNJPsd/Programmering/sommer2013/final/src/js/itemset.js",
+		"/home/endre/.cache/.fr-lA7cWr/Programmering/sommer2013/final/src/js/reportdate.js",
+		"/home/endre/.cache/.fr-WoUKfY/Programmering/sommer2013/final/src/js/itemset.js",
+		"/home/endre/.cache/.fr-ueblqs/Programmering/sommer2013/final/src/js/for_templates/reportDisplay.js",
+		"/home/endre/.cache/.fr-W8Wr72/Programmering/sommer2013/final/src/js/for_templates/makeReport.js",
+		"/home/endre/.cache/.fr-d2g3hG/Programmering/sommer2013/final/src/css/main.css",
+		"/home/endre/.cache/.fr-9aVbXX/Programmering/sommer2013/final/forslag bestillingslister.html",
+		"/home/endre/.cache/.fr-4CjHJK/Programmering/sommer2013/final/src/templates/reportDisplay.tmpl",
+		"/home/endre/Projects/hellosalmon.com/app/styles/sass/_layout.scss",
+		"/tmp/fz3temp-1/stylesheet.css",
+		"/home/endre/Projects/puckno_tournament/templates/tournament.info.html",
+		"/home/endre/Projects/hellosalmon.com/app/index.html",
+		"/home/endre/Desktop/Pakkeliste",
+		"/home/endre/Projects/hellosalmon.com/app/styles/sass/_layout_sm.scss",
+		"/home/endre/Projects/hellosalmon.com/app/styles/sass/_layout_md.scss",
+		"/home/endre/Projects/hellosalmon.com/app/styles/sass/_layout_lg.scss",
+		"/home/endre/Projects/hellosalmon.com/gulpfile.js",
+		"/home/endre/Projects/hellosalmon.com/app/styles/sass/main.scss",
+		"/home/endre/Projects/hellosalmon.com/app/styles/sass/_bootstrap_overrides.scss",
+		"/home/endre/Projects/hellosalmon.com/app/styles/main.css",
+		"/home/endre/Projects/old/hellosalmon/index.html",
+		"/home/endre/Projects/hellosalmon.com/app/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_mixins.scss",
+		"/home/endre/Projects/hellosalmon.com/app/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_grid.scss",
+		"/home/endre/Projects/hellosalmon.com/app/styles/sass/_variables.scss",
+		"/home/endre/Projects/hellosalmon.com/app/styles/sass/_layout_xs.scss",
+		"/home/endre/Projects/hellosalmon.com/app/bower_components/font-awesome-sass/assets/stylesheets/font-awesome/_variables.scss",
+		"/home/endre/Projects/hellosalmon.com/app/bower_components/font-awesome-sass/assets/stylesheets/font-awesome.scss",
+		"/home/endre/Projects/hellosalmon.com/app/styles/sass/_animations.scss",
+		"/home/endre/Projects/hellosalmon.com/app/styles/sass/_mixins.scss",
+		"/home/endre/Projects/hellosalmon.com/app/bower_components/bootstrap-sass/README.md",
+		"/home/endre/Projects/hellosalmon.com/app/bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_grid-framework.scss",
+		"/home/endre/Projects/hellosalmon.com/app/bower_components/foundation/scss/foundation.scss",
+		"/home/endre/Projects/hellosalmon.com/app/bower_components/foundation/scss/foundation/components/_grid.scss",
+		"/home/endre/Projects/hellosalmon.com/app/bower_components/foundation/scss/foundation/components/_global.scss",
+		"/home/endre/Projects/hellosalmon.com/app/bower_components/foundation/scss/foundation/_functions.scss",
+		"/home/endre/Projects/foundation_test/app/styles/main.scss",
+		"/home/endre/Projects/hellosalmon.com/app/bower_components/foundation/scss/foundation/components/_visibility.scss",
+		"/home/endre/Projects/hellosalmon.com/app/bower_components/foundation/bower.json",
+		"/home/endre/Projects/hellosalmon.com/app/styles/sass/_reset.scss",
+		"/home/endre/Projects/hellosalmon.com/gulpfile_bak.js",
+		"/home/endre/Projects/hellosalmon.com/hellosalmon.sublime-project",
+		"/home/endre/Projects/hellosalmon.com/package.json",
+		"/home/endre/Projects/hellosalmon.com/app/index_bak.html",
+		"/home/endre/Projects/hellosalmon.com/index.html",
+		"/home/endre/Projects/hellosalmon.com/styles/site.css",
+		"/home/endre/Projects/hellosalmon.com/styles/sass/_mixins.scss",
+		"/home/endre/Projects/old/hellosalmon/src/css/main.css",
+		"/home/endre/Projects/old/hellosalmon/src/index.php",
+		"/home/endre/Projects/hellosalmon.com/styles/sass/_variables.scss",
+		"/home/endre/Projects/hellosalmon.com/styles/sass/site.scss",
+		"/home/endre/Projects/hellosalmon.com/styles/sass/_layout.scss",
+		"/home/endre/Projects/hellosalmon.com/styles/sass/_reset.scss",
+		"/home/endre/Projects/hellosalmon.com/libs/foundation/css/normalize.css",
+		"/home/endre/Projects/hellosalmon.com/styles/site.scss",
+		"/home/endre/Projects/hellosalmon.com/styles/layout.css",
+		"/home/endre/Projects/hellosalmon.com/styles/sass/infrastructure.sass",
+		"/home/endre/Projects/hellosalmon.com/libs/foundation/css/foundation.css",
+		"/home/endre/Projects/hellosalmon.com/styles/sass/layout.scss",
+		"/home/endre/Projects/hellosalmon.com/styles/sass/main.scss",
+		"/home/endre/Projects/hellosalmon.com/node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss",
+		"/home/endre/Projects/hellosalmon.com/node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_grid.scss",
+		"/home/endre/Projects/hellosalmon.com/libs/foundation/css/foundation.min.css",
+		"/home/endre/.cache/.fr-TOqD02/css/normalize.css",
+		"/home/endre/.cache/.fr-mxHLga/css/foundation.css",
+		"/home/endre/Projects/hellosalmon.com/node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_grid.scss",
+		"/home/endre/Projects/hellosalmon.com/node_modules/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_grid-framework.scss",
+		"/home/endre/Projects/hellosalmon.com/node_modules/css-reset/reset.css",
+		"/home/endre/Projects/hellosalmon.com/npm-debug.log"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"PLAYERS.REGISTEREDPLAYERS.A",
+			"\"",
+			"translateProvider",
+			" ",
+			"'min-width': $screen-md-min",
+			"/*",
+			"main",
+			"h2",
+			"$screen-screen",
+			"$",
+			"bold"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"h1"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"contr",
+				"js/controllers.js"
+			],
+			[
+				"ind",
+				"index.html"
+			],
+			[
+				"boo",
+				"styles/sass/_bootstrap_overrides.scss"
+			],
+			[
+				"main",
+				"styles/sass/main.scss"
+			],
+			[
+				"bootstrap/mixins",
+				"bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_mixins.scss"
+			],
+			[
+				"mixins/grid",
+				"bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins/_grid.scss"
+			],
+			[
+				".css",
+				"styles/main.css"
+			],
+			[
+				"inde",
+				"index.html"
+			],
+			[
+				"_mix",
+				"styles/sass/_mixins.scss"
+			],
+			[
+				"_var",
+				"styles/sass/_variables.scss"
+			],
+			[
+				"site.s",
+				"styles/sass/site.scss"
+			],
+			[
+				"varia",
+				"styles/sass/_variables.scss"
+			],
+			[
+				"index",
+				"index.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 332.0,
+	"status_bar_visible": true
+}

@@ -1,0 +1,29 @@
+{
+  "name": "puckno_tournament",
+  "version": "0.0.0",
+  "description": "A simple web application for managing tablehockey tournament.",
+  "main": "index.html",
+  "dependencies": {
+    "angular": "~1.4.3",
+    "angular-translate": "~2.7.2",
+    "bootstrap": "~3.3.5",
+    "angular-route": "~1.4.3",
+    "angular-ui-router": "~0.2.15",
+    "angular-resource": "~1.4.3",
+    "angular-translate-loader-static-files": "~2.7.2",
+    "jquery": "~2.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/endre86/puckno_tournament.git"
+  },
+  "author": "Endre Vestbø",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/endre86/puckno_tournament/issues"
+  }
+}
