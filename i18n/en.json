@@ -1,0 +1,35 @@
+{
+	"MENU.INFORMATION" : "Information",
+	"MENU.PROGRAM" : "Program",
+	"MENU.PLAYERS" : "Players",
+	"MENU.LIVE" : "Live results",
+	"MENU.REGISTRATION" : "Registration",
+
+	"INFO.DATE" : "Date",
+	"INFO.LOCATION" : "Venue",
+	"INFO.REGISTRATION_FEE" : "Registration fee",
+	"INFO.CONTACT" : "Contact",
+
+	"PLAYERS.WR" : "WR",
+	"PLAYERS.NAME" : "Name",
+	"PLAYERS.CLUB" : "Club",
+	"PLAYERS.NATION" : "Nation",
+	"PLAYERS.VALUE" : "Position Value",
+
+	"PLAYERS.REGISTEREDPLAYERS.A" : "There are",
+	"PLAYERS.REGISTEREDPLAYERS.B" : "registered players in this tournament.",
+
+	"REG.TAB.EXISTING_PLAYER" : "Existing player (ITHF)",
+	"REG.TAB.NEW_PLAYER" : "New player",
+	"REG.FIELD.SEARCH_NAME" : "Search by name",
+	"REG.FIELD.CHOOSE_ITHF" : "Choose player",
+	"REG.BTN.REGISTER_AS" : "Register as",
+	"REG.FIELD.NAME" : "Name",
+	"REG.FIELD.CLUB" : "Club",
+	"REG.FIELD.COUNTRY" : "Country",
+	"REG.BTN.REGISTER_AS_NEW" : "Register as new player",
+
+	"REG.HELPER.PLAYERNAME" : "Your name",
+	"REG.HELPER.FIRSTLASTNAME" : "Firstname Lastname",
+	"REG.HELPER.CLUB" : "Name of club (optional)"
+}

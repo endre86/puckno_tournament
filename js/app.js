@@ -11,6 +11,7 @@
 
 	var app = ng.module('PucknoTournament', [
 		// 'ui.router',
+		'pascalprecht.translate',
 
 		// 'localization',
 		'TournamentRoutes',
@@ -24,5 +25,18 @@
 		'AdminControllers',
 		'AdminServices'
 	]);
+
+	app.config(['$translateProvider', function($translateProvider) {
+		$translateProvider.useSanitizeValueStrategy('escape');
+		$translateProvider.useStaticFilesLoader({
+			files: [{
+				prefix: 'i18n/',
+				suffix: '.json'
+			}]
+		});
+
+		$translateProvider.preferredLanguage('no');
+		$translateProvider.forceAsyncReload(true);
+	}]);
 
 })(angular);

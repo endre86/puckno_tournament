@@ -2,10 +2,10 @@
 <div class="panel panel-default">
 	<ul class="nav nav-tabs">
 		<li ng-class="{true: 'active'}[registerIndividualTab === 'existingPlayer' || !registerIndividualTab]">
-			<a ng-click="registerIndividualTab = 'existingPlayer'">Eksisterende spiller</a>
+			<a ng-click="registerIndividualTab = 'existingPlayer'">{{'REG.TAB.EXISTING_PLAYER' | translate}}</a>
 		</li>
 		<li ng-class="{true: 'active'}[registerIndividualTab === 'newPlayer']">
-			<a ng-click="registerIndividualTab = 'newPlayer'">Ny spiller</a>
+			<a ng-click="registerIndividualTab = 'newPlayer'">{{'REG.TAB.NEW_PLAYER' | translate}}</a>
 		</li>
 	</ul>
 	<div class="panel">

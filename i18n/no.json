@@ -1,0 +1,35 @@
+{
+	"MENU.INFORMATION" : "Informasjon",
+	"MENU.PROGRAM" : "Program",
+	"MENU.PLAYERS" : "Spillere",
+	"MENU.LIVE" : "Live resultater",
+	"MENU.REGISTRATION" : "Påmelding",
+
+	"INFO.DATE" : "Dato",
+	"INFO.LOCATION" : "Sted",
+	"INFO.REGISTRATION_FEE" : "Deltakeravgift",
+	"INFO.CONTACT" : "Kontaktperson",
+
+	"PLAYERS.WR" : "WR",
+	"PLAYERS.NAME" : "Navn",
+	"PLAYERS.CLUB" : "Klubb",
+	"PLAYERS.NATION" : "Nasjon",
+	"PLAYERS.VALUE" : "Posisjonsverdi",
+
+	"PLAYERS.REGISTEREDPLAYERS.A" : "Det er",
+	"PLAYERS.REGISTEREDPLAYERS.B" : "registrerte spillere i denne turneringen.",
+
+	"REG.TAB.EXISTING_PLAYER" : "Eksisterende spiller",
+	"REG.TAB.NEW_PLAYER" : "Ny spiller",
+	"REG.FIELD.SEARCH_NAME" : "Søk på navn",
+	"REG.FIELD.CHOOSE_ITHF" : "Velg ITHF spiller",
+	"REG.BTN.REGISTER_AS" : "Registrer som",
+	"REG.FIELD.NAME" : "Navn",
+	"REG.FIELD.CLUB" : "Klubb",
+	"REG.FIELD.COUNTRY" : "Land",
+	"REG.BTN.REGISTER_AS_NEW" : "Registrer som ny spiller",
+
+	"REG.HELPER.PLAYERNAME" : "Ditt navn",
+	"REG.HELPER.FIRSTLASTNAME" : "Fornavn Etternavn",
+	"REG.HELPER.CLUB" : "Klubbnavn (valgfri)"
+}

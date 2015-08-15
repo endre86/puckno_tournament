@@ -1,0 +1,33 @@
+{
+	// Top menu
+	"MENU.INFORMATION" : "",
+	"MENU.PROGRAM" : "",
+	"MENU.PLAYERS" : "",
+	"MENU.LIVE" : "",
+	"MENU.REGISTRATION" : "",
+
+	// Front page standard information
+	"INFO.DATE" : "",
+	"INFO.LOCATION" : "",
+	"INFO.REGISTRATION_FEE" : "",
+	"INFO.CONTACT" : "",
+
+	// Players table headings
+	"PLAYERS.WR" : "",
+	"PLAYERS.NAME" : "",
+	"PLAYERS.CLUB" : "",
+	"PLAYERS.NATION" : "",
+	"PLAYERS.VALUE" : "",
+
+	// Registration page
+	"REG.TAB.EXISTING" : "",
+	"REG.TAB.NEW" : "",
+	"REG.FIELD.SEARCH_NAME" : "",
+	"REG.FIELD.CHOOSE_ITHF" : "",
+	"REG.BTN.REGISTER_AS" : "",
+	"REG.FIELD.NAME" : "",
+	"REG.FIELD.CLUB" : "",
+	"REG.FIELD.COUNTRY" : "",
+	"REG.BTN.REGISTER_AS_NEW" : ""
+
+}

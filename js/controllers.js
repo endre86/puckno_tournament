@@ -12,8 +12,8 @@
 			});
 		}]);
 
-	controllers.controller('TournamentCtrl', ['$scope', '$stateParams', 'Tournament', 'logger',
-		function($scope, $stateParams, Tournament, logger) {
+	controllers.controller('TournamentCtrl', ['$scope', '$stateParams', '$translate', 'Tournament', 'logger',
+		function($scope, $stateParams, $translate, Tournament, logger) {
 			$scope.selectedTab ? $scope.selectedTab : 'info';
 
 			var tournamentId = $stateParams.tournamentId;
@@ -21,6 +21,8 @@
 			logger.debug('TournamentCtrl: Getting tournament ' + tournamentId);
 			Tournament.get(tournamentId)
 				.then(function() {
+					logger.debug('Setting language according to tournament data:', Tournament.data.language);
+					$translate.use(Tournament.data.language);
 					$scope.tournament = Tournament.data;
 				});
 		}]);

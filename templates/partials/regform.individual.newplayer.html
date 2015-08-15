@@ -4,21 +4,21 @@
 	<input type="hidden" ng-model="regform.playerType" ng-value="new" />
 
 	<div class="form-group">
-		<label class="col-sm-2 control-label">Navn:</label>
+		<label class="col-sm-2 control-label">{{'REG.FIELD.NAME' | translate}}:</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" ng-model="regform.name" id="namesearch" placeholder="Fornavn Etternavn" />
+			<input type="text" class="form-control" ng-model="regform.name" id="namesearch" placeholder="{{'REG.HELPER.FIRSTLASTNAME' | translate}}" />
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-2 control-label">Klubb:</label>
+		<label class="col-sm-2 control-label">{{'REG.FIELD.CLUB' | translate}}:</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" ng-model="regform.club" id="namesearch" placeholder="Klubbnavn (Valgfri)" />
+			<input type="text" class="form-control" ng-model="regform.club" id="namesearch" placeholder="{{'REG.HELPER.CLUB' | translate}}" />
 		</div>
 	</div>
 
 	<div class="form-group">
-		<label class="col-sm-2 control-label">Land:</label>
+		<label class="col-sm-2 control-label">{{'REG.FIELD.COUNTRY' | translate}}:</label>
 		<div class="col-sm-10">
 			<div ng-include src="'templates/partials/countrySelect.html'"></div>
 		</div>
@@ -29,6 +29,6 @@
 		<div class="col-sm-12"></div>
 			<button type="submit" 
 					class="btn btn-success btn-lg center-block">
-					Registrer som ny spiller{{regform.name ? ': ' + regform.name : ''}}</button>
+					{{'REG.BTN.REGISTER_AS_NEW' | translate}}{{regform.name ? ': ' + regform.name : ''}}</button>
 	</div>
 </form>

@@ -1,22 +1,22 @@
-<p><b>Det er {{tournamentPlayers.length > 0 ? tournamentPlayers.length : '0'}} registrerte spillere i denne turneringen.</b></p>
+<p><b>{{'PLAYERS.REGISTEREDPLAYERS.A' | translate}} {{tournamentPlayers.length > 0 ? tournamentPlayers.length : '0'}} {{'PLAYERS.REGISTEREDPLAYERS.B' | translate}}</b></p>
 
 <table class="table table-hover">
 	<thead class="no-whitespace-wrap">
 		<tr>
 			<th ng-click="sortPlayersBy('rank')" style="cursor:pointer">#</th>
-			<th ng-click="sortPlayersBy('rank')" style="cursor:pointer">WR
+			<th ng-click="sortPlayersBy('rank')" style="cursor:pointer">{{'PLAYERS.WR' | translate}}
 				<span class="glyphicon glyphicon-sort" style="color: #A0A0A0; font-size: 12px;" ng-hide="orderedOn === 'rank'"></span>
 				<span class="glyphicon glyphicon-sort" style="color: #383838; font-size: 12px;" ng-hide="orderedOn !== 'rank'"></span>
 			</th>
-			<th ng-click="sortPlayersBy('player')" style="cursor:pointer">Name 
+			<th ng-click="sortPlayersBy('player')" style="cursor:pointer">{{'PLAYERS.NAME' | translate}}
 				<span class="glyphicon glyphicon-sort" style="color: #A0A0A0; font-size: 12px;" ng-hide="orderedOn === 'player'"></span>
 				<span class="glyphicon glyphicon-sort" style="color: #383838; font-size: 12px;" ng-hide="orderedOn !== 'player'"></span>
 			</th>
-			<th ng-click="sortPlayersBy('club')" style="cursor:pointer">Club 
+			<th ng-click="sortPlayersBy('club')" style="cursor:pointer">{{'PLAYERS.CLUB' | translate}}
 				<span class="glyphicon glyphicon-sort" style="color: #A0A0A0; font-size: 12px;" ng-hide="orderedOn === 'club'"></span>
 				<span class="glyphicon glyphicon-sort" style="color: #383838; font-size: 12px;" ng-hide="orderedOn !== 'club'"></span>
 			</th>
-			<th ng-click="sortPlayersBy('nation')" style="cursor:pointer">Nation 
+			<th ng-click="sortPlayersBy('nation')" style="cursor:pointer">{{'PLAYERS.NATION' | translate}}
 				<span class="glyphicon glyphicon-sort" style="color: #A0A0A0; font-size: 12px;" ng-hide="orderedOn === 'nation'"></span>
 				<span class="glyphicon glyphicon-sort" style="color: #383838; font-size: 12px;" ng-hide="orderedOn !== 'nation'"></span>
 			</th>
@@ -28,7 +28,7 @@
 				<span class="glyphicon glyphicon-sort" style="color: #A0A0A0; font-size: 12px;" ng-hide="orderedOn === 'best'"></span>
 				<span class="glyphicon glyphicon-sort" style="color: #383838; font-size: 12px;" ng-hide="orderedOn !== 'best'"></span>
 			</th> -->
-			<th ng-click="sortPlayersBy('rank')" style="cursor:pointer; text-align=center;" class="allow-whitespace-wrap"><center>Position Value</center></th>
+			<th ng-click="sortPlayersBy('rank')" style="cursor:pointer; text-align=center;" class="allow-whitespace-wrap"><center>{{'PLAYERS.VALUE' | translate}}</center></th>
 		</tr>
 
 		<tr ng-repeat="player in tournamentPlayers">

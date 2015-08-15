@@ -4,13 +4,13 @@
 		<br />
 		<ul class="nav nav-pills">
 			<li ng-class="{true: 'active'}[selectedTab === 'info' || !selectedTab]">
-				<a ui-sref="tournament.info({tournamentId: tournament.id})"  ng-click="selectedTab='info'" data-toggle="tab">Informasjon</a>
+				<a ui-sref="tournament.info({tournamentId: tournament.id})"  ng-click="selectedTab='info'" data-toggle="tab">{{'MENU.INFORMATION' | translate}}</a>
 			</li>
 			<li ng-class="{true: 'active'}[selectedTab === 'program']">
-				<a ui-sref="tournament.program({tournamentId: tournament.id})" ng-click="selectedTab='program'" data-toggle="tab">Program</a>
+				<a ui-sref="tournament.program({tournamentId: tournament.id})" ng-click="selectedTab='program'" data-toggle="tab">{{'MENU.PROGRAM' | translate}}</a>
 			</li>
 			<li ng-class="{true: 'active'}[selectedTab === 'players']">
-				<a ui-sref="tournament.players" ng-click="selectedTab='players'" data-toggle="tab">Spillere</a>
+				<a ui-sref="tournament.players" ng-click="selectedTab='players'" data-toggle="tab">{{'MENU.PLAYERS' | translate}}</a>
 			</li>
 			
 			<!-- TODO: Make functionality to add external pages to main menu -->
@@ -19,10 +19,10 @@
 			</li>
 
 			<li ng-class="{true: 'active'}[selectedTab === 'live']">
-				<a ui-sref="tournament.live" ng-click="selectedTab='live'" data-toggle="tab">Live resultater</a>
+				<a ui-sref="tournament.live" ng-click="selectedTab='live'" data-toggle="tab">{{'MENU.LIVE' | translate}}</a>
 			</li>
 			<li ng-class="{true: 'active'}[selectedTab === 'register']">
-				<a ui-sref="tournament.register" ng-click="selectedTab='register'" data-toggle="tab"><b>Påmelding</b></a>
+				<a ui-sref="tournament.register" ng-click="selectedTab='register'" data-toggle="tab"><b>{{'MENU.REGISTRATION' | translate}}</b></a>
 			</li>
 		</ul>
 	</div>
