@@ -7,6 +7,9 @@
 # credentials
 *credentials*
 
+# misc images
+imgs/*
+
 #node modules
 node_modules/*
 

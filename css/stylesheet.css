@@ -21,3 +21,8 @@ a {
 .allow-whitespace-wrap {
 	white-space: normal;
 }
+
+.tournament-info img {
+	height: auto;
+	width: 100%;
+}
